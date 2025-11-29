@@ -132,6 +132,28 @@ const translations = {
   },
 }
 
+// Flag components as inline SVGs for better compatibility
+const BrazilFlag = () => (
+  <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="20" height="14" fill="#009C3B" />
+    <path d="M10 1L18 7L10 13L2 7L10 1Z" fill="#FFDF00" />
+    <circle cx="10" cy="7" r="3.5" fill="#002776" />
+  </svg>
+)
+
+const USFlag = () => (
+  <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="20" height="14" fill="#B22234" />
+    <rect y="1" width="20" height="1" fill="white" />
+    <rect y="3" width="20" height="1" fill="white" />
+    <rect y="5" width="20" height="1" fill="white" />
+    <rect y="7" width="20" height="1" fill="white" />
+    <rect y="9" width="20" height="1" fill="white" />
+    <rect y="11" width="20" height="1" fill="white" />
+    <rect width="8" height="7" fill="#3C3B6E" />
+  </svg>
+)
+
 export default function ITServicesPage() {
   const [lang, setLang] = useState<"pt-BR" | "en">("pt-BR")
   const [formData, setFormData] = useState({
@@ -212,7 +234,7 @@ export default function ITServicesPage() {
               onClick={() => setLang("pt-BR")}
               className="flex items-center gap-2"
             >
-              <span className="text-lg">🇧🇷</span>
+              <BrazilFlag />
               <span>PT</span>
             </Button>
             <Button
@@ -221,7 +243,7 @@ export default function ITServicesPage() {
               onClick={() => setLang("en")}
               className="flex items-center gap-2"
             >
-              <span className="text-lg">🇺🇸</span>
+              <USFlag />
               <span>EN</span>
             </Button>
           </div>
@@ -241,7 +263,7 @@ export default function ITServicesPage() {
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold mb-12 text-center">{t.servicesTitle}</h2>
           <div className="relative">
-            <div className="flex gap-6 animate-infinite-scroll">
+            <div className="flex gap-6 animate-infinite-scroll hover:[animation-play-state:paused]">
               {/* First set of services */}
               {t.services.map((service, index) => {
                 const IconComponent = service.icon

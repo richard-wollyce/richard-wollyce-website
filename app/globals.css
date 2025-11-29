@@ -114,8 +114,8 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Added custom animation for infinite scroll */
-  --animate-infinite-scroll: infinite-scroll 40s linear infinite;
+  /* Updated animation duration for smoother infinite scroll that shows all services */
+  --animate-infinite-scroll: infinite-scroll 60s linear infinite;
 }
 
 @layer base {
@@ -127,12 +127,12 @@
   }
 }
 
-/* Added keyframes for infinite scroll animation */
+/* Updated keyframes to ensure smooth continuous scrolling */
 @keyframes infinite-scroll {
   from {
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(calc(-320px * 7 - 24px * 7));
   }
 }
