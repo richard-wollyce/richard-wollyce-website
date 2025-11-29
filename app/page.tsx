@@ -79,7 +79,7 @@ const translations = {
   },
   en: {
     title: "Need help with technology?",
-    subtitle: "Complete technology solutions for your business",
+    subtitle: "Professional IT services for businesses and home users",
     servicesTitle: "Our Services",
     services: [
       {
