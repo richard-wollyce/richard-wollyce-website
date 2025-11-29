@@ -164,7 +164,7 @@ export default function ITServicesPage() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const carouselRef = useRef<HTMLDivElement>(null)
-  const [isPaused, setIsPaused] = useState(false)
+  const [animationSpeed, setAnimationSpeed] = useState(1)
 
   const t = translations[lang]
 
@@ -222,6 +222,14 @@ export default function ITServicesPage() {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({ left: 400, behavior: "smooth" })
     }
+  }
+
+  const handleMouseEnter = () => {
+    setAnimationSpeed(0)
+  }
+
+  const handleMouseLeave = () => {
+    setAnimationSpeed(1)
   }
 
   const socialLinks = [
@@ -301,7 +309,7 @@ export default function ITServicesPage() {
             {/* Left Navigation Button */}
             <button
               onClick={scrollLeft}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background border-2 border-border rounded-full p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background border-2 border-border rounded-full p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out"
               aria-label="Scroll left"
             >
               <svg
@@ -322,7 +330,7 @@ export default function ITServicesPage() {
             {/* Right Navigation Button */}
             <button
               onClick={scrollRight}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background border-2 border-border rounded-full p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background border-2 border-border rounded-full p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out"
               aria-label="Scroll right"
             >
               <svg
@@ -344,15 +352,24 @@ export default function ITServicesPage() {
             <div
               ref={carouselRef}
               className="overflow-x-auto scrollbar-hide scroll-smooth"
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
-              <div className={`flex gap-6 ${isPaused ? "" : "animate-infinite-scroll"}`}>
+              <div
+                className="flex gap-6 animate-infinite-scroll"
+                style={{
+                  animationPlayState: animationSpeed === 0 ? "paused" : "running",
+                  transition: "animation-play-state 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
+                }}
+              >
                 {/* First set of services */}
                 {t.services.map((service, index) => {
                   const IconComponent = service.icon
                   return (
-                    <Card key={`first-${index}`} className="p-6 hover:shadow-lg transition-shadow flex-shrink-0 w-80">
+                    <Card
+                      key={`first-${index}`}
+                      className="p-6 hover:shadow-lg transition-all duration-300 ease-in-out flex-shrink-0 w-80"
+                    >
                       <div className="mb-4">
                         <IconComponent className="h-12 w-12" />
                       </div>
@@ -365,7 +382,10 @@ export default function ITServicesPage() {
                 {t.services.map((service, index) => {
                   const IconComponent = service.icon
                   return (
-                    <Card key={`second-${index}`} className="p-6 hover:shadow-lg transition-shadow flex-shrink-0 w-80">
+                    <Card
+                      key={`second-${index}`}
+                      className="p-6 hover:shadow-lg transition-all duration-300 ease-in-out flex-shrink-0 w-80"
+                    >
                       <div className="mb-4">
                         <IconComponent className="h-12 w-12" />
                       </div>
@@ -377,7 +397,10 @@ export default function ITServicesPage() {
                 {t.services.map((service, index) => {
                   const IconComponent = service.icon
                   return (
-                    <Card key={`third-${index}`} className="p-6 hover:shadow-lg transition-shadow flex-shrink-0 w-80">
+                    <Card
+                      key={`third-${index}`}
+                      className="p-6 hover:shadow-lg transition-all duration-300 ease-in-out flex-shrink-0 w-80"
+                    >
                       <div className="mb-4">
                         <IconComponent className="h-12 w-12" />
                       </div>
