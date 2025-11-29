@@ -170,23 +170,44 @@ export default function ITServicesPage() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
 
-    // Reset form
-    setFormData({
-      name: "",
-      phone: "",
-      email: "",
-      issue: "",
-    })
-    setIsSubmitting(false)
+      const data = await response.json()
 
-    alert(
-      lang === "pt-BR"
-        ? "Mensagem enviada com sucesso! Entraremos em contato em breve."
-        : "Message sent successfully! We'll contact you soon.",
-    )
+      if (data.ok) {
+        // Reset form on success
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          issue: "",
+        })
+
+        alert(
+          lang === "pt-BR"
+            ? "Mensagem enviada com sucesso! Entraremos em contato em breve."
+            : "Message sent successfully! We'll contact you soon.",
+        )
+      } else {
+        throw new Error(data.error || "Failed to send message")
+      }
+    } catch (error) {
+      console.error("[v0] Error submitting form:", error)
+      alert(
+        lang === "pt-BR"
+          ? "Erro ao enviar mensagem. Por favor, tente novamente."
+          : "Error sending message. Please try again.",
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const socialLinks = [
