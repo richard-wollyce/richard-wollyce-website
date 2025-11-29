@@ -78,7 +78,7 @@ const translations = {
     footer: "Serviços de TI Profissionais. Todos os direitos reservados.",
   },
   en: {
-    title: "Professional IT Services",
+    title: "Need help with technology?",
     subtitle: "Complete technology solutions for your business",
     servicesTitle: "Our Services",
     services: [
