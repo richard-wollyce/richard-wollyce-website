@@ -26,7 +26,7 @@ import {
 const translations = {
   "pt-BR": {
     title: "Precisa de ajuda com tecnologia?",
-    subtitle: "Soluções profissionais em TI para empresas e usuários domésticos",
+    subtitle: "Tecnologia funcionando do jeito que você precisa: rápida, segura e sem complicação.",
     servicesTitle: "Nossos Serviços",
     services: [
       {
