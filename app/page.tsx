@@ -193,7 +193,7 @@ export default function ITServicesPage() {
     {
       name: "Instagram",
       icon: Instagram,
-      url: "https://instagram.com",
+      url: "https://instagram.com/richardwollyce",
     },
     {
       name: "X",
@@ -202,22 +202,22 @@ export default function ITServicesPage() {
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
         </svg>
       ),
-      url: "https://x.com",
+      url: "https://x.com/richardwollyce",
     },
     {
       name: "GitHub",
       icon: Github,
-      url: "https://github.com",
+      url: "https://github.com/richard-wollyce",
     },
     {
       name: "YouTube",
       icon: Youtube,
-      url: "https://youtube.com",
+      url: "https://youtube.com/richardwollyce",
     },
     {
       name: "WhatsApp",
       icon: MessageCircle,
-      url: "https://wa.me/5511999999999",
+      url: "https://wa.me/5516991597978",
     },
   ]
 
