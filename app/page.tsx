@@ -25,7 +25,7 @@ import {
 // Translations
 const translations = {
   "pt-BR": {
-    title: "Serviços de TI Profissionais",
+    title: "Precisa de ajuda com tecnologia?",
     subtitle: "Soluções completas em tecnologia para o seu negócio",
     servicesTitle: "Nossos Serviços",
     services: [
