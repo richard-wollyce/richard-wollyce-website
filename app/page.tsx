@@ -75,7 +75,7 @@ const translations = {
     bioTitle: "Sobre Mim",
     bio: "Sou um profissional de TI com anos de experiência em fornecer soluções tecnológicas para empresas e indivíduos. Especializado em infraestrutura, segurança cibernética e suporte técnico, estou comprometido em ajudar meus clientes a resolver seus desafios tecnológicos com eficiência e profissionalismo.",
     socialTitle: "Conecte-se",
-    footer: "Serviços de TI Profissionais. Todos os direitos reservados.",
+    footer: "Richard Wollyce. Todos os direitos reservados.",
   },
   en: {
     title: "Need help with technology?",
@@ -128,7 +128,7 @@ const translations = {
     bioTitle: "About Me",
     bio: "I am an IT professional with years of experience providing technology solutions for businesses and individuals. Specialized in infrastructure, cybersecurity, and technical support, I am committed to helping my clients solve their technology challenges efficiently and professionally.",
     socialTitle: "Connect",
-    footer: "Professional IT Services. All rights reserved.",
+    footer: "Richard Wollyce. All rights reserved.",
   },
 }
 
