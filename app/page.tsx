@@ -19,6 +19,7 @@ import {
   Github,
   Youtube,
   MessageCircle,
+  Code,
 } from "lucide-react"
 
 // Translations
@@ -57,6 +58,11 @@ const translations = {
         icon: Terminal,
         title: "Suporte Linux/Windows",
         description: "Solução de problemas em sistemas Linux e Windows",
+      },
+      {
+        icon: Code,
+        title: "Desenvolvimento de Software",
+        description: "Criação de soluções personalizadas para atender às necessidades do seu negócio",
       },
     ],
     contactTitle: "Entre em Contato",
@@ -105,6 +111,11 @@ const translations = {
         icon: Terminal,
         title: "Linux/Windows Support",
         description: "Troubleshooting for Linux and Windows systems",
+      },
+      {
+        icon: Code,
+        title: "Software Development",
+        description: "Custom software solutions tailored to your business needs",
       },
     ],
     contactTitle: "Get in Touch",
@@ -193,13 +204,25 @@ export default function ITServicesPage() {
       {/* Header with Language Toggle */}
       <header className="border-b border-border">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="text-2xl font-bold">IT Services</div>
+          <div className="text-2xl font-bold">Richard Wollyce</div>
           <div className="flex gap-2">
-            <Button variant={lang === "pt-BR" ? "default" : "ghost"} size="sm" onClick={() => setLang("pt-BR")}>
-              PT
+            <Button
+              variant={lang === "pt-BR" ? "default" : "ghost"}
+              size="sm"
+              onClick={() => setLang("pt-BR")}
+              className="flex items-center gap-2"
+            >
+              <span className="text-lg">🇧🇷</span>
+              <span>PT</span>
             </Button>
-            <Button variant={lang === "en" ? "default" : "ghost"} size="sm" onClick={() => setLang("en")}>
-              EN
+            <Button
+              variant={lang === "en" ? "default" : "ghost"}
+              size="sm"
+              onClick={() => setLang("en")}
+              className="flex items-center gap-2"
+            >
+              <span className="text-lg">🇺🇸</span>
+              <span>EN</span>
             </Button>
           </div>
         </div>
@@ -213,23 +236,39 @@ export default function ITServicesPage() {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-16 px-4 bg-muted/30">
+      {/* Services Section - Infinite Scroll */}
+      <section className="py-16 px-4 bg-muted/30 overflow-hidden">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold mb-12 text-center">{t.servicesTitle}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {t.services.map((service, index) => {
-              const IconComponent = service.icon
-              return (
-                <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
-                  <div className="mb-4">
-                    <IconComponent className="h-12 w-12" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-                </Card>
-              )
-            })}
+          <div className="relative">
+            <div className="flex gap-6 animate-infinite-scroll">
+              {/* First set of services */}
+              {t.services.map((service, index) => {
+                const IconComponent = service.icon
+                return (
+                  <Card key={`first-${index}`} className="p-6 hover:shadow-lg transition-shadow flex-shrink-0 w-80">
+                    <div className="mb-4">
+                      <IconComponent className="h-12 w-12" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+                  </Card>
+                )
+              })}
+              {/* Duplicate set for seamless loop */}
+              {t.services.map((service, index) => {
+                const IconComponent = service.icon
+                return (
+                  <Card key={`second-${index}`} className="p-6 hover:shadow-lg transition-shadow flex-shrink-0 w-80">
+                    <div className="mb-4">
+                      <IconComponent className="h-12 w-12" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+                  </Card>
+                )
+              })}
+            </div>
           </div>
         </div>
       </section>
