@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -163,6 +163,8 @@ export default function ITServicesPage() {
     issue: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const carouselRef = useRef<HTMLDivElement>(null)
+  const [isPaused, setIsPaused] = useState(false)
 
   const t = translations[lang]
 
@@ -207,6 +209,18 @@ export default function ITServicesPage() {
       )
     } finally {
       setIsSubmitting(false)
+    }
+  }
+
+  const scrollLeft = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: -400, behavior: "smooth" })
+    }
+  }
+
+  const scrollRight = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: 400, behavior: "smooth" })
     }
   }
 
@@ -283,34 +297,96 @@ export default function ITServicesPage() {
       <section className="py-16 px-4 bg-muted/30 overflow-hidden">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold mb-12 text-center">{t.servicesTitle}</h2>
-          <div className="relative">
-            <div className="flex gap-6 animate-infinite-scroll hover:[animation-play-state:paused]">
-              {/* First set of services */}
-              {t.services.map((service, index) => {
-                const IconComponent = service.icon
-                return (
-                  <Card key={`first-${index}`} className="p-6 hover:shadow-lg transition-shadow flex-shrink-0 w-80">
-                    <div className="mb-4">
-                      <IconComponent className="h-12 w-12" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-                  </Card>
-                )
-              })}
-              {/* Duplicate set for seamless loop */}
-              {t.services.map((service, index) => {
-                const IconComponent = service.icon
-                return (
-                  <Card key={`second-${index}`} className="p-6 hover:shadow-lg transition-shadow flex-shrink-0 w-80">
-                    <div className="mb-4">
-                      <IconComponent className="h-12 w-12" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-                  </Card>
-                )
-              })}
+          <div className="relative group">
+            {/* Left Navigation Button */}
+            <button
+              onClick={scrollLeft}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background border-2 border-border rounded-full p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+              aria-label="Scroll left"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+            </button>
+
+            {/* Right Navigation Button */}
+            <button
+              onClick={scrollRight}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background border-2 border-border rounded-full p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+              aria-label="Scroll right"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </button>
+
+            {/* Carousel Container */}
+            <div
+              ref={carouselRef}
+              className="overflow-x-auto scrollbar-hide scroll-smooth"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
+              <div className={`flex gap-6 ${isPaused ? "" : "animate-infinite-scroll"}`}>
+                {/* First set of services */}
+                {t.services.map((service, index) => {
+                  const IconComponent = service.icon
+                  return (
+                    <Card key={`first-${index}`} className="p-6 hover:shadow-lg transition-shadow flex-shrink-0 w-80">
+                      <div className="mb-4">
+                        <IconComponent className="h-12 w-12" />
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+                    </Card>
+                  )
+                })}
+                {/* Duplicate set for seamless loop */}
+                {t.services.map((service, index) => {
+                  const IconComponent = service.icon
+                  return (
+                    <Card key={`second-${index}`} className="p-6 hover:shadow-lg transition-shadow flex-shrink-0 w-80">
+                      <div className="mb-4">
+                        <IconComponent className="h-12 w-12" />
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+                    </Card>
+                  )
+                })}
+                {t.services.map((service, index) => {
+                  const IconComponent = service.icon
+                  return (
+                    <Card key={`third-${index}`} className="p-6 hover:shadow-lg transition-shadow flex-shrink-0 w-80">
+                      <div className="mb-4">
+                        <IconComponent className="h-12 w-12" />
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+                    </Card>
+                  )
+                })}
+              </div>
             </div>
           </div>
         </div>
