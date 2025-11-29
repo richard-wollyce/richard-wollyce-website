@@ -299,7 +299,7 @@ export default function ITServicesPage() {
         <div className="container mx-auto max-w-4xl">
           <div className="flex flex-col md:flex-row gap-8 items-center">
             <div className="flex-shrink-0">
-              <img src="/it-consultant-portrait.png" alt="Profile" className="rounded-lg w-48 h-48 object-cover" />
+              <img src="/rwpfp.webp" alt="Profile" className="rounded-lg w-48 h-48 object-cover" />
             </div>
             <div>
               <h2 className="text-3xl font-bold mb-4">{t.bioTitle}</h2>
