@@ -1,0 +1,346 @@
+"use client"
+
+import type React from "react"
+
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
+import { Card } from "@/components/ui/card"
+import {
+  Server,
+  Shield,
+  Network,
+  HardDrive,
+  RefreshCw,
+  Terminal,
+  Instagram,
+  Github,
+  Youtube,
+  MessageCircle,
+} from "lucide-react"
+
+// Translations
+const translations = {
+  "pt-BR": {
+    title: "Serviços de TI Profissionais",
+    subtitle: "Soluções completas em tecnologia para o seu negócio",
+    servicesTitle: "Nossos Serviços",
+    services: [
+      {
+        icon: Server,
+        title: "Suporte de TI",
+        description: "Assistência técnica completa para manter seus sistemas funcionando perfeitamente",
+      },
+      {
+        icon: RefreshCw,
+        title: "Atualização de Software",
+        description: "Mantenha seus aplicativos e sistemas sempre atualizados e seguros",
+      },
+      {
+        icon: HardDrive,
+        title: "Reparo de Hardware",
+        description: "Diagnóstico e conserto de equipamentos com rapidez e eficiência",
+      },
+      {
+        icon: Shield,
+        title: "Consultoria em Segurança",
+        description: "Proteção avançada contra ameaças cibernéticas e vulnerabilidades",
+      },
+      {
+        icon: Network,
+        title: "Redes e Infraestrutura",
+        description: "Planejamento e implementação de soluções de rede robustas",
+      },
+      {
+        icon: Terminal,
+        title: "Suporte Linux/Windows",
+        description: "Solução de problemas em sistemas Linux e Windows",
+      },
+    ],
+    contactTitle: "Entre em Contato",
+    contactSubtitle: "Conte-nos sobre seu problema e entraremos em contato em breve",
+    formName: "Nome Completo",
+    formPhone: "Número de Contato",
+    formEmail: "E-mail (opcional)",
+    formIssue: "Descreva seu problema",
+    formSubmit: "Enviar Mensagem",
+    bioTitle: "Sobre Mim",
+    bio: "Sou um profissional de TI com anos de experiência em fornecer soluções tecnológicas para empresas e indivíduos. Especializado em infraestrutura, segurança cibernética e suporte técnico, estou comprometido em ajudar meus clientes a resolver seus desafios tecnológicos com eficiência e profissionalismo.",
+    socialTitle: "Conecte-se",
+    footer: "Serviços de TI Profissionais. Todos os direitos reservados.",
+  },
+  en: {
+    title: "Professional IT Services",
+    subtitle: "Complete technology solutions for your business",
+    servicesTitle: "Our Services",
+    services: [
+      {
+        icon: Server,
+        title: "IT Support",
+        description: "Complete technical assistance to keep your systems running perfectly",
+      },
+      {
+        icon: RefreshCw,
+        title: "Software Updates",
+        description: "Keep your applications and systems always updated and secure",
+      },
+      {
+        icon: HardDrive,
+        title: "Hardware Repair",
+        description: "Quick and efficient equipment diagnosis and repair",
+      },
+      {
+        icon: Shield,
+        title: "Cybersecurity Consulting",
+        description: "Advanced protection against cyber threats and vulnerabilities",
+      },
+      {
+        icon: Network,
+        title: "Network & Infrastructure",
+        description: "Planning and implementation of robust network solutions",
+      },
+      {
+        icon: Terminal,
+        title: "Linux/Windows Support",
+        description: "Troubleshooting for Linux and Windows systems",
+      },
+    ],
+    contactTitle: "Get in Touch",
+    contactSubtitle: "Tell us about your issue and we'll get back to you soon",
+    formName: "Full Name",
+    formPhone: "Contact Number",
+    formEmail: "Email (optional)",
+    formIssue: "Describe your issue",
+    formSubmit: "Send Message",
+    bioTitle: "About Me",
+    bio: "I am an IT professional with years of experience providing technology solutions for businesses and individuals. Specialized in infrastructure, cybersecurity, and technical support, I am committed to helping my clients solve their technology challenges efficiently and professionally.",
+    socialTitle: "Connect",
+    footer: "Professional IT Services. All rights reserved.",
+  },
+}
+
+export default function ITServicesPage() {
+  const [lang, setLang] = useState<"pt-BR" | "en">("pt-BR")
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    issue: "",
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const t = translations[lang]
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    // Simulate form submission
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+
+    // Reset form
+    setFormData({
+      name: "",
+      phone: "",
+      email: "",
+      issue: "",
+    })
+    setIsSubmitting(false)
+
+    alert(
+      lang === "pt-BR"
+        ? "Mensagem enviada com sucesso! Entraremos em contato em breve."
+        : "Message sent successfully! We'll contact you soon.",
+    )
+  }
+
+  const socialLinks = [
+    {
+      name: "Instagram",
+      icon: Instagram,
+      url: "https://instagram.com",
+    },
+    {
+      name: "X",
+      icon: () => (
+        <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      ),
+      url: "https://x.com",
+    },
+    {
+      name: "GitHub",
+      icon: Github,
+      url: "https://github.com",
+    },
+    {
+      name: "YouTube",
+      icon: Youtube,
+      url: "https://youtube.com",
+    },
+    {
+      name: "WhatsApp",
+      icon: MessageCircle,
+      url: "https://wa.me/5511999999999",
+    },
+  ]
+
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Header with Language Toggle */}
+      <header className="border-b border-border">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="text-2xl font-bold">IT Services</div>
+          <div className="flex gap-2">
+            <Button variant={lang === "pt-BR" ? "default" : "ghost"} size="sm" onClick={() => setLang("pt-BR")}>
+              PT
+            </Button>
+            <Button variant={lang === "en" ? "default" : "ghost"} size="sm" onClick={() => setLang("en")}>
+              EN
+            </Button>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto text-center max-w-4xl">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance">{t.title}</h1>
+          <p className="text-xl md:text-2xl text-muted-foreground text-balance">{t.subtitle}</p>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-16 px-4 bg-muted/30">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold mb-12 text-center">{t.servicesTitle}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {t.services.map((service, index) => {
+              const IconComponent = service.icon
+              return (
+                <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
+                  <div className="mb-4">
+                    <IconComponent className="h-12 w-12" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+                </Card>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto max-w-2xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">{t.contactTitle}</h2>
+            <p className="text-lg text-muted-foreground">{t.contactSubtitle}</p>
+          </div>
+
+          <Card className="p-8">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="name">{t.formName}</Label>
+                <Input
+                  id="name"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="phone">{t.formPhone}</Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  required
+                  value={formData.phone}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="email">{t.formEmail}</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="issue">{t.formIssue}</Label>
+                <Textarea
+                  id="issue"
+                  required
+                  rows={5}
+                  value={formData.issue}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, issue: e.target.value }))}
+                />
+              </div>
+
+              <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+                {isSubmitting ? (lang === "pt-BR" ? "Enviando..." : "Sending...") : t.formSubmit}
+              </Button>
+            </form>
+          </Card>
+        </div>
+      </section>
+
+      {/* Bio Section */}
+      <section className="py-16 px-4 bg-muted/30">
+        <div className="container mx-auto max-w-4xl">
+          <div className="flex flex-col md:flex-row gap-8 items-center">
+            <div className="flex-shrink-0">
+              <img src="/it-consultant-portrait.png" alt="Profile" className="rounded-lg w-48 h-48 object-cover" />
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold mb-4">{t.bioTitle}</h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">{t.bio}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Social Media Section */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-3xl font-bold mb-8">{t.socialTitle}</h2>
+          <div className="flex justify-center gap-6 flex-wrap">
+            {socialLinks.map((social) => {
+              const IconComponent = social.icon
+              return (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-6 py-3 rounded-lg border border-border hover:bg-muted transition-colors"
+                >
+                  <IconComponent />
+                  <span className="font-medium">{social.name}</span>
+                </a>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-8 px-4 border-t border-border">
+        <div className="container mx-auto text-center text-sm text-muted-foreground">
+          <p>
+            &copy; {new Date().getFullYear()} {t.footer}
+          </p>
+        </div>
+      </footer>
+    </div>
+  )
+}
