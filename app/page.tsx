@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -26,7 +26,7 @@ import {
 const translations = {
   "pt-BR": {
     title: "Precisa de ajuda com tecnologia?",
-    subtitle: "Soluções profissionais em TI para empresas e usuários domésticos",
+    subtitle: "Confira os serviços abaixo e entre em contato. O resto é comigo.",
     servicesTitle: "Nossos Serviços",
     services: [
       {
@@ -73,13 +73,13 @@ const translations = {
     formIssue: "Descreva seu problema",
     formSubmit: "Enviar Mensagem",
     bioTitle: "Muito prazer, eu sou o Richard",
-    bio: "Sou apaixonado por tecnologia e ajudar pessoas. Ao longo de mais de 10 anos trabalhando com suporte técnico, redes, segurança e desenvolvimento, aprendi que tecnologia boa é aquela que resolve problemas de verdade. Por isso, hoje ajudo empresas e usuários a manterem seus sistemas protegidos, rápidos e funcionando sem dor de cabeça.",
+    bio: "Atuante na área há mais de 10 anos, ajudando pessoas e empresas a resolverem problemas de tecnologia com segurança e eficiência. Redes, suporte técnico, desenvolvimento de softwares, proteção de sistemas e ambientes Windows e Linux: se envolve tecnologia, eu posso ajudar.",
     socialTitle: "Conecte-se",
     footer: "Richard Wollyce. Todos os direitos reservados.",
   },
   en: {
     title: "Need help with technology?",
-    subtitle: "Professional IT services for businesses and home users",
+    subtitle: "Take a look at the services below and send me a message. I’ll handle the rest.",
     servicesTitle: "Our Services",
     services: [
       {
@@ -126,7 +126,7 @@ const translations = {
     formIssue: "Describe your issue",
     formSubmit: "Send Message",
     bioTitle: "Nice to meet you, I’m Richard",
-    bio: "I am passionate about technology and helping people. With over 10 years of experience in IT support, networking, security and development, I believe technology should make life easier. That’s why I help businesses and everyday users to keep their systems working without complications.",
+    bio: "For more than 10 years, I’ve been helping people and businesses solve real technology challenges. Networking, security, software development, system support and optimization: if it involves tech, I can help you make it work better.",
     socialTitle: "Connect",
     footer: "Richard Wollyce. All rights reserved.",
   },
@@ -163,6 +163,8 @@ export default function ITServicesPage() {
     issue: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const carouselRef = useRef<HTMLDivElement>(null)
+  const [animationSpeed, setAnimationSpeed] = useState(1)
 
   const t = translations[lang]
 
@@ -208,6 +210,26 @@ export default function ITServicesPage() {
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  const scrollLeft = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: -400, behavior: "smooth" })
+    }
+  }
+
+  const scrollRight = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: 400, behavior: "smooth" })
+    }
+  }
+
+  const handleMouseEnter = () => {
+    setAnimationSpeed(0)
+  }
+
+  const handleMouseLeave = () => {
+    setAnimationSpeed(1)
   }
 
   const socialLinks = [
@@ -283,34 +305,111 @@ export default function ITServicesPage() {
       <section className="py-16 px-4 bg-muted/30 overflow-hidden">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold mb-12 text-center">{t.servicesTitle}</h2>
-          <div className="relative">
-            <div className="flex gap-6 animate-infinite-scroll hover:[animation-play-state:paused]">
-              {/* First set of services */}
-              {t.services.map((service, index) => {
-                const IconComponent = service.icon
-                return (
-                  <Card key={`first-${index}`} className="p-6 hover:shadow-lg transition-shadow flex-shrink-0 w-80">
-                    <div className="mb-4">
-                      <IconComponent className="h-12 w-12" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-                  </Card>
-                )
-              })}
-              {/* Duplicate set for seamless loop */}
-              {t.services.map((service, index) => {
-                const IconComponent = service.icon
-                return (
-                  <Card key={`second-${index}`} className="p-6 hover:shadow-lg transition-shadow flex-shrink-0 w-80">
-                    <div className="mb-4">
-                      <IconComponent className="h-12 w-12" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-                  </Card>
-                )
-              })}
+          <div className="relative group">
+            {/* Left Navigation Button */}
+            <button
+              onClick={scrollLeft}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background border-2 border-border rounded-full p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out"
+              aria-label="Scroll left"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+            </button>
+
+            {/* Right Navigation Button */}
+            <button
+              onClick={scrollRight}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background border-2 border-border rounded-full p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out"
+              aria-label="Scroll right"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </button>
+
+            {/* Carousel Container */}
+            <div
+              ref={carouselRef}
+              className="overflow-x-auto scrollbar-hide scroll-smooth"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div
+                className="flex gap-6 animate-infinite-scroll"
+                style={{
+                  animationPlayState: animationSpeed === 0 ? "paused" : "running",
+                  transition: "animation-play-state 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
+                }}
+              >
+                {/* First set of services */}
+                {t.services.map((service, index) => {
+                  const IconComponent = service.icon
+                  return (
+                    <Card
+                      key={`first-${index}`}
+                      className="p-6 hover:shadow-lg transition-all duration-300 ease-in-out flex-shrink-0 w-80"
+                    >
+                      <div className="mb-4">
+                        <IconComponent className="h-12 w-12" />
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+                    </Card>
+                  )
+                })}
+                {/* Duplicate set for seamless loop */}
+                {t.services.map((service, index) => {
+                  const IconComponent = service.icon
+                  return (
+                    <Card
+                      key={`second-${index}`}
+                      className="p-6 hover:shadow-lg transition-all duration-300 ease-in-out flex-shrink-0 w-80"
+                    >
+                      <div className="mb-4">
+                        <IconComponent className="h-12 w-12" />
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+                    </Card>
+                  )
+                })}
+                {t.services.map((service, index) => {
+                  const IconComponent = service.icon
+                  return (
+                    <Card
+                      key={`third-${index}`}
+                      className="p-6 hover:shadow-lg transition-all duration-300 ease-in-out flex-shrink-0 w-80"
+                    >
+                      <div className="mb-4">
+                        <IconComponent className="h-12 w-12" />
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+                    </Card>
+                  )
+                })}
+              </div>
             </div>
           </div>
         </div>

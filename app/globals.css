@@ -127,6 +127,16 @@
   }
 }
 
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /* Updated keyframes to ensure smooth continuous scrolling */
 @keyframes infinite-scroll {
   from {
