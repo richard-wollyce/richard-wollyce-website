@@ -267,9 +267,9 @@ export default function ITServicesPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header with Language Toggle */}
-      <header className="border-b border-border">
+      <header className="border-b border-border/50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="text-2xl font-bold">Richard Wollyce</div>
+          <div className="text-2xl font-bold text-foreground">Richard Wollyce</div>
           <div className="flex gap-2">
             <Button
               variant={lang === "pt-BR" ? "default" : "ghost"}
@@ -296,20 +296,22 @@ export default function ITServicesPage() {
       {/* Hero Section */}
       <section className="py-20 px-4">
         <div className="container mx-auto text-center max-w-4xl">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance">{t.title}</h1>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance text-foreground">{t.title}</h1>
           <p className="text-xl md:text-2xl text-muted-foreground text-balance">{t.subtitle}</p>
         </div>
       </section>
 
+      <div className="section-divider" />
+
       {/* Services Section - Infinite Scroll */}
       <section className="py-16 px-4 bg-muted/30 overflow-hidden">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold mb-12 text-center">{t.servicesTitle}</h2>
+          <h2 className="text-4xl font-bold mb-12 text-center text-foreground">{t.servicesTitle}</h2>
           <div className="relative group">
             {/* Left Navigation Button */}
             <button
               onClick={scrollLeft}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background border-2 border-border rounded-full p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background border-2 border-border hover:border-primary/50 rounded-full p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out hover:shadow-[0_0_15px_rgba(250,204,21,0.3)]"
               aria-label="Scroll left"
             >
               <svg
@@ -318,10 +320,11 @@ export default function ITServicesPage() {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="currentColor"
+                stroke="#FF9F40" // Updated color
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                className="text-primary"
               >
                 <path d="m15 18-6-6 6-6" />
               </svg>
@@ -330,7 +333,7 @@ export default function ITServicesPage() {
             {/* Right Navigation Button */}
             <button
               onClick={scrollRight}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background border-2 border-border rounded-full p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background border-2 border-border hover:border-primary/50 rounded-full p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out hover:shadow-[0_0_15px_rgba(250,204,21,0.3)]"
               aria-label="Scroll right"
             >
               <svg
@@ -339,10 +342,11 @@ export default function ITServicesPage() {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="currentColor"
+                stroke="#FF9F40" // Updated color
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                className="text-primary"
               >
                 <path d="m9 18 6-6-6-6" />
               </svg>
@@ -366,14 +370,11 @@ export default function ITServicesPage() {
                 {t.services.map((service, index) => {
                   const IconComponent = service.icon
                   return (
-                    <Card
-                      key={`first-${index}`}
-                      className="p-6 hover:shadow-lg transition-all duration-300 ease-in-out flex-shrink-0 w-80"
-                    >
+                    <Card key={`first-${index}`} className="p-6 card-glow flex-shrink-0 w-80 bg-card border-border">
                       <div className="mb-4">
-                        <IconComponent className="h-12 w-12" />
+                        <IconComponent className="h-12 w-12 text-primary" />
                       </div>
-                      <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                      <h3 className="text-xl font-semibold mb-2 text-foreground">{service.title}</h3>
                       <p className="text-muted-foreground leading-relaxed">{service.description}</p>
                     </Card>
                   )
@@ -382,14 +383,11 @@ export default function ITServicesPage() {
                 {t.services.map((service, index) => {
                   const IconComponent = service.icon
                   return (
-                    <Card
-                      key={`second-${index}`}
-                      className="p-6 hover:shadow-lg transition-all duration-300 ease-in-out flex-shrink-0 w-80"
-                    >
+                    <Card key={`second-${index}`} className="p-6 card-glow flex-shrink-0 w-80 bg-card border-border">
                       <div className="mb-4">
-                        <IconComponent className="h-12 w-12" />
+                        <IconComponent className="h-12 w-12 text-primary" />
                       </div>
-                      <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                      <h3 className="text-xl font-semibold mb-2 text-foreground">{service.title}</h3>
                       <p className="text-muted-foreground leading-relaxed">{service.description}</p>
                     </Card>
                   )
@@ -397,14 +395,11 @@ export default function ITServicesPage() {
                 {t.services.map((service, index) => {
                   const IconComponent = service.icon
                   return (
-                    <Card
-                      key={`third-${index}`}
-                      className="p-6 hover:shadow-lg transition-all duration-300 ease-in-out flex-shrink-0 w-80"
-                    >
+                    <Card key={`third-${index}`} className="p-6 card-glow flex-shrink-0 w-80 bg-card border-border">
                       <div className="mb-4">
-                        <IconComponent className="h-12 w-12" />
+                        <IconComponent className="h-12 w-12 text-primary" />
                       </div>
-                      <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                      <h3 className="text-xl font-semibold mb-2 text-foreground">{service.title}</h3>
                       <p className="text-muted-foreground leading-relaxed">{service.description}</p>
                     </Card>
                   )
@@ -415,59 +410,73 @@ export default function ITServicesPage() {
         </div>
       </section>
 
+      <div className="section-divider" />
+
       {/* Contact Form Section */}
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-2xl">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">{t.contactTitle}</h2>
+            <h2 className="text-4xl font-bold mb-4 text-foreground">{t.contactTitle}</h2>
             <p className="text-lg text-muted-foreground">{t.contactSubtitle}</p>
           </div>
 
-          <Card className="p-8">
+          <Card className="p-8 bg-card border-border">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="name">{t.formName}</Label>
+                <Label htmlFor="name" className="text-foreground">
+                  {t.formName}
+                </Label>
                 <Input
                   id="name"
                   required
                   value={formData.name}
                   onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
+                  className="bg-input border-border text-foreground"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="phone">{t.formPhone}</Label>
+                <Label htmlFor="phone" className="text-foreground">
+                  {t.formPhone}
+                </Label>
                 <Input
                   id="phone"
                   type="tel"
                   required
                   value={formData.phone}
                   onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
+                  className="bg-input border-border text-foreground"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email">{t.formEmail}</Label>
+                <Label htmlFor="email" className="text-foreground">
+                  {t.formEmail}
+                </Label>
                 <Input
                   id="email"
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
+                  className="bg-input border-border text-foreground"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="issue">{t.formIssue}</Label>
+                <Label htmlFor="issue" className="text-foreground">
+                  {t.formIssue}
+                </Label>
                 <Textarea
                   id="issue"
                   required
                   rows={5}
                   value={formData.issue}
                   onChange={(e) => setFormData((prev) => ({ ...prev, issue: e.target.value }))}
+                  className="bg-input border-border text-foreground"
                 />
               </div>
 
-              <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+              <Button type="submit" className="w-full btn-primary-glow" size="lg" disabled={isSubmitting}>
                 {isSubmitting ? (lang === "pt-BR" ? "Enviando..." : "Sending...") : t.formSubmit}
               </Button>
             </form>
@@ -475,25 +484,33 @@ export default function ITServicesPage() {
         </div>
       </section>
 
+      <div className="section-divider" />
+
       {/* Bio Section */}
       <section className="py-16 px-4 bg-muted/30">
         <div className="container mx-auto max-w-4xl">
           <div className="flex flex-col md:flex-row gap-8 items-center">
             <div className="flex-shrink-0">
-              <img src="/rwpfp.webp" alt="Profile" className="rounded-lg w-48 h-48 object-cover" />
+              <img
+                src="/rwpfp.webp"
+                alt="Profile"
+                className="rounded-lg w-48 h-48 object-cover border-2 border-primary/30"
+              />
             </div>
             <div>
-              <h2 className="text-3xl font-bold mb-4">{t.bioTitle}</h2>
+              <h2 className="text-3xl font-bold mb-4 text-foreground">{t.bioTitle}</h2>
               <p className="text-lg text-muted-foreground leading-relaxed">{t.bio}</p>
             </div>
           </div>
         </div>
       </section>
 
+      <div className="section-divider" />
+
       {/* Social Media Section */}
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-bold mb-8">{t.socialTitle}</h2>
+          <h2 className="text-3xl font-bold mb-8 text-foreground">{t.socialTitle}</h2>
           <div className="flex justify-center gap-6 flex-wrap">
             {socialLinks.map((social) => {
               const IconComponent = social.icon
@@ -503,9 +520,18 @@ export default function ITServicesPage() {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 rounded-lg border border-border hover:bg-muted transition-colors"
+                  className="flex items-center gap-2 px-6 py-3 rounded-xl border border-border bg-card hover:bg-card hover:border-primary/50 transition-all duration-300 text-foreground"
+                  style={{
+                    boxShadow: "none",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = "0 0 20px rgba(255, 159, 64, 0.2)" // Updated hover color
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = "none"
+                  }}
                 >
-                  <IconComponent />
+                  <IconComponent className="text-primary" />
                   <span className="font-medium">{social.name}</span>
                 </a>
               )
@@ -515,7 +541,7 @@ export default function ITServicesPage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-4 border-t border-border">
+      <footer className="py-8 px-4 border-t border-border/50">
         <div className="container mx-auto text-center text-sm text-muted-foreground">
           <p>
             &copy; {new Date().getFullYear()} {t.footer}
