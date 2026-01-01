@@ -320,7 +320,7 @@ export default function ITServicesPage() {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="currentColor"
+                stroke="#FF9F40" // Updated color
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -342,7 +342,7 @@ export default function ITServicesPage() {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="currentColor"
+                stroke="#FF9F40" // Updated color
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -525,7 +525,7 @@ export default function ITServicesPage() {
                     boxShadow: "none",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = "0 0 20px rgba(250, 204, 21, 0.2)"
+                    e.currentTarget.style.boxShadow = "0 0 20px rgba(255, 159, 64, 0.2)" // Updated hover color
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.boxShadow = "none"
