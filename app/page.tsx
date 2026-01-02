@@ -66,11 +66,11 @@ const translations = {
       },
     ],
     contactTitle: "Entre em Contato",
-    contactSubtitle: "Conte-nos sobre seu problema e entraremos em contato em breve",
+    contactSubtitle: "Me diga o que precisa e entrarei em contato em breve",
     formName: "Nome Completo",
     formContact: "Número de Contato",
     formEmail: "E-mail (opcional)",
-    formIssue: "Descreva seu problema",
+    formIssue: "Como posso ajudar?",
     formSubmit: "Enviar Mensagem",
     bioTitle: "Muito prazer, eu sou o Richard",
     bio: "Atuante na área há mais de 10 anos, ajudando pessoas e empresas a resolverem problemas de tecnologia com segurança e eficiência. Redes, suporte técnico, desenvolvimento de softwares, proteção de sistemas e ambientes Windows e Linux: se envolve tecnologia, eu posso ajudar.",
@@ -78,7 +78,7 @@ const translations = {
     footer: "Richard Wollyce. Todos os direitos reservados.",
     automationTitle: "Automatize seu Atendimento",
     automationSubtitle:
-      "Imagine responder seus clientes no WhatsApp 24/7 de forma instantânea, agendar compromissos automaticamente e nunca mais perder uma oportunidade de negócio. Com nossas soluções de automação inteligente, você pode oferecer um atendimento eficiente e personalizado, economizando tempo e aumentando a satisfação dos seus clientes.",
+      "Respostas instantâneas. Agendamentos automáticos. Sua próxima venda pode estar esperando agora.",
     automationFeatures: [
       "Resposta Instantânea",
       "Memória de chat",
@@ -110,7 +110,7 @@ const translations = {
   },
   en: {
     title: "Need help with technology?",
-    subtitle: "Take a look at the services below and send me a message. I’ll handle the rest.",
+    subtitle: "Take a look at the services below and send me a message. I'll handle the rest.",
     servicesTitle: "Our Services",
     services: [
       {
@@ -150,19 +150,18 @@ const translations = {
       },
     ],
     contactTitle: "Get in Touch",
-    contactSubtitle: "Tell us about your issue and we'll get back to you soon",
+    contactSubtitle: "Tell me what you need and I'll get back to you soon",
     formName: "Full Name",
     formContact: "Contact Number",
     formEmail: "Email (optional)",
-    formIssue: "Describe your issue",
+    formIssue: "How can I help you?",
     formSubmit: "Send Message",
     bioTitle: "Nice to meet you, I’m Richard",
     bio: "For more than 10 years, I’ve been helping people and businesses solve real technology challenges. Networking, security, software development, system support and optimization: if it involves tech, I can help you make it work better.",
     socialTitle: "Connect",
     footer: "Richard Wollyce. All rights reserved.",
     automationTitle: "Automate Your Customer Service",
-    automationSubtitle:
-      "Imagine responding to your customers on WhatsApp 24/7 instantly, scheduling appointments automatically, and never missing a business opportunity again. With our intelligent automation solutions, you can offer efficient and personalized service, saving time and increasing customer satisfaction.",
+    automationSubtitle: "Instant responses. Automatic scheduling. Your next sale could be waiting right now.",
     automationFeatures: [
       "Instant Response",
       "Chat Memory",
@@ -373,6 +372,7 @@ export default function ITServicesPage() {
       <section className="py-16 px-4 bg-muted/30 overflow-hidden">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold mb-12 text-center text-foreground">{t.servicesTitle}</h2>
+          <div className="section-divider mb-12" />
           <div className="relative group">
             {/* Left Navigation Button */}
             <button
@@ -386,7 +386,7 @@ export default function ITServicesPage() {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="#FF9F40" // Updated color
+                stroke="#FF9F40"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -408,7 +408,7 @@ export default function ITServicesPage() {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="#FF9F40" // Updated color
+                stroke="#FF9F40"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -485,36 +485,9 @@ export default function ITServicesPage() {
             {lang === "pt-BR" ? "Automatize seu Atendimento" : "Automate Your Customer Service"}
           </h2>
 
-          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8">
-            {lang === "pt-BR"
-              ? "Respostas instantâneas. Agendamentos automáticos. Sua próxima venda pode estar esperando agora."
-              : "Instant responses. Automatic scheduling. Your next sale could be waiting right now."}
-          </p>
+          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8">{t.automationSubtitle}</p>
 
-          {/* Arrow Guide */}
-          <div className="flex flex-col items-center mb-6">
-            <div className="w-0.5 h-12 bg-gradient-to-b from-primary to-transparent"></div>
-            <svg
-              className="text-primary"
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M10 2L10 18M10 18L3 11M10 18L17 11"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
-
-          <p className="text-lg font-semibold text-foreground mb-6">
-            {lang === "pt-BR" ? "Clique no botão para saber mais!" : "Click the button to learn more!"}
-          </p>
+          <div className="section-divider max-w-xs mx-auto mb-8" />
 
           <Button onClick={() => setShowAutomationModal(true)} className="btn-primary-glow text-lg px-10 py-6 h-auto">
             {lang === "pt-BR" ? "Automações" : "Automations"}
@@ -662,7 +635,7 @@ export default function ITServicesPage() {
       {/* Footer */}
       <footer className="border-t border-border/50 py-8 px-4">
         <div className="container mx-auto text-center text-sm text-muted-foreground">
-          <p>© 2025 {t.footer}</p>
+          <p>© 2026 {t.footer}</p>
         </div>
       </footer>
 
