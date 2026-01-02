@@ -368,11 +368,12 @@ export default function ITServicesPage() {
         </div>
       </section>
 
+      <div className="section-divider" />
+
       {/* Services Section - Infinite Scroll */}
       <section className="py-16 px-4 bg-muted/30 overflow-hidden">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold mb-12 text-center text-foreground">{t.servicesTitle}</h2>
-          <div className="section-divider mb-12" />
           <div className="relative group">
             {/* Left Navigation Button */}
             <button
@@ -487,7 +488,9 @@ export default function ITServicesPage() {
 
           <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8">{t.automationSubtitle}</p>
 
-          <div className="section-divider max-w-xs mx-auto mb-8" />
+          <div className="flex flex-col items-center gap-4 mb-8">
+            <div className="w-0.5 h-12 bg-gradient-to-b from-primary via-primary to-transparent" />
+          </div>
 
           <Button onClick={() => setShowAutomationModal(true)} className="btn-primary-glow text-lg px-10 py-6 h-auto">
             {lang === "pt-BR" ? "Automações" : "Automations"}
