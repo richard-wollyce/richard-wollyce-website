@@ -371,37 +371,45 @@ export default function ITServicesPage() {
 
       {/* Automation Section */}
       <section className="py-16 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            {/* Left: Text Block */}
-            <div className="space-y-4">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">{t.automationTitle}</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">{t.automationSubtitle}</p>
-              <ul className="list-disc list-inside space-y-2">
-                {t.automationFeatures.map((feature, index) => (
-                  <li key={index} className="text-lg text-muted-foreground leading-relaxed">
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+            {lang === "pt-BR" ? "Automatize seu Atendimento" : "Automate Your Customer Service"}
+          </h2>
 
-            {/* Right: CTA Button */}
-            <div className="flex flex-col items-center justify-center space-y-6 p-8 bg-card/50 rounded-lg border border-border">
-              <p className="text-xl md:text-2xl font-semibold text-center text-foreground">
-                {lang === "pt-BR" ? "Quer saber mais?" : "Want to know more?"}
-              </p>
-              <p className="text-lg text-center text-muted-foreground">
-                {lang === "pt-BR" ? "Clique no botão abaixo!" : "Click the button below!"}
-              </p>
-              <Button
-                onClick={() => setShowAutomationModal(true)}
-                className="btn-primary-glow text-lg px-8 py-6 h-auto"
-              >
-                {lang === "pt-BR" ? "Automações" : "Automations"}
-              </Button>
-            </div>
+          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8">
+            {lang === "pt-BR"
+              ? "Respostas instantâneas. Agendamentos automáticos. Sua próxima venda pode estar esperando agora."
+              : "Instant responses. Automatic scheduling. Your next sale could be waiting right now."}
+          </p>
+
+          {/* Arrow Guide */}
+          <div className="flex flex-col items-center mb-6">
+            <div className="w-0.5 h-12 bg-gradient-to-b from-primary to-transparent"></div>
+            <svg
+              className="text-primary"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 2L10 18M10 18L3 11M10 18L17 11"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </div>
+
+          <p className="text-lg font-semibold text-foreground mb-6">
+            {lang === "pt-BR" ? "Clique no botão para saber mais!" : "Click the button to learn more!"}
+          </p>
+
+          <Button onClick={() => setShowAutomationModal(true)} className="btn-primary-glow text-lg px-10 py-6 h-auto">
+            {lang === "pt-BR" ? "Automações" : "Automations"}
+          </Button>
         </div>
       </section>
 
