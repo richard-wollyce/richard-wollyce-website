@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -20,6 +19,7 @@ import {
   Youtube,
   MessageCircle,
   Code,
+  XIcon,
 } from "lucide-react"
 
 // Translations
@@ -68,7 +68,7 @@ const translations = {
     contactTitle: "Entre em Contato",
     contactSubtitle: "Conte-nos sobre seu problema e entraremos em contato em breve",
     formName: "Nome Completo",
-    formPhone: "Número de Contato",
+    formContact: "Número de Contato",
     formEmail: "E-mail (opcional)",
     formIssue: "Descreva seu problema",
     formSubmit: "Enviar Mensagem",
@@ -76,6 +76,37 @@ const translations = {
     bio: "Atuante na área há mais de 10 anos, ajudando pessoas e empresas a resolverem problemas de tecnologia com segurança e eficiência. Redes, suporte técnico, desenvolvimento de softwares, proteção de sistemas e ambientes Windows e Linux: se envolve tecnologia, eu posso ajudar.",
     socialTitle: "Conecte-se",
     footer: "Richard Wollyce. Todos os direitos reservados.",
+    automationTitle: "Automatize seu Atendimento",
+    automationSubtitle:
+      "Imagine responder seus clientes no WhatsApp 24/7 de forma instantânea, agendar compromissos automaticamente e nunca mais perder uma oportunidade de negócio. Com nossas soluções de automação inteligente, você pode oferecer um atendimento eficiente e personalizado, economizando tempo e aumentando a satisfação dos seus clientes.",
+    automationFeatures: [
+      "Resposta Instantânea",
+      "Memória de chat",
+      "ID por cliente",
+      "Integração com serviços Google (Calendário, Sheets, etc)",
+      "Respostas Personalizadas por IA",
+      "Remarketing",
+      "Transcrição de Áudio",
+      "Compreensão de Imagem",
+      "Integrações com outros serviços",
+    ],
+    automationPlans: [
+      {
+        name: "ChatBot Simples",
+        setup: 500,
+        monthly: 200,
+      },
+      {
+        name: "ChatBot com IA",
+        setup: 1000,
+        monthly: 400,
+      },
+      {
+        name: "Assistente Completo",
+        setup: 2000,
+        monthly: 600,
+      },
+    ],
   },
   en: {
     title: "Need help with technology?",
@@ -121,7 +152,7 @@ const translations = {
     contactTitle: "Get in Touch",
     contactSubtitle: "Tell us about your issue and we'll get back to you soon",
     formName: "Full Name",
-    formPhone: "Contact Number",
+    formContact: "Contact Number",
     formEmail: "Email (optional)",
     formIssue: "Describe your issue",
     formSubmit: "Send Message",
@@ -129,6 +160,37 @@ const translations = {
     bio: "For more than 10 years, I’ve been helping people and businesses solve real technology challenges. Networking, security, software development, system support and optimization: if it involves tech, I can help you make it work better.",
     socialTitle: "Connect",
     footer: "Richard Wollyce. All rights reserved.",
+    automationTitle: "Automate Your Customer Service",
+    automationSubtitle:
+      "Imagine responding to your customers on WhatsApp 24/7 instantly, scheduling appointments automatically, and never missing a business opportunity again. With our intelligent automation solutions, you can offer efficient and personalized service, saving time and increasing customer satisfaction.",
+    automationFeatures: [
+      "Instant Response",
+      "Chat Memory",
+      "Client ID",
+      "Google Services Integration (Calendar, Sheets, etc)",
+      "AI Personalized Responses",
+      "Remarketing",
+      "Audio Transcription",
+      "Image Understanding",
+      "Other Service Integrations",
+    ],
+    automationPlans: [
+      {
+        name: "Simple ChatBot",
+        setup: 500,
+        monthly: 200,
+      },
+      {
+        name: "AI ChatBot",
+        setup: 1000,
+        monthly: 400,
+      },
+      {
+        name: "Complete Assistant",
+        setup: 2000,
+        monthly: 600,
+      },
+    ],
   },
 }
 
@@ -158,15 +220,15 @@ export default function ITServicesPage() {
   const [lang, setLang] = useState<"pt-BR" | "en">("pt-BR")
   const [formData, setFormData] = useState({
     name: "",
-    phone: "",
+    contact: "",
     email: "",
-    issue: "",
+    description: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
   const carouselRef = useRef<HTMLDivElement>(null)
-  const [animationSpeed, setAnimationSpeed] = useState(1)
-
-  const t = translations[lang]
+  const [animationSpeed, setAnimationSpeed] = useState(60)
+  const [showAutomationModal, setShowAutomationModal] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -187,26 +249,30 @@ export default function ITServicesPage() {
         // Reset form on success
         setFormData({
           name: "",
-          phone: "",
+          contact: "",
           email: "",
-          issue: "",
+          description: "",
         })
 
-        alert(
-          lang === "pt-BR"
-            ? "Mensagem enviada com sucesso! Entraremos em contato em breve."
-            : "Message sent successfully! We'll contact you soon.",
-        )
+        setSubmitMessage({
+          type: "success",
+          text:
+            lang === "pt-BR"
+              ? "Mensagem enviada com sucesso! Entraremos em contato em breve."
+              : "Message sent successfully! We'll contact you soon.",
+        })
       } else {
         throw new Error(data.error || "Failed to send message")
       }
     } catch (error) {
       console.error("[v0] Error submitting form:", error)
-      alert(
-        lang === "pt-BR"
-          ? "Erro ao enviar mensagem. Por favor, tente novamente."
-          : "Error sending message. Please try again.",
-      )
+      setSubmitMessage({
+        type: "error",
+        text:
+          lang === "pt-BR"
+            ? "Erro ao enviar mensagem. Por favor, tente novamente."
+            : "Error sending message. Please try again.",
+      })
     } finally {
       setIsSubmitting(false)
     }
@@ -229,7 +295,7 @@ export default function ITServicesPage() {
   }
 
   const handleMouseLeave = () => {
-    setAnimationSpeed(1)
+    setAnimationSpeed(60)
   }
 
   const socialLinks = [
@@ -264,8 +330,10 @@ export default function ITServicesPage() {
     },
   ]
 
+  const t = translations[lang]
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Header with Language Toggle */}
       <header className="border-b border-border/50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -298,6 +366,42 @@ export default function ITServicesPage() {
         <div className="container mx-auto text-center max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance text-foreground">{t.title}</h1>
           <p className="text-xl md:text-2xl text-muted-foreground text-balance">{t.subtitle}</p>
+        </div>
+      </section>
+
+      {/* Automation Section */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            {/* Left: Text Block */}
+            <div className="space-y-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">{t.automationTitle}</h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">{t.automationSubtitle}</p>
+              <ul className="list-disc list-inside space-y-2">
+                {t.automationFeatures.map((feature, index) => (
+                  <li key={index} className="text-lg text-muted-foreground leading-relaxed">
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Right: CTA Button */}
+            <div className="flex flex-col items-center justify-center space-y-6 p-8 bg-card/50 rounded-lg border border-border">
+              <p className="text-xl md:text-2xl font-semibold text-center text-foreground">
+                {lang === "pt-BR" ? "Quer saber mais?" : "Want to know more?"}
+              </p>
+              <p className="text-lg text-center text-muted-foreground">
+                {lang === "pt-BR" ? "Clique no botão abaixo!" : "Click the button below!"}
+              </p>
+              <Button
+                onClick={() => setShowAutomationModal(true)}
+                className="btn-primary-glow text-lg px-8 py-6 h-auto"
+              >
+                {lang === "pt-BR" ? "Automações" : "Automations"}
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -436,15 +540,15 @@ export default function ITServicesPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="phone" className="text-foreground">
-                  {t.formPhone}
+                <Label htmlFor="contact" className="text-foreground">
+                  {t.formContact}
                 </Label>
                 <Input
-                  id="phone"
+                  id="contact"
                   type="tel"
                   required
-                  value={formData.phone}
-                  onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
+                  value={formData.contact}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, contact: e.target.value }))}
                   className="bg-input border-border text-foreground"
                 />
               </div>
@@ -463,15 +567,15 @@ export default function ITServicesPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="issue" className="text-foreground">
+                <Label htmlFor="description" className="text-foreground">
                   {t.formIssue}
                 </Label>
                 <Textarea
-                  id="issue"
+                  id="description"
                   required
                   rows={5}
-                  value={formData.issue}
-                  onChange={(e) => setFormData((prev) => ({ ...prev, issue: e.target.value }))}
+                  value={formData.description}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, description: e.target.value }))}
                   className="bg-input border-border text-foreground"
                 />
               </div>
@@ -480,6 +584,13 @@ export default function ITServicesPage() {
                 {isSubmitting ? (lang === "pt-BR" ? "Enviando..." : "Sending...") : t.formSubmit}
               </Button>
             </form>
+            {submitMessage && (
+              <div
+                className={`mt-4 text-center ${submitMessage.type === "success" ? "text-green-500" : "text-red-500"}`}
+              >
+                {submitMessage.text}
+              </div>
+            )}
           </Card>
         </div>
       </section>
@@ -548,6 +659,95 @@ export default function ITServicesPage() {
           </p>
         </div>
       </footer>
+
+      {/* Automation Modal */}
+      {showAutomationModal && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-card border-2 border-primary/30 rounded-lg shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="sticky top-0 bg-card border-b border-border p-6 flex items-center justify-between z-10">
+              <h2 className="text-3xl font-bold text-foreground">
+                {lang === "pt-BR" ? "Planos de Automação" : "Automation Plans"}
+              </h2>
+              <button
+                onClick={() => setShowAutomationModal(false)}
+                className="p-2 hover:bg-muted rounded-full transition-colors"
+                aria-label="Close modal"
+              >
+                <XIcon className="h-6 w-6 text-muted-foreground hover:text-foreground" />
+              </button>
+            </div>
+
+            {/* Modal Content - Comparison Table */}
+            <div className="p-6 overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="border-b-2 border-primary/30">
+                    <th className="p-4 text-left text-muted-foreground font-semibold">
+                      {lang === "pt-BR" ? "Funcionalidade" : "Feature"}
+                    </th>
+                    {t.automationPlans.map((plan, index) => (
+                      <th
+                        key={index}
+                        className={`p-4 text-center ${index === 0 ? "bg-muted/30" : index === 1 ? "bg-muted/50" : "bg-primary/10"}`}
+                      >
+                        <div className="text-xl font-bold text-foreground mb-2">{plan.name}</div>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* Feature Rows */}
+                  {t.automationFeatures.map((feature, index) => (
+                    <tr key={index} className="border-b border-border hover:bg-muted/20 transition-colors">
+                      <td className="p-4 text-foreground font-medium">{feature}</td>
+                      {t.automationPlans.map((plan, planIndex) => (
+                        <td
+                          key={planIndex}
+                          className={`p-4 text-center ${planIndex === 0 ? "bg-muted/10" : planIndex === 1 ? "bg-muted/20" : "bg-primary/5"}`}
+                        >
+                          <span
+                            className={`text-2xl ${planIndex === 0 ? "text-red-500" : planIndex === 1 ? "text-muted-foreground" : "text-primary"}`}
+                          >
+                            {planIndex === 0 ? "✕" : planIndex === 1 ? "—" : "✓"}
+                          </span>
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+
+                  {/* Pricing Row */}
+                  <tr className="border-t-2 border-primary/30 bg-muted/30">
+                    <td className="p-4 text-lg font-bold text-foreground">{lang === "pt-BR" ? "Preço" : "Price"}</td>
+                    {t.automationPlans.map((plan, index) => (
+                      <td
+                        key={index}
+                        className={`p-4 text-center ${index === 0 ? "bg-muted/30" : index === 1 ? "bg-muted/50" : "bg-primary/10"}`}
+                      >
+                        <div className={`text-${index === 2 ? "primary" : "foreground"}`}>
+                          <div className="font-semibold">${plan.setup}</div>
+                          <div className="text-sm text-muted-foreground">(Setup)</div>
+                          <div className="font-semibold mt-2">+ ${plan.monthly}</div>
+                          <div className="text-sm">({lang === "pt-BR" ? "Mensalidade" : "Monthly"})</div>
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="border-t border-border p-6 bg-muted/20">
+              <p className="text-center text-muted-foreground">
+                {lang === "pt-BR"
+                  ? "Entre em contato para mais informações e personalização dos planos."
+                  : "Contact us for more information and plan customization."}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
