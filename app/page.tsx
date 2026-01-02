@@ -369,52 +369,6 @@ export default function ITServicesPage() {
         </div>
       </section>
 
-      {/* Automation Section */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            {lang === "pt-BR" ? "Automatize seu Atendimento" : "Automate Your Customer Service"}
-          </h2>
-
-          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8">
-            {lang === "pt-BR"
-              ? "Respostas instantâneas. Agendamentos automáticos. Sua próxima venda pode estar esperando agora."
-              : "Instant responses. Automatic scheduling. Your next sale could be waiting right now."}
-          </p>
-
-          {/* Arrow Guide */}
-          <div className="flex flex-col items-center mb-6">
-            <div className="w-0.5 h-12 bg-gradient-to-b from-primary to-transparent"></div>
-            <svg
-              className="text-primary"
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M10 2L10 18M10 18L3 11M10 18L17 11"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
-
-          <p className="text-lg font-semibold text-foreground mb-6">
-            {lang === "pt-BR" ? "Clique no botão para saber mais!" : "Click the button to learn more!"}
-          </p>
-
-          <Button onClick={() => setShowAutomationModal(true)} className="btn-primary-glow text-lg px-10 py-6 h-auto">
-            {lang === "pt-BR" ? "Automações" : "Automations"}
-          </Button>
-        </div>
-      </section>
-
-      <div className="section-divider" />
-
       {/* Services Section - Infinite Scroll */}
       <section className="py-16 px-4 bg-muted/30 overflow-hidden">
         <div className="container mx-auto max-w-6xl">
@@ -524,6 +478,73 @@ export default function ITServicesPage() {
 
       <div className="section-divider" />
 
+      {/* Automation Section */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+            {lang === "pt-BR" ? "Automatize seu Atendimento" : "Automate Your Customer Service"}
+          </h2>
+
+          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8">
+            {lang === "pt-BR"
+              ? "Respostas instantâneas. Agendamentos automáticos. Sua próxima venda pode estar esperando agora."
+              : "Instant responses. Automatic scheduling. Your next sale could be waiting right now."}
+          </p>
+
+          {/* Arrow Guide */}
+          <div className="flex flex-col items-center mb-6">
+            <div className="w-0.5 h-12 bg-gradient-to-b from-primary to-transparent"></div>
+            <svg
+              className="text-primary"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 2L10 18M10 18L3 11M10 18L17 11"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+
+          <p className="text-lg font-semibold text-foreground mb-6">
+            {lang === "pt-BR" ? "Clique no botão para saber mais!" : "Click the button to learn more!"}
+          </p>
+
+          <Button onClick={() => setShowAutomationModal(true)} className="btn-primary-glow text-lg px-10 py-6 h-auto">
+            {lang === "pt-BR" ? "Automações" : "Automations"}
+          </Button>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* Bio Section */}
+      <section className="py-16 px-4 bg-muted/30">
+        <div className="container mx-auto max-w-4xl">
+          <div className="flex flex-col md:flex-row gap-8 items-center">
+            <div className="flex-shrink-0">
+              <img
+                src="/rwpfp.webp"
+                alt="Profile"
+                className="rounded-lg w-48 h-48 object-cover border-2 border-primary/30"
+              />
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold mb-4 text-foreground">{t.bioTitle}</h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">{t.bio}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
       {/* Contact Form Section */}
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-2xl">
@@ -605,30 +626,9 @@ export default function ITServicesPage() {
 
       <div className="section-divider" />
 
-      {/* Bio Section */}
+      {/* Social Links Section */}
       <section className="py-16 px-4 bg-muted/30">
         <div className="container mx-auto max-w-4xl">
-          <div className="flex flex-col md:flex-row gap-8 items-center">
-            <div className="flex-shrink-0">
-              <img
-                src="/rwpfp.webp"
-                alt="Profile"
-                className="rounded-lg w-48 h-48 object-cover border-2 border-primary/30"
-              />
-            </div>
-            <div>
-              <h2 className="text-3xl font-bold mb-4 text-foreground">{t.bioTitle}</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">{t.bio}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="section-divider" />
-
-      {/* Social Media Section */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-3xl font-bold mb-8 text-foreground">{t.socialTitle}</h2>
           <div className="flex justify-center gap-6 flex-wrap">
             {socialLinks.map((social) => {
@@ -660,11 +660,9 @@ export default function ITServicesPage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-4 border-t border-border/50">
+      <footer className="border-t border-border/50 py-8 px-4">
         <div className="container mx-auto text-center text-sm text-muted-foreground">
-          <p>
-            &copy; {new Date().getFullYear()} {t.footer}
-          </p>
+          <p>© 2025 {t.footer}</p>
         </div>
       </footer>
 
