@@ -24,30 +24,30 @@ import {
 
 // Translations
 const translations = {
-  "pt-BR": {
+  pt: {
     title: "Precisa de ajuda com tecnologia?",
     subtitle: "Confira os serviços abaixo e entre em contato. O resto é comigo.",
     servicesTitle: "Nossos Serviços",
     services: [
       {
         icon: Server,
-        title: "Suporte de TI",
+        title: "Suporte em TI",
         description: "Assistência técnica completa para manter seus sistemas funcionando perfeitamente",
       },
       {
         icon: RefreshCw,
-        title: "Atualização de Software",
-        description: "Mantenha seus aplicativos e sistemas sempre atualizados e seguros",
+        title: "Atualizações de Software",
+        description: "Mantenha suas aplicações e sistemas sempre atualizados e seguros",
       },
       {
         icon: HardDrive,
-        title: "Reparo de Hardware",
-        description: "Diagnóstico e conserto de equipamentos com rapidez e eficiência",
+        title: "Conserto de Hardware",
+        description: "Diagnóstico e reparo rápido e eficiente de equipamentos",
       },
       {
         icon: Shield,
-        title: "Consultoria em Segurança",
-        description: "Proteção avançada contra ameaças cibernéticas e vulnerabilidades",
+        title: "Consultoria em Cibersegurança",
+        description: "Proteção avançada contra ameaças e vulnerabilidades cibernéticas",
       },
       {
         icon: Network,
@@ -57,12 +57,12 @@ const translations = {
       {
         icon: Terminal,
         title: "Suporte Linux/Windows",
-        description: "Solução de problemas em sistemas Linux e Windows",
+        description: "Resolução de problemas em sistemas Linux e Windows",
       },
       {
         icon: Code,
         title: "Desenvolvimento de Software",
-        description: "Criação de soluções personalizadas para atender às necessidades do seu negócio",
+        description: "Soluções de software personalizadas para as necessidades do seu negócio",
       },
     ],
     contactTitle: "Entre em Contato",
@@ -106,6 +106,19 @@ const translations = {
         setup: 2000,
         monthly: 600,
       },
+    ],
+    // Each row represents a feature, each column represents a plan (Simple, AI, Complete)
+    // Values: false = ✕, true = ✓, "partial" = —
+    automationFeatureMatrix: [
+      [false, true, true], // 0: Resposta Instantânea
+      [false, true, true], // 1: Memória de chat
+      [false, false, true], // 2: ID por cliente
+      [false, false, true], // 3: Integração com serviços Google
+      [false, true, true], // 4: Respostas Personalizadas por IA
+      [false, "partial", true], // 5: Remarketing
+      [false, false, true], // 6: Transcrição de Áudio
+      [false, false, true], // 7: Compreensão de Imagem
+      [false, "partial", true], // 8: Integrações com outros serviços
     ],
   },
   en: {
@@ -156,8 +169,8 @@ const translations = {
     formEmail: "Email (optional)",
     formIssue: "How can I help you?",
     formSubmit: "Send Message",
-    bioTitle: "Nice to meet you, I’m Richard",
-    bio: "For more than 10 years, I’ve been helping people and businesses solve real technology challenges. Networking, security, software development, system support and optimization: if it involves tech, I can help you make it work better.",
+    bioTitle: "Nice to meet you, I'm Richard",
+    bio: "For more than 10 years, I've been helping people and businesses solve real technology challenges. Networking, security, software development, system support and optimization: if it involves tech, I can help you make it work better.",
     socialTitle: "Connect",
     footer: "Richard Wollyce. All rights reserved.",
     automationTitle: "Automate Your Customer Service",
@@ -190,6 +203,17 @@ const translations = {
         monthly: 600,
       },
     ],
+    automationFeatureMatrix: [
+      [false, true, true], // 0: Instant Response
+      [false, true, true], // 1: Chat Memory
+      [false, false, true], // 2: Client ID
+      [false, false, true], // 3: Google Services Integration
+      [false, true, true], // 4: AI Personalized Responses
+      [false, "partial", true], // 5: Remarketing
+      [false, false, true], // 6: Audio Transcription
+      [false, false, true], // 7: Image Understanding
+      [false, "partial", true], // 8: Other Service Integrations
+    ],
   },
 }
 
@@ -216,7 +240,7 @@ const USFlag = () => (
 )
 
 export default function ITServicesPage() {
-  const [lang, setLang] = useState<"pt-BR" | "en">("pt-BR")
+  const [lang, setLang] = useState<"pt" | "en">("pt")
   const [formData, setFormData] = useState({
     name: "",
     contact: "",
@@ -256,7 +280,7 @@ export default function ITServicesPage() {
         setSubmitMessage({
           type: "success",
           text:
-            lang === "pt-BR"
+            lang === "pt"
               ? "Mensagem enviada com sucesso! Entraremos em contato em breve."
               : "Message sent successfully! We'll contact you soon.",
         })
@@ -268,7 +292,7 @@ export default function ITServicesPage() {
       setSubmitMessage({
         type: "error",
         text:
-          lang === "pt-BR"
+          lang === "pt"
             ? "Erro ao enviar mensagem. Por favor, tente novamente."
             : "Error sending message. Please try again.",
       })
@@ -339,9 +363,9 @@ export default function ITServicesPage() {
           <div className="text-2xl font-bold text-foreground">Richard Wollyce</div>
           <div className="flex gap-2">
             <Button
-              variant={lang === "pt-BR" ? "default" : "ghost"}
+              variant={lang === "pt" ? "default" : "ghost"}
               size="sm"
-              onClick={() => setLang("pt-BR")}
+              onClick={() => setLang("pt")}
               className="flex items-center gap-2"
             >
               <BrazilFlag />
@@ -483,7 +507,7 @@ export default function ITServicesPage() {
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            {lang === "pt-BR" ? "Automatize seu Atendimento" : "Automate Your Customer Service"}
+            {lang === "pt" ? "Automatize seu Atendimento" : "Automate Your Customer Service"}
           </h2>
 
           <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8">{t.automationSubtitle}</p>
@@ -493,7 +517,7 @@ export default function ITServicesPage() {
           </div>
 
           <Button onClick={() => setShowAutomationModal(true)} className="btn-primary-glow text-lg px-10 py-6 h-auto">
-            {lang === "pt-BR" ? "Automações" : "Automations"}
+            {lang === "pt" ? "Automações" : "Automations"}
           </Button>
         </div>
       </section>
@@ -586,7 +610,7 @@ export default function ITServicesPage() {
               </div>
 
               <Button type="submit" className="w-full btn-primary-glow" size="lg" disabled={isSubmitting}>
-                {isSubmitting ? (lang === "pt-BR" ? "Enviando..." : "Sending...") : t.formSubmit}
+                {isSubmitting ? (lang === "pt" ? "Enviando..." : "Sending...") : t.formSubmit}
               </Button>
             </form>
             {submitMessage && (
@@ -667,7 +691,7 @@ export default function ITServicesPage() {
             {/* Modal Header */}
             <div className="sticky top-0 bg-card border-b border-border p-6 flex items-center justify-between z-10">
               <h2 className="text-3xl font-bold text-foreground">
-                {lang === "pt-BR" ? "Planos de Automação" : "Automation Plans"}
+                {lang === "pt" ? "Planos de Automação" : "Automation Plans"}
               </h2>
               <button
                 onClick={() => setShowAutomationModal(false)}
@@ -684,7 +708,7 @@ export default function ITServicesPage() {
                 <thead>
                   <tr className="border-b-2 border-primary/30">
                     <th className="p-4 text-left text-muted-foreground font-semibold">
-                      {lang === "pt-BR" ? "Funcionalidade" : "Feature"}
+                      {lang === "pt" ? "Funcionalidade" : "Feature"}
                     </th>
                     {t.automationPlans.map((plan, index) => (
                       <th
@@ -707,9 +731,17 @@ export default function ITServicesPage() {
                           className={`p-4 text-center ${planIndex === 0 ? "bg-muted/10" : planIndex === 1 ? "bg-muted/20" : "bg-primary/5"}`}
                         >
                           <span
-                            className={`text-2xl ${planIndex === 0 ? "text-red-500" : planIndex === 1 ? "text-muted-foreground" : "text-primary"}`}
+                            className={`text-2xl ${(() => {
+                              const hasFeature = t.automationFeatureMatrix?.[index]?.[planIndex]
+                              if (hasFeature === "partial") return "text-muted-foreground"
+                              if (hasFeature) return "text-primary"
+                              return "text-red-500"
+                            })()}`}
                           >
-                            {planIndex === 0 ? "✕" : planIndex === 1 ? "—" : "✓"}
+                            {(() => {
+                              const hasFeature = t.automationFeatureMatrix?.[index]?.[planIndex]
+                              return hasFeature === "partial" ? "—" : hasFeature ? "✓" : "✕"
+                            })()}
                           </span>
                         </td>
                       ))}
@@ -718,7 +750,7 @@ export default function ITServicesPage() {
 
                   {/* Pricing Row */}
                   <tr className="border-t-2 border-primary/30 bg-muted/30">
-                    <td className="p-4 text-lg font-bold text-foreground">{lang === "pt-BR" ? "Preço" : "Price"}</td>
+                    <td className="p-4 text-lg font-bold text-foreground">{lang === "pt" ? "Preço" : "Price"}</td>
                     {t.automationPlans.map((plan, index) => (
                       <td
                         key={index}
@@ -728,7 +760,7 @@ export default function ITServicesPage() {
                           <div className="font-semibold">${plan.setup}</div>
                           <div className="text-sm text-muted-foreground">(Setup)</div>
                           <div className="font-semibold mt-2">+ ${plan.monthly}</div>
-                          <div className="text-sm">({lang === "pt-BR" ? "Mensalidade" : "Monthly"})</div>
+                          <div className="text-sm">({lang === "pt" ? "Mensalidade" : "Monthly"})</div>
                         </div>
                       </td>
                     ))}
@@ -740,7 +772,7 @@ export default function ITServicesPage() {
             {/* Modal Footer */}
             <div className="border-t border-border p-6 bg-muted/20">
               <p className="text-center text-muted-foreground">
-                {lang === "pt-BR"
+                {lang === "pt"
                   ? "Entre em contato para mais informações e personalização dos planos."
                   : "Contact us for more information and plan customization."}
               </p>
