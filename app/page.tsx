@@ -110,14 +110,14 @@ const translations = {
     // Each row represents a feature, each column represents a plan (Simple, AI, Complete)
     // Values: false = ✕, true = ✓, "partial" = —
     automationFeatureMatrix: [
-      [false, true, true], // 0: Resposta Instantânea
-      [false, true, true], // 1: Memória de chat
-      [false, false, true], // 2: ID por cliente
+      [true, true, true], // 0: Resposta Instantânea
+      ["partial", true, true], // 1: Memória de chat
+      ["partial", true, true], // 2: ID por cliente
       [false, false, true], // 3: Integração com serviços Google
       [false, true, true], // 4: Respostas Personalizadas por IA
       [false, "partial", true], // 5: Remarketing
-      [false, false, true], // 6: Transcrição de Áudio
-      [false, false, true], // 7: Compreensão de Imagem
+      [false, "partial", true], // 6: Transcrição de Áudio
+      [false, "partial", true], // 7: Compreensão de Imagem
       [false, "partial", true], // 8: Integrações com outros serviços
     ],
   },
@@ -204,15 +204,15 @@ const translations = {
       },
     ],
     automationFeatureMatrix: [
-      [false, true, true], // 0: Instant Response
-      [false, true, true], // 1: Chat Memory
-      [false, false, true], // 2: Client ID
-      [false, false, true], // 3: Google Services Integration
-      [false, true, true], // 4: AI Personalized Responses
+      [true, true, true], // 0: Resposta Instantânea
+      ["partial", true, true], // 1: Memória de chat
+      ["partial", true, true], // 2: ID por cliente
+      [false, false, true], // 3: Integração com serviços Google
+      [false, true, true], // 4: Respostas Personalizadas por IA
       [false, "partial", true], // 5: Remarketing
-      [false, false, true], // 6: Audio Transcription
-      [false, false, true], // 7: Image Understanding
-      [false, "partial", true], // 8: Other Service Integrations
+      [false, "partial", true], // 6: Transcrição de Áudio
+      [false, "partial", true], // 7: Compreensão de Imagem
+      [false, "partial", true], // 8: Integrações com outros serviços
     ],
   },
 }
