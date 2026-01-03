@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -20,34 +19,35 @@ import {
   Youtube,
   MessageCircle,
   Code,
+  XIcon,
 } from "lucide-react"
 
 // Translations
 const translations = {
-  "pt-BR": {
+  pt: {
     title: "Precisa de ajuda com tecnologia?",
     subtitle: "Confira os serviços abaixo e entre em contato. O resto é comigo.",
     servicesTitle: "Nossos Serviços",
     services: [
       {
         icon: Server,
-        title: "Suporte de TI",
+        title: "Suporte em TI",
         description: "Assistência técnica completa para manter seus sistemas funcionando perfeitamente",
       },
       {
         icon: RefreshCw,
-        title: "Atualização de Software",
-        description: "Mantenha seus aplicativos e sistemas sempre atualizados e seguros",
+        title: "Atualizações de Software",
+        description: "Mantenha suas aplicações e sistemas sempre atualizados e seguros",
       },
       {
         icon: HardDrive,
-        title: "Reparo de Hardware",
-        description: "Diagnóstico e conserto de equipamentos com rapidez e eficiência",
+        title: "Conserto de Hardware",
+        description: "Diagnóstico e reparo rápido e eficiente de equipamentos",
       },
       {
         icon: Shield,
-        title: "Consultoria em Segurança",
-        description: "Proteção avançada contra ameaças cibernéticas e vulnerabilidades",
+        title: "Consultoria em Cibersegurança",
+        description: "Proteção avançada contra ameaças e vulnerabilidades cibernéticas",
       },
       {
         icon: Network,
@@ -57,29 +57,73 @@ const translations = {
       {
         icon: Terminal,
         title: "Suporte Linux/Windows",
-        description: "Solução de problemas em sistemas Linux e Windows",
+        description: "Resolução de problemas em sistemas Linux e Windows",
       },
       {
         icon: Code,
         title: "Desenvolvimento de Software",
-        description: "Criação de soluções personalizadas para atender às necessidades do seu negócio",
+        description: "Soluções de software personalizadas para as necessidades do seu negócio",
       },
     ],
     contactTitle: "Entre em Contato",
-    contactSubtitle: "Conte-nos sobre seu problema e entraremos em contato em breve",
+    contactSubtitle: "Me diga o que precisa e entrarei em contato em breve",
     formName: "Nome Completo",
-    formPhone: "Número de Contato",
+    formContact: "Número de Contato",
     formEmail: "E-mail (opcional)",
-    formIssue: "Descreva seu problema",
+    formIssue: "Como posso ajudar?",
     formSubmit: "Enviar Mensagem",
     bioTitle: "Muito prazer, eu sou o Richard",
     bio: "Atuante na área há mais de 10 anos, ajudando pessoas e empresas a resolverem problemas de tecnologia com segurança e eficiência. Redes, suporte técnico, desenvolvimento de softwares, proteção de sistemas e ambientes Windows e Linux: se envolve tecnologia, eu posso ajudar.",
     socialTitle: "Conecte-se",
     footer: "Richard Wollyce. Todos os direitos reservados.",
+    automationTitle: "Automatize seu Atendimento",
+    automationSubtitle:
+      "Respostas instantâneas. Agendamentos automáticos. Sua próxima venda pode estar esperando agora.",
+    automationFeatures: [
+      "Resposta Instantânea",
+      "Memória de chat",
+      "ID por cliente",
+      "Integração com serviços Google (Calendário, Sheets, etc)",
+      "Respostas Personalizadas por IA",
+      "Remarketing",
+      "Transcrição de Áudio",
+      "Compreensão de Imagem",
+      "Integrações com outros serviços",
+    ],
+    automationPlans: [
+      {
+        name: "ChatBot Simples",
+        setup: 500,
+        monthly: 200,
+      },
+      {
+        name: "ChatBot com IA",
+        setup: 1000,
+        monthly: 400,
+      },
+      {
+        name: "Assistente Completo",
+        setup: 2000,
+        monthly: 600,
+      },
+    ],
+    // Each row represents a feature, each column represents a plan (Simple, AI, Complete)
+    // Values: false = ✕, true = ✓, "partial" = —
+    automationFeatureMatrix: [
+      [true, true, true], // 0: Resposta Instantânea
+      ["partial", true, true], // 1: Memória de chat
+      ["partial", true, true], // 2: ID por cliente
+      [false, false, true], // 3: Integração com serviços Google
+      [false, true, true], // 4: Respostas Personalizadas por IA
+      [false, "partial", true], // 5: Remarketing
+      [false, "partial", true], // 6: Transcrição de Áudio
+      [false, "partial", true], // 7: Compreensão de Imagem
+      [false, "partial", true], // 8: Integrações com outros serviços
+    ],
   },
   en: {
     title: "Need help with technology?",
-    subtitle: "Take a look at the services below and send me a message. I’ll handle the rest.",
+    subtitle: "Take a look at the services below and send me a message. I'll handle the rest.",
     servicesTitle: "Our Services",
     services: [
       {
@@ -119,16 +163,57 @@ const translations = {
       },
     ],
     contactTitle: "Get in Touch",
-    contactSubtitle: "Tell us about your issue and we'll get back to you soon",
+    contactSubtitle: "Tell me what you need and I'll get back to you soon",
     formName: "Full Name",
-    formPhone: "Contact Number",
+    formContact: "Contact Number",
     formEmail: "Email (optional)",
-    formIssue: "Describe your issue",
+    formIssue: "How can I help you?",
     formSubmit: "Send Message",
-    bioTitle: "Nice to meet you, I’m Richard",
-    bio: "For more than 10 years, I’ve been helping people and businesses solve real technology challenges. Networking, security, software development, system support and optimization: if it involves tech, I can help you make it work better.",
+    bioTitle: "Nice to meet you, I'm Richard",
+    bio: "For more than 10 years, I've been helping people and businesses solve real technology challenges. Networking, security, software development, system support and optimization: if it involves tech, I can help you make it work better.",
     socialTitle: "Connect",
     footer: "Richard Wollyce. All rights reserved.",
+    automationTitle: "Automate Your Customer Service",
+    automationSubtitle: "Instant responses. Automatic scheduling. Your next sale could be waiting right now.",
+    automationFeatures: [
+      "Instant Response",
+      "Chat Memory",
+      "Client ID",
+      "Google Services Integration (Calendar, Sheets, etc)",
+      "AI Personalized Responses",
+      "Remarketing",
+      "Audio Transcription",
+      "Image Understanding",
+      "Other Service Integrations",
+    ],
+    automationPlans: [
+      {
+        name: "Simple ChatBot",
+        setup: 500,
+        monthly: 200,
+      },
+      {
+        name: "AI ChatBot",
+        setup: 1000,
+        monthly: 400,
+      },
+      {
+        name: "Complete Assistant",
+        setup: 2000,
+        monthly: 600,
+      },
+    ],
+    automationFeatureMatrix: [
+      [true, true, true], // 0: Resposta Instantânea
+      ["partial", true, true], // 1: Memória de chat
+      ["partial", true, true], // 2: ID por cliente
+      [false, false, true], // 3: Integração com serviços Google
+      [false, true, true], // 4: Respostas Personalizadas por IA
+      [false, "partial", true], // 5: Remarketing
+      [false, "partial", true], // 6: Transcrição de Áudio
+      [false, "partial", true], // 7: Compreensão de Imagem
+      [false, "partial", true], // 8: Integrações com outros serviços
+    ],
   },
 }
 
@@ -155,18 +240,18 @@ const USFlag = () => (
 )
 
 export default function ITServicesPage() {
-  const [lang, setLang] = useState<"pt-BR" | "en">("pt-BR")
+  const [lang, setLang] = useState<"pt" | "en">("pt")
   const [formData, setFormData] = useState({
     name: "",
-    phone: "",
+    contact: "",
     email: "",
-    issue: "",
+    description: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
   const carouselRef = useRef<HTMLDivElement>(null)
-  const [animationSpeed, setAnimationSpeed] = useState(1)
-
-  const t = translations[lang]
+  const [animationSpeed, setAnimationSpeed] = useState(60)
+  const [showAutomationModal, setShowAutomationModal] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -187,26 +272,30 @@ export default function ITServicesPage() {
         // Reset form on success
         setFormData({
           name: "",
-          phone: "",
+          contact: "",
           email: "",
-          issue: "",
+          description: "",
         })
 
-        alert(
-          lang === "pt-BR"
-            ? "Mensagem enviada com sucesso! Entraremos em contato em breve."
-            : "Message sent successfully! We'll contact you soon.",
-        )
+        setSubmitMessage({
+          type: "success",
+          text:
+            lang === "pt"
+              ? "Mensagem enviada com sucesso! Entraremos em contato em breve."
+              : "Message sent successfully! We'll contact you soon.",
+        })
       } else {
         throw new Error(data.error || "Failed to send message")
       }
     } catch (error) {
       console.error("[v0] Error submitting form:", error)
-      alert(
-        lang === "pt-BR"
-          ? "Erro ao enviar mensagem. Por favor, tente novamente."
-          : "Error sending message. Please try again.",
-      )
+      setSubmitMessage({
+        type: "error",
+        text:
+          lang === "pt"
+            ? "Erro ao enviar mensagem. Por favor, tente novamente."
+            : "Error sending message. Please try again.",
+      })
     } finally {
       setIsSubmitting(false)
     }
@@ -229,7 +318,7 @@ export default function ITServicesPage() {
   }
 
   const handleMouseLeave = () => {
-    setAnimationSpeed(1)
+    setAnimationSpeed(60)
   }
 
   const socialLinks = [
@@ -264,17 +353,19 @@ export default function ITServicesPage() {
     },
   ]
 
+  const t = translations[lang]
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Header with Language Toggle */}
       <header className="border-b border-border/50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="text-2xl font-bold text-foreground">Richard Wollyce</div>
           <div className="flex gap-2">
             <Button
-              variant={lang === "pt-BR" ? "default" : "ghost"}
+              variant={lang === "pt" ? "default" : "ghost"}
               size="sm"
-              onClick={() => setLang("pt-BR")}
+              onClick={() => setLang("pt")}
               className="flex items-center gap-2"
             >
               <BrazilFlag />
@@ -320,7 +411,7 @@ export default function ITServicesPage() {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="#FF9F40" // Updated color
+                stroke="#FF9F40"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -342,7 +433,7 @@ export default function ITServicesPage() {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="#FF9F40" // Updated color
+                stroke="#FF9F40"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -412,75 +503,22 @@ export default function ITServicesPage() {
 
       <div className="section-divider" />
 
-      {/* Contact Form Section */}
+      {/* Automation Section */}
       <section className="py-16 px-4">
-        <div className="container mx-auto max-w-2xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 text-foreground">{t.contactTitle}</h2>
-            <p className="text-lg text-muted-foreground">{t.contactSubtitle}</p>
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+            {lang === "pt" ? "Automatize seu Atendimento" : "Automate Your Customer Service"}
+          </h2>
+
+          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8">{t.automationSubtitle}</p>
+
+          <div className="flex flex-col items-center gap-4 mb-8">
+            <div className="w-0.5 h-12 bg-gradient-to-b from-primary via-primary to-transparent" />
           </div>
 
-          <Card className="p-8 bg-card border-border">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-2">
-                <Label htmlFor="name" className="text-foreground">
-                  {t.formName}
-                </Label>
-                <Input
-                  id="name"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
-                  className="bg-input border-border text-foreground"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="phone" className="text-foreground">
-                  {t.formPhone}
-                </Label>
-                <Input
-                  id="phone"
-                  type="tel"
-                  required
-                  value={formData.phone}
-                  onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
-                  className="bg-input border-border text-foreground"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-foreground">
-                  {t.formEmail}
-                </Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
-                  className="bg-input border-border text-foreground"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="issue" className="text-foreground">
-                  {t.formIssue}
-                </Label>
-                <Textarea
-                  id="issue"
-                  required
-                  rows={5}
-                  value={formData.issue}
-                  onChange={(e) => setFormData((prev) => ({ ...prev, issue: e.target.value }))}
-                  className="bg-input border-border text-foreground"
-                />
-              </div>
-
-              <Button type="submit" className="w-full btn-primary-glow" size="lg" disabled={isSubmitting}>
-                {isSubmitting ? (lang === "pt-BR" ? "Enviando..." : "Sending...") : t.formSubmit}
-              </Button>
-            </form>
-          </Card>
+          <Button onClick={() => setShowAutomationModal(true)} className="btn-primary-glow text-lg px-10 py-6 h-auto">
+            {lang === "pt" ? "Automações" : "Automations"}
+          </Button>
         </div>
       </section>
 
@@ -507,10 +545,91 @@ export default function ITServicesPage() {
 
       <div className="section-divider" />
 
-      {/* Social Media Section */}
+      {/* Contact Form Section */}
       <section className="py-16 px-4">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-bold mb-8 text-foreground">{t.socialTitle}</h2>
+        <div className="container mx-auto max-w-2xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4 text-foreground">{t.contactTitle}</h2>
+            <p className="text-lg text-muted-foreground">{t.contactSubtitle}</p>
+          </div>
+
+          <Card className="p-8 bg-card border-border">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="name" className="text-foreground">
+                  {t.formName}
+                </Label>
+                <Input
+                  id="name"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
+                  className="bg-input border-border text-foreground"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="contact" className="text-foreground">
+                  {t.formContact}
+                </Label>
+                <Input
+                  id="contact"
+                  type="tel"
+                  required
+                  value={formData.contact}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, contact: e.target.value }))}
+                  className="bg-input border-border text-foreground"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-foreground">
+                  {t.formEmail}
+                </Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
+                  className="bg-input border-border text-foreground"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="description" className="text-foreground">
+                  {t.formIssue}
+                </Label>
+                <Textarea
+                  id="description"
+                  required
+                  rows={5}
+                  value={formData.description}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, description: e.target.value }))}
+                  className="bg-input border-border text-foreground"
+                />
+              </div>
+
+              <Button type="submit" className="w-full btn-primary-glow" size="lg" disabled={isSubmitting}>
+                {isSubmitting ? (lang === "pt" ? "Enviando..." : "Sending...") : t.formSubmit}
+              </Button>
+            </form>
+            {submitMessage && (
+              <div
+                className={`mt-4 text-center ${submitMessage.type === "success" ? "text-green-500" : "text-red-500"}`}
+              >
+                {submitMessage.text}
+              </div>
+            )}
+          </Card>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* Social Links Section */}
+      <section className="py-16 px-4 bg-muted/30">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-3xl font-bold mb-8 text-foreground text-center">{t.socialTitle}</h2>
           <div className="flex justify-center gap-6 flex-wrap">
             {socialLinks.map((social) => {
               const IconComponent = social.icon
@@ -540,14 +659,127 @@ export default function ITServicesPage() {
         </div>
       </section>
 
+      {/* Floating WhatsApp Button */}
+      <a
+        href="https://wa.me/5516991597978"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg transition-all duration-300 z-50 hover:scale-110"
+        style={{ opacity: 0.7 }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.opacity = "1"
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.opacity = "0.7"
+        }}
+        aria-label="Contact via WhatsApp"
+      >
+        <MessageCircle className="w-8 h-8 text-white" />
+      </a>
+
       {/* Footer */}
-      <footer className="py-8 px-4 border-t border-border/50">
+      <footer className="border-t border-border/50 py-8 px-4">
         <div className="container mx-auto text-center text-sm text-muted-foreground">
-          <p>
-            &copy; {new Date().getFullYear()} {t.footer}
-          </p>
+          <p>© 2026 {t.footer}</p>
         </div>
       </footer>
+
+      {/* Automation Modal */}
+      {showAutomationModal && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-card border-2 border-primary/30 rounded-lg shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="sticky top-0 bg-card border-b border-border p-6 flex items-center justify-between z-10">
+              <h2 className="text-3xl font-bold text-foreground">
+                {lang === "pt" ? "Planos de Automação" : "Automation Plans"}
+              </h2>
+              <button
+                onClick={() => setShowAutomationModal(false)}
+                className="p-2 hover:bg-muted rounded-full transition-colors"
+                aria-label="Close modal"
+              >
+                <XIcon className="h-6 w-6 text-muted-foreground hover:text-foreground" />
+              </button>
+            </div>
+
+            {/* Modal Content - Comparison Table */}
+            <div className="p-6 overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="border-b-2 border-primary/30">
+                    <th className="p-4 text-left text-muted-foreground font-semibold">
+                      {lang === "pt" ? "Funcionalidade" : "Feature"}
+                    </th>
+                    {t.automationPlans.map((plan, index) => (
+                      <th
+                        key={index}
+                        className={`p-4 text-center ${index === 0 ? "bg-muted/30" : index === 1 ? "bg-muted/50" : "bg-primary/10"}`}
+                      >
+                        <div className="text-xl font-bold text-foreground mb-2">{plan.name}</div>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* Feature Rows */}
+                  {t.automationFeatures.map((feature, index) => (
+                    <tr key={index} className="border-b border-border hover:bg-muted/20 transition-colors">
+                      <td className="p-4 text-foreground font-medium">{feature}</td>
+                      {t.automationPlans.map((plan, planIndex) => (
+                        <td
+                          key={planIndex}
+                          className={`p-4 text-center ${planIndex === 0 ? "bg-muted/10" : planIndex === 1 ? "bg-muted/20" : "bg-primary/5"}`}
+                        >
+                          <span
+                            className={`text-2xl ${(() => {
+                              const hasFeature = t.automationFeatureMatrix?.[index]?.[planIndex]
+                              if (hasFeature === "partial") return "text-muted-foreground"
+                              if (hasFeature) return "text-primary"
+                              return "text-red-500"
+                            })()}`}
+                          >
+                            {(() => {
+                              const hasFeature = t.automationFeatureMatrix?.[index]?.[planIndex]
+                              return hasFeature === "partial" ? "—" : hasFeature ? "✓" : "✕"
+                            })()}
+                          </span>
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+
+                  {/* Pricing Row */}
+                  <tr className="border-t-2 border-primary/30 bg-muted/30">
+                    <td className="p-4 text-lg font-bold text-foreground">{lang === "pt" ? "Preço" : "Price"}</td>
+                    {t.automationPlans.map((plan, index) => (
+                      <td
+                        key={index}
+                        className={`p-4 text-center ${index === 0 ? "bg-muted/30" : index === 1 ? "bg-muted/50" : "bg-primary/10"}`}
+                      >
+                        <div className={`text-${index === 2 ? "primary" : "foreground"}`}>
+                          <div className="font-semibold">${plan.setup}</div>
+                          <div className="text-sm text-muted-foreground">(Setup)</div>
+                          <div className="font-semibold mt-2">+ ${plan.monthly}</div>
+                          <div className="text-sm">({lang === "pt" ? "Mensalidade" : "Monthly"})</div>
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="border-t border-border p-6 bg-muted/20">
+              <p className="text-center text-muted-foreground">
+                {lang === "pt"
+                  ? "Entre em contato para mais informações e personalização dos planos."
+                  : "Contact us for more information and plan customization."}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
