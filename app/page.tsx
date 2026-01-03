@@ -605,7 +605,7 @@ export default function ITServicesPage() {
       {/* Social Links Section */}
       <section className="py-16 px-4 bg-muted/30">
         <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl font-bold mb-8 text-foreground">{t.socialTitle}</h2>
+          <h2 className="text-3xl font-bold mb-8 text-foreground text-center">{t.socialTitle}</h2>
           <div className="flex justify-center gap-6 flex-wrap">
             {socialLinks.map((social) => {
               const IconComponent = social.icon
@@ -634,6 +634,24 @@ export default function ITServicesPage() {
           </div>
         </div>
       </section>
+
+      {/* Floating WhatsApp Button */}
+      <a
+        href="https://wa.me/5516991597978"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg transition-all duration-300 z-50 hover:scale-110"
+        style={{ opacity: 0.7 }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.opacity = "1"
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.opacity = "0.7"
+        }}
+        aria-label="Contact via WhatsApp"
+      >
+        <MessageCircle className="w-8 h-8 text-white" />
+      </a>
 
       {/* Footer */}
       <footer className="border-t border-border/50 py-8 px-4">
