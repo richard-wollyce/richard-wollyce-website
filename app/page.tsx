@@ -19,7 +19,6 @@ import {
   Youtube,
   MessageCircle,
   Code,
-  XIcon,
 } from "lucide-react"
 
 // Translations
@@ -76,50 +75,6 @@ const translations = {
     bio: "Atuante na área há mais de 10 anos, ajudando pessoas e empresas a resolverem problemas de tecnologia com segurança e eficiência. Redes, suporte técnico, desenvolvimento de softwares, proteção de sistemas e ambientes Windows e Linux: se envolve tecnologia, eu posso ajudar.",
     socialTitle: "Conecte-se",
     footer: "Richard Wollyce. Todos os direitos reservados.",
-    automationTitle: "Automatize seu Atendimento",
-    automationSubtitle:
-      "Respostas instantâneas. Agendamentos automáticos. Sua próxima venda pode estar esperando agora.",
-    automationFeatures: [
-      "Resposta Instantânea",
-      "Memória de chat",
-      "ID por cliente",
-      "Integração com serviços Google (Calendário, Sheets, etc)",
-      "Respostas Personalizadas por IA",
-      "Remarketing",
-      "Transcrição de Áudio",
-      "Compreensão de Imagem",
-      "Integrações com outros serviços",
-    ],
-    automationPlans: [
-      {
-        name: "ChatBot Simples",
-        setup: 500,
-        monthly: 200,
-      },
-      {
-        name: "ChatBot com IA",
-        setup: 1000,
-        monthly: 400,
-      },
-      {
-        name: "Assistente Completo",
-        setup: 2000,
-        monthly: 600,
-      },
-    ],
-    // Each row represents a feature, each column represents a plan (Simple, AI, Complete)
-    // Values: false = ✕, true = ✓, "partial" = —
-    automationFeatureMatrix: [
-      [true, true, true], // 0: Resposta Instantânea
-      ["partial", true, true], // 1: Memória de chat
-      ["partial", true, true], // 2: ID por cliente
-      [false, false, true], // 3: Integração com serviços Google
-      [false, true, true], // 4: Respostas Personalizadas por IA
-      [false, "partial", true], // 5: Remarketing
-      [false, "partial", true], // 6: Transcrição de Áudio
-      [false, "partial", true], // 7: Compreensão de Imagem
-      [false, "partial", true], // 8: Integrações com outros serviços
-    ],
   },
   en: {
     title: "Need help with technology?",
@@ -173,47 +128,6 @@ const translations = {
     bio: "For more than 10 years, I've been helping people and businesses solve real technology challenges. Networking, security, software development, system support and optimization: if it involves tech, I can help you make it work better.",
     socialTitle: "Connect",
     footer: "Richard Wollyce. All rights reserved.",
-    automationTitle: "Automate Your Customer Service",
-    automationSubtitle: "Instant responses. Automatic scheduling. Your next sale could be waiting right now.",
-    automationFeatures: [
-      "Instant Response",
-      "Chat Memory",
-      "Client ID",
-      "Google Services Integration (Calendar, Sheets, etc)",
-      "AI Personalized Responses",
-      "Remarketing",
-      "Audio Transcription",
-      "Image Understanding",
-      "Other Service Integrations",
-    ],
-    automationPlans: [
-      {
-        name: "Simple ChatBot",
-        setup: 500,
-        monthly: 200,
-      },
-      {
-        name: "AI ChatBot",
-        setup: 1000,
-        monthly: 400,
-      },
-      {
-        name: "Complete Assistant",
-        setup: 2000,
-        monthly: 600,
-      },
-    ],
-    automationFeatureMatrix: [
-      [true, true, true], // 0: Resposta Instantânea
-      ["partial", true, true], // 1: Memória de chat
-      ["partial", true, true], // 2: ID por cliente
-      [false, false, true], // 3: Integração com serviços Google
-      [false, true, true], // 4: Respostas Personalizadas por IA
-      [false, "partial", true], // 5: Remarketing
-      [false, "partial", true], // 6: Transcrição de Áudio
-      [false, "partial", true], // 7: Compreensão de Imagem
-      [false, "partial", true], // 8: Integrações com outros serviços
-    ],
   },
 }
 
@@ -251,7 +165,7 @@ export default function ITServicesPage() {
   const [submitMessage, setSubmitMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
   const carouselRef = useRef<HTMLDivElement>(null)
   const [animationSpeed, setAnimationSpeed] = useState(60)
-  const [showAutomationModal, setShowAutomationModal] = useState(false)
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -503,27 +417,6 @@ export default function ITServicesPage() {
 
       <div className="section-divider" />
 
-      {/* Automation Section */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            {lang === "pt" ? "Automatize seu Atendimento" : "Automate Your Customer Service"}
-          </h2>
-
-          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8">{t.automationSubtitle}</p>
-
-          <div className="flex flex-col items-center gap-4 mb-8">
-            <div className="w-0.5 h-12 bg-gradient-to-b from-primary via-primary to-transparent" />
-          </div>
-
-          <Button onClick={() => setShowAutomationModal(true)} className="btn-primary-glow text-lg px-10 py-6 h-auto">
-            {lang === "pt" ? "Automações" : "Automations"}
-          </Button>
-        </div>
-      </section>
-
-      <div className="section-divider" />
-
       {/* Bio Section */}
       <section className="py-16 px-4 bg-muted/30">
         <div className="container mx-auto max-w-4xl">
@@ -684,102 +577,7 @@ export default function ITServicesPage() {
         </div>
       </footer>
 
-      {/* Automation Modal */}
-      {showAutomationModal && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-card border-2 border-primary/30 rounded-lg shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto">
-            {/* Modal Header */}
-            <div className="sticky top-0 bg-card border-b border-border p-6 flex items-center justify-between z-10">
-              <h2 className="text-3xl font-bold text-foreground">
-                {lang === "pt" ? "Planos de Automação" : "Automation Plans"}
-              </h2>
-              <button
-                onClick={() => setShowAutomationModal(false)}
-                className="p-2 hover:bg-muted rounded-full transition-colors"
-                aria-label="Close modal"
-              >
-                <XIcon className="h-6 w-6 text-muted-foreground hover:text-foreground" />
-              </button>
-            </div>
 
-            {/* Modal Content - Comparison Table */}
-            <div className="p-6 overflow-x-auto">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="border-b-2 border-primary/30">
-                    <th className="p-4 text-left text-muted-foreground font-semibold">
-                      {lang === "pt" ? "Funcionalidade" : "Feature"}
-                    </th>
-                    {t.automationPlans.map((plan, index) => (
-                      <th
-                        key={index}
-                        className={`p-4 text-center ${index === 0 ? "bg-muted/30" : index === 1 ? "bg-muted/50" : "bg-primary/10"}`}
-                      >
-                        <div className="text-xl font-bold text-foreground mb-2">{plan.name}</div>
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* Feature Rows */}
-                  {t.automationFeatures.map((feature, index) => (
-                    <tr key={index} className="border-b border-border hover:bg-muted/20 transition-colors">
-                      <td className="p-4 text-foreground font-medium">{feature}</td>
-                      {t.automationPlans.map((plan, planIndex) => (
-                        <td
-                          key={planIndex}
-                          className={`p-4 text-center ${planIndex === 0 ? "bg-muted/10" : planIndex === 1 ? "bg-muted/20" : "bg-primary/5"}`}
-                        >
-                          <span
-                            className={`text-2xl ${(() => {
-                              const hasFeature = t.automationFeatureMatrix?.[index]?.[planIndex]
-                              if (hasFeature === "partial") return "text-muted-foreground"
-                              if (hasFeature) return "text-primary"
-                              return "text-red-500"
-                            })()}`}
-                          >
-                            {(() => {
-                              const hasFeature = t.automationFeatureMatrix?.[index]?.[planIndex]
-                              return hasFeature === "partial" ? "—" : hasFeature ? "✓" : "✕"
-                            })()}
-                          </span>
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-
-                  {/* Pricing Row */}
-                  <tr className="border-t-2 border-primary/30 bg-muted/30">
-                    <td className="p-4 text-lg font-bold text-foreground">{lang === "pt" ? "Preço" : "Price"}</td>
-                    {t.automationPlans.map((plan, index) => (
-                      <td
-                        key={index}
-                        className={`p-4 text-center ${index === 0 ? "bg-muted/30" : index === 1 ? "bg-muted/50" : "bg-primary/10"}`}
-                      >
-                        <div className={`text-${index === 2 ? "primary" : "foreground"}`}>
-                          <div className="font-semibold">${plan.setup}</div>
-                          <div className="text-sm text-muted-foreground">(Setup)</div>
-                          <div className="font-semibold mt-2">+ ${plan.monthly}</div>
-                          <div className="text-sm">({lang === "pt" ? "Mensalidade" : "Monthly"})</div>
-                        </div>
-                      </td>
-                    ))}
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            {/* Modal Footer */}
-            <div className="border-t border-border p-6 bg-muted/20">
-              <p className="text-center text-muted-foreground">
-                {lang === "pt"
-                  ? "Entre em contato para mais informações e personalização dos planos."
-                  : "Contact us for more information and plan customization."}
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }
