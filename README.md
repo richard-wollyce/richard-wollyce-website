@@ -1,30 +1,46 @@
-# IT services website
+# Richard Wollyce Website
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+Security-focused portfolio website built with React, TypeScript, and Vite.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/richard-wollyces-projects/v0-richard-wollyce-s-website)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/vBRCdOkJfbc)
+## Stack
 
-## Overview
+- React 19
+- TypeScript
+- Vite
+- Vitest
+- ESLint
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+## Local Development
 
-## Deployment
+```bash
+npm install
+npm run dev
+```
 
-Your project is live at:
+The app builds to `dist/` as a static site.
 
-**[https://vercel.com/richard-wollyces-projects/v0-richard-wollyce-s-website](https://vercel.com/richard-wollyces-projects/v0-richard-wollyce-s-website)**
+## Validation
 
-## Build your app
+```bash
+npm run lint
+npm run test:run
+npm run build
+```
 
-Continue building your app on:
+## Security Hardening
 
-**[https://v0.app/chat/vBRCdOkJfbc](https://v0.app/chat/vBRCdOkJfbc)**
+- Local font assets are bundled with the application instead of loading Google Fonts at runtime.
+- `vercel.json` defines production security headers, including CSP, HSTS, and `X-Content-Type-Options`.
+- The contact form remains static-only and opens WhatsApp with normalized, length-limited input.
+- `.gitignore` excludes `.env*`, `.vercel`, and other local-only files to reduce accidental secret exposure.
+- Dependabot is configured through `.github/dependabot.yml`.
 
-## How It Works
+## Vercel Deployment
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+Use the repository as a Vercel project with these settings:
+
+- Framework preset: `Vite`
+- Build command: `npm run build`
+- Output directory: `dist`
+
+The project does not require a server runtime or additional environment variables for the current static deployment.
