@@ -1,9 +1,9 @@
-import { profileConfig } from '../../../src/profile-readme/config.ts'
+import { profileConfig } from '../../../src/profile-readme/config'
 import type {
   LanguageRank,
   ProfileSnapshot,
   RepoSnapshot,
-} from '../../../src/profile-readme/types.ts'
+} from '../../../src/profile-readme/types'
 
 const GITHUB_API_BASE = 'https://api.github.com'
 const GITHUB_GRAPHQL_URL = `${GITHUB_API_BASE}/graphql`
@@ -386,7 +386,10 @@ async function fetchGraphQlSnapshot(): Promise<ProfileSnapshot> {
     ),
     recentActivityCount: activitySeries.slice(-4).reduce((total, value) => total + value, 0),
     contributionTotal: user.contributionsCollection.contributionCalendar.totalContributions,
-    lastActiveAt: repos[0]?.pushedAt ?? contributionDates.at(-1) ?? null,
+    lastActiveAt:
+      repos[0]?.pushedAt ??
+      contributionDates[contributionDates.length - 1] ??
+      null,
     topLanguages: languageRanks(repos.map((repo) => repo.primaryLanguage?.name)).slice(0, 4),
     activitySeries,
     featuredRepos,

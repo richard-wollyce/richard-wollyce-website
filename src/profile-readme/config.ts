@@ -1,4 +1,4 @@
-import type { FeaturedRepoPreset } from './types.ts'
+import type { FeaturedRepoPreset } from './types'
 
 export const profileConfig = {
   username: 'richard-wollyce',

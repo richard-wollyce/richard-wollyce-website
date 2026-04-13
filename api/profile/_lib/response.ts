@@ -1,4 +1,4 @@
-import type { ThemeName } from '../../../src/profile-readme/types.ts'
+import type { ThemeName } from '../../../src/profile-readme/types'
 
 export function resolveTheme(request: Request): ThemeName {
   const theme = new URL(request.url).searchParams.get('theme')

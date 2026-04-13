@@ -1,6 +1,6 @@
-import { getProfileSnapshot } from './_lib/github.ts'
-import { resolveTheme, svgResponse } from './_lib/response.ts'
-import { renderHeroSvg } from '../../src/profile-readme/svg.ts'
+import { getProfileSnapshot } from './_lib/github'
+import { resolveTheme, svgResponse } from './_lib/response'
+import { renderHeroSvg } from '../../src/profile-readme/svg'
 
 export async function GET(request: Request): Promise<Response> {
   const theme = resolveTheme(request)
