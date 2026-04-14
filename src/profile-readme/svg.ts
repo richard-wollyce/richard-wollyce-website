@@ -197,7 +197,8 @@ function renderRecentActivityCard(snapshot: ProfileSnapshot, x: number, y: numbe
       )}</text>
       <circle cx="116" cy="108" r="4" class="cyan pulse" />
       <text x="128" y="113" class="cyan" font-size="14" font-weight="700" letter-spacing="0.12em">PULSE</text>
-      <text x="22" y="160" class="muted" font-size="15">Public activity in the last 28 days.</text>
+      <text x="22" y="150" class="muted" font-size="14">Public activity</text>
+      <text x="22" y="170" class="muted" font-size="14">in the last 28 days.</text>
       <g opacity="0.08" transform="translate(200 120)">
         <path d="M0 52L18 34L32 46L52 18L82 48L82 74L0 74Z" fill="#f2f2ef" />
         <rect x="8" y="42" width="10" height="32" fill="#f2f2ef" />
@@ -302,15 +303,15 @@ function renderNowBuildingPanel(snapshot: ProfileSnapshot, x: number, y: number)
 
   return `
     <g transform="translate(${x} ${y})">
-      <rect class="panel" width="1216" height="290" rx="16" />
-      ${renderRepoIllustration(24, 20)}
+      <rect class="panel" width="1216" height="324" rx="16" />
+      ${renderRepoIllustration(24, 37)}
       <g transform="translate(418 48)">
         <path d="M0 0H48" stroke="#f2c94c" stroke-width="2" stroke-linecap="round" />
         <text x="60" y="5" class="gold" font-size="15" font-weight="700" letter-spacing="0.12em">NOW BUILDING</text>
         <text x="0" y="72" class="display text" font-size="56" font-weight="700">${escapeXml(repo.name)}</text>
         ${renderWrappedText(descriptionLines, 0, 114, 30, 'muted', 18)}
-        ${renderChipRow(tags, 0, 176)}
-        <text x="0" y="244" class="muted" font-size="14">${escapeXml(repo.url.replace('https://github.com/', 'github.com/'))}  •  ${escapeXml(
+        ${renderChipRow(tags, 0, 196)}
+        <text x="0" y="254" class="muted" font-size="14">${escapeXml(repo.url.replace('https://github.com/', 'github.com/'))}  •  ${escapeXml(
           formatRelativeDate(repo.updatedAt),
         )}</text>
       </g>
@@ -370,19 +371,19 @@ export function renderHeroSvg(snapshot: ProfileSnapshot, theme: ThemeName): stri
     body: `
       <text x="18" y="26" class="gold" font-size="13" font-weight="700" letter-spacing="0.16em">SYSTEM STATUS: ACTIVE</text>
 
-      <g transform="translate(18 66)">
+      <g transform="translate(18 106)">
         <text class="display text" font-size="76" font-weight="700" letter-spacing="-0.05em">
           <tspan x="0" y="0">FULL STACK</tspan>
         </text>
-        <text x="0" y="92" class="display gold" font-size="76" font-weight="700" letter-spacing="-0.05em">SOFTWARE ENGINEER</text>
-        <text x="0" y="154" class="muted" font-size="20">${escapeXml(stack)}</text>
+        <text x="0" y="86" class="display gold" font-size="76" font-weight="700" letter-spacing="-0.05em">SOFTWARE ENGINEER</text>
+        <text x="0" y="146" class="muted" font-size="20">${escapeXml(stack)}</text>
       </g>
 
-      ${renderTopLanguagesCard(snapshot, 18, 248)}
-      ${renderRecentActivityCard(snapshot, 628, 248)}
+      ${renderTopLanguagesCard(snapshot, 18, 276)}
+      ${renderRecentActivityCard(snapshot, 628, 276)}
       ${renderMetricCard({
         x: 946,
-        y: 248,
+        y: 276,
         width: 316,
         height: 92,
         title: 'Active Repos',
@@ -392,7 +393,7 @@ export function renderHeroSvg(snapshot: ProfileSnapshot, theme: ThemeName): stri
       })}
       ${renderMetricCard({
         x: 946,
-        y: 348,
+        y: 376,
         width: 316,
         height: 92,
         title: 'Followers',
@@ -401,7 +402,7 @@ export function renderHeroSvg(snapshot: ProfileSnapshot, theme: ThemeName): stri
         icon: renderFollowersIcon(),
       })}
 
-      ${renderNowBuildingPanel(snapshot, 18, 494)}
+      ${renderNowBuildingPanel(snapshot, 18, 504)}
 
       <g transform="translate(24 874)">
         <circle cx="0" cy="0" r="6" fill="${palette.accentMuted}" class="pulse" />
