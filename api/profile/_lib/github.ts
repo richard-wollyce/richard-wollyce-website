@@ -199,12 +199,28 @@ function fallbackFeaturedRepos(): RepoSnapshot[] {
   }))
 }
 
+function fallbackLatestRepo(): RepoSnapshot {
+  const [repo] = fallbackFeaturedRepos()
+
+  return (
+    repo ?? {
+      name: 'repository',
+      url: `https://github.com/${profileConfig.username}`,
+      description: 'Repository currently receiving the latest public work.',
+      stars: 0,
+      primaryLanguage: 'Web',
+      updatedAt: null,
+      topics: ['GitHub', 'Repository'],
+    }
+  )
+}
+
 function fallbackSnapshot(): ProfileSnapshot {
   return {
     name: profileConfig.name,
     login: profileConfig.username,
     bio: profileConfig.intro,
-    latestRepoName: profileConfig.featuredRepos[0]?.name ?? 'repository',
+    latestRepo: fallbackLatestRepo(),
     followers: 0,
     publicRepos: FEATURED_REPO_NAMES.length,
     totalStars: 0,
@@ -374,11 +390,19 @@ async function fetchGraphQlSnapshot(): Promise<ProfileSnapshot> {
     }
   })
 
+  const latestRepo = repos[0]
+    ? normalizeRepo(
+        repos[0],
+        'Repository currently receiving the latest public work.',
+        [repos[0].primaryLanguage?.name ?? 'GitHub', 'Repository'],
+      )
+    : fallbackLatestRepo()
+
   return {
     name: user.name ?? profileConfig.name,
     login: user.login,
     bio: user.bio?.trim() || profileConfig.intro,
-    latestRepoName: repos[0]?.name ?? profileConfig.featuredRepos[0]?.name ?? 'repository',
+    latestRepo,
     followers: user.followers.totalCount,
     publicRepos: user.repositories.totalCount,
     totalStars: repos.reduce((total, repo) => total + repo.stargazerCount, 0),
@@ -449,11 +473,19 @@ async function fetchRestSnapshot(): Promise<ProfileSnapshot> {
         }
   })
 
+  const latestRepo = repos[0]
+    ? normalizeRestRepo(
+        repos[0],
+        'Repository currently receiving the latest public work.',
+        [repos[0].language ?? 'GitHub', 'Repository'],
+      )
+    : fallbackLatestRepo()
+
   return {
     name: user.name ?? profileConfig.name,
     login: user.login,
     bio: user.bio?.trim() || profileConfig.intro,
-    latestRepoName: repos[0]?.name ?? profileConfig.featuredRepos[0]?.name ?? 'repository',
+    latestRepo,
     followers: user.followers,
     publicRepos: user.public_repos,
     totalStars: repos.reduce((total, repo) => total + repo.stargazers_count, 0),

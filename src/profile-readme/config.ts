@@ -8,7 +8,6 @@ export const profileConfig = {
   intro:
     'Building full stack products with sharp interfaces, resilient backend flows, and motion only where it improves the experience.',
   heroTitle: ['FULL STACK', 'SOFTWARE', 'ENGINEER'],
-  nowBuildingRepo: 'richard-wollyce-website',
   ctas: [
     { label: 'Website', href: 'https://richardwollyce.com' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/richardwollyce-/' },

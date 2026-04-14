@@ -7,7 +7,15 @@ const snapshot: ProfileSnapshot = {
   name: 'Richard Wollyce',
   login: 'richard-wollyce',
   bio: 'Frontend / 3D engineer building cinematic interfaces with live telemetry.',
-  latestRepoName: 'richard-wollyce-website',
+  latestRepo: {
+    name: 'richard-wollyce-website',
+    url: 'https://github.com/richard-wollyce/richard-wollyce-website',
+    description: 'Personal portfolio surface that now hosts profile telemetry assets.',
+    stars: 5,
+    primaryLanguage: 'TypeScript',
+    updatedAt: '2026-04-11T15:00:00.000Z',
+    topics: ['React', 'TypeScript', 'Vercel'],
+  },
   followers: 4,
   publicRepos: 9,
   totalStars: 26,
@@ -48,11 +56,12 @@ describe('profile SVG renderers', () => {
   it('renders the hero with live metrics and featured surfaces', () => {
     const svg = renderHeroSvg(snapshot, 'dark')
 
+    expect(svg).toContain('SYSTEM STATUS: ACTIVE')
     expect(svg).toContain('FULL STACK')
     expect(svg).toContain('TOP LANGUAGES')
     expect(svg).toContain('richard-wollyce-website')
     expect(svg).toContain('RECENT ACTIVITY')
-    expect(svg).not.toContain('FEATURED SURFACES')
+    expect(svg).toContain('NOW BUILDING')
   })
 
   it('renders selected work cards from the featured repositories', () => {
