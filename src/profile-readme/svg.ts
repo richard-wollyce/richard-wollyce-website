@@ -12,37 +12,37 @@ function getThemePalette(theme: ThemeName): ThemePalette {
   if (theme === 'light') {
     return {
       name: 'light',
-      background: '#f4fbff',
-      backgroundAlt: '#e7f2ff',
-      panel: '#ffffff',
-      panelMuted: '#eef5ff',
-      panelBorder: '#d7e7f4',
-      text: '#0f172a',
-      muted: '#52657b',
-      accent: '#0077b6',
-      accentSoft: '#14b8a6',
-      accentMuted: '#8dddf4',
-      glow: 'rgba(0, 119, 182, 0.18)',
-      grid: 'rgba(122, 155, 185, 0.18)',
-      chipText: '#0b2942',
+      background: '#0c0a08',
+      backgroundAlt: '#1a140e',
+      panel: '#14100c',
+      panelMuted: '#1a1510',
+      panelBorder: '#4b3921',
+      text: '#f1ece3',
+      muted: '#c1b6a4',
+      accent: '#c7a36b',
+      accentSoft: '#efd7a5',
+      accentMuted: '#76582b',
+      glow: 'rgba(199, 163, 107, 0.20)',
+      grid: 'rgba(255, 255, 255, 0.02)',
+      chipText: '#f7f2ea',
     }
   }
 
   return {
     name: 'dark',
-    background: '#050816',
-    backgroundAlt: '#0c1528',
-    panel: '#0b1220',
-    panelMuted: '#101b31',
-    panelBorder: '#1a2d46',
-    text: '#ebf6ff',
-    muted: '#95adc5',
-    accent: '#4fc8ff',
-    accentSoft: '#6cf6d9',
-    accentMuted: '#1e7491',
-    glow: 'rgba(79, 200, 255, 0.22)',
-    grid: 'rgba(71, 108, 146, 0.16)',
-    chipText: '#dff8ff',
+    background: '#050505',
+    backgroundAlt: '#110d08',
+    panel: '#0d0a07',
+    panelMuted: '#14100b',
+    panelBorder: '#3c2d18',
+    text: '#ede7de',
+    muted: '#b7ad9e',
+    accent: '#c7a36b',
+    accentSoft: '#f1d8a7',
+    accentMuted: '#6c522a',
+    glow: 'rgba(199, 163, 107, 0.18)',
+    grid: 'rgba(255, 255, 255, 0.02)',
+    chipText: '#f3eee6',
   }
 }
 
@@ -67,78 +67,52 @@ function renderLayout({
     <linearGradient id="bg-gradient" x1="0" y1="0" x2="${width}" y2="${height}" gradientUnits="userSpaceOnUse">
       <stop stop-color="${palette.background}"/>
       <stop offset="1" stop-color="${palette.backgroundAlt}"/>
-      <animate attributeName="x1" values="0;${Math.round(width * 0.15)};0" dur="16s" repeatCount="indefinite" />
-      <animate attributeName="y2" values="${height};${Math.round(height * 0.85)};${height}" dur="16s" repeatCount="indefinite" />
     </linearGradient>
-    <radialGradient id="glow-gradient" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(${Math.round(width * 0.72)} ${Math.round(height * 0.18)}) rotate(90) scale(${Math.round(height * 0.45)} ${Math.round(width * 0.35)})">
+    <linearGradient id="title-gradient" x1="0" y1="0" x2="0" y2="${height}" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#faf6ef" />
+      <stop offset="1" stop-color="#d7cec1" />
+    </linearGradient>
+    <radialGradient id="glow-gradient" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(${Math.round(width * 0.72)} ${Math.round(height * 0.24)}) rotate(90) scale(${Math.round(height * 0.42)} ${Math.round(width * 0.24)})">
       <stop stop-color="${palette.glow}"/>
       <stop offset="1" stop-color="transparent"/>
     </radialGradient>
     <filter id="soft-blur" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="32" />
+      <feGaussianBlur stdDeviation="48" />
     </filter>
-    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
-      <path d="M44 0H0V44" stroke="${palette.grid}" stroke-width="1" />
-    </pattern>
   </defs>
   <style>
     text { font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
     .display { font-family: "Space Grotesk", Inter, ui-sans-serif, system-ui, sans-serif; }
+    .title { fill: url(#title-gradient); }
     .muted { fill: ${palette.muted}; }
     .text { fill: ${palette.text}; }
     .accent { fill: ${palette.accent}; }
     .accent-soft { fill: ${palette.accentSoft}; }
     .panel {
-      fill: rgba(255,255,255,${theme === 'light' ? '0.72' : '0.04'});
+      fill: rgba(15, 12, 9, 0.82);
       stroke: ${palette.panelBorder};
       stroke-width: 1;
     }
-    .chip {
-      fill: rgba(255,255,255,${theme === 'light' ? '0.82' : '0.05'});
+    .frame {
+      fill: none;
       stroke: ${palette.panelBorder};
-      stroke-width: 1;
+      stroke-width: 1.25;
     }
-    .chip-text { fill: ${palette.chipText}; font-size: 15px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
-    .scan-line {
+    .orb-glow {
       fill: url(#glow-gradient);
-      opacity: 0.85;
-      animation: sweep 9s ease-in-out infinite;
+      opacity: 0.9;
+      animation: breathe 18s ease-in-out infinite;
       transform-origin: center;
     }
-    .float-1 { animation: floatY 12s ease-in-out infinite; }
-    .float-2 { animation: floatY 10s ease-in-out infinite reverse; }
-    .pulse { animation: pulse 3.6s ease-in-out infinite; transform-origin: center; }
-    .fade-1 { animation: phraseOne 12s linear infinite; }
-    .fade-2 { animation: phraseTwo 12s linear infinite; }
-    .fade-3 { animation: phraseThree 12s linear infinite; }
+    .pulse { animation: pulse 5.6s ease-in-out infinite; transform-origin: center; }
     .bar-fill { animation: growBar 2.6s ease-out both; transform-origin: left center; }
-    @keyframes floatY {
+    @keyframes breathe {
       0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
+      50% { transform: translateY(-12px); opacity: 0.7; }
     }
     @keyframes pulse {
       0%, 100% { opacity: 0.45; }
       50% { opacity: 1; }
-    }
-    @keyframes sweep {
-      0% { transform: translateY(-80px); opacity: 0; }
-      12% { opacity: 0.7; }
-      60% { opacity: 0.32; }
-      100% { transform: translateY(${height + 120}px); opacity: 0; }
-    }
-    @keyframes phraseOne {
-      0%, 28% { opacity: 1; }
-      33%, 100% { opacity: 0; }
-    }
-    @keyframes phraseTwo {
-      0%, 33% { opacity: 0; }
-      38%, 61% { opacity: 1; }
-      66%, 100% { opacity: 0; }
-    }
-    @keyframes phraseThree {
-      0%, 66% { opacity: 0; }
-      71%, 94% { opacity: 1; }
-      100% { opacity: 0; }
     }
     @keyframes growBar {
       from { transform: scaleX(0.18); opacity: 0.45; }
@@ -146,10 +120,8 @@ function renderLayout({
     }
   </style>
   <rect width="${width}" height="${height}" rx="36" fill="url(#bg-gradient)" />
-  <rect width="${width}" height="${height}" rx="36" fill="url(#grid)" />
-  <circle class="float-1" cx="${Math.round(width * 0.82)}" cy="${Math.round(height * 0.2)}" r="${Math.round(height * 0.14)}" fill="${palette.glow}" filter="url(#soft-blur)" />
-  <circle class="float-2" cx="${Math.round(width * 0.14)}" cy="${Math.round(height * 0.78)}" r="${Math.round(height * 0.12)}" fill="${palette.glow}" filter="url(#soft-blur)" />
-  <rect class="scan-line" x="0" y="-120" width="${width}" height="180" />
+  <rect x="1.5" y="1.5" width="${width - 3}" height="${height - 3}" rx="34.5" class="frame" />
+  <circle class="orb-glow" cx="${Math.round(width * 0.72)}" cy="${Math.round(height * 0.24)}" r="${Math.round(height * 0.2)}" filter="url(#soft-blur)" />
   ${body}
 </svg>`.trim()
 }
@@ -170,44 +142,31 @@ function renderMetricCard({
   x,
   y,
   width,
+  height,
   title,
   value,
   note,
+  valueClass = 'display text',
+  valueSize = 38,
 }: {
   x: number
   y: number
   width: number
+  height: number
   title: string
   value: string
   note: string
+  valueClass?: string
+  valueSize?: number
 }): string {
   return `
     <g transform="translate(${x} ${y})">
-      <rect class="panel" width="${width}" height="132" rx="24" />
+      <rect class="panel" width="${width}" height="${height}" rx="24" />
       <text x="24" y="36" class="muted" font-size="14" letter-spacing="0.12em">${escapeXml(title.toUpperCase())}</text>
-      <text x="24" y="84" class="display text" font-size="38" font-weight="700">${escapeXml(value)}</text>
-      <text x="24" y="110" class="muted" font-size="15">${escapeXml(note)}</text>
+      <text x="24" y="82" class="${valueClass}" font-size="${valueSize}" font-weight="700">${escapeXml(value)}</text>
+      <text x="24" y="${height - 22}" class="muted" font-size="15">${escapeXml(note)}</text>
     </g>
   `.trim()
-}
-
-function renderChipRow(labels: readonly string[], startX: number, y: number): string {
-  let x = startX
-
-  return labels
-    .map((label) => {
-      const width = Math.max(118, label.length * 11 + 34)
-      const chip = `
-        <g transform="translate(${x} ${y})">
-          <rect class="chip" width="${width}" height="38" rx="19" />
-          <text x="${width / 2}" y="24" class="chip-text" text-anchor="middle">${escapeXml(label)}</text>
-        </g>
-      `.trim()
-
-      x += width + 14
-      return chip
-    })
-    .join('')
 }
 
 function renderWrappedText(
@@ -224,6 +183,52 @@ function renderWrappedText(
         `<text x="${x}" y="${startY + index * lineHeight}" class="${className}" font-size="${fontSize}">${escapeXml(line)}</text>`,
     )
     .join('')
+}
+
+function renderChipRow(labels: readonly string[], startX: number, y: number): string {
+  let x = startX
+
+  return labels
+    .map((label) => {
+      const width = Math.max(118, label.length * 11 + 34)
+      const chip = `
+        <g transform="translate(${x} ${y})">
+          <rect class="panel" width="${width}" height="38" rx="19" />
+          <text x="${width / 2}" y="24" class="accent" font-size="14" font-weight="700" text-anchor="middle">${escapeXml(label)}</text>
+        </g>
+      `.trim()
+
+      x += width + 14
+      return chip
+    })
+    .join('')
+}
+
+function renderListCard({
+  x,
+  y,
+  width,
+  height,
+  title,
+  lines,
+  note,
+}: {
+  x: number
+  y: number
+  width: number
+  height: number
+  title: string
+  lines: string[]
+  note: string
+}): string {
+  return `
+    <g transform="translate(${x} ${y})">
+      <rect class="panel" width="${width}" height="${height}" rx="24" />
+      <text x="24" y="36" class="muted" font-size="14" letter-spacing="0.12em">${escapeXml(title.toUpperCase())}</text>
+      ${renderWrappedText(lines, 24, 82, 30, 'accent-soft', 24)}
+      <text x="24" y="${height - 22}" class="muted" font-size="15">${escapeXml(note)}</text>
+    </g>
+  `.trim()
 }
 
 function buildLanguageBars(languages: LanguageRank[], theme: ThemePalette): string {
@@ -268,76 +273,73 @@ function buildActivityBars(values: number[], theme: ThemePalette): string {
 export function renderHeroSvg(snapshot: ProfileSnapshot, theme: ThemeName): string {
   const palette = getThemePalette(theme)
   const intro = snapshot.bio?.trim() ? snapshot.bio : profileConfig.intro
-  const featuredNames = snapshot.featuredRepos.map((repo) => repo.name)
+  const dominantLanguages = snapshot.topLanguages
+    .slice(0, 3)
+    .map((language) => language.name)
+    .join(' / ')
+  const languageLines = wrapText(dominantLanguages || 'TypeScript / React', 18, 2)
 
   return renderLayout({
     theme,
     width: 1280,
     height: 720,
     body: `
-      <text x="72" y="78" class="accent" font-size="15" font-weight="700" letter-spacing="0.18em">LIVE PRODUCT HERO // ${escapeXml(snapshot.login.toUpperCase())}</text>
+      <text x="72" y="78" class="accent" font-size="15" font-weight="700" letter-spacing="0.18em">LIVE PROFILE SURFACE // ${escapeXml(snapshot.login.toUpperCase())}</text>
       <text x="1208" y="78" class="muted" font-size="14" text-anchor="end">${escapeXml(formatRelativeDate(snapshot.lastActiveAt))}</text>
 
-      <g transform="translate(72 140)">
-        <text class="display text" font-size="84" font-weight="700" letter-spacing="-0.05em">
+      <g transform="translate(72 146)">
+        <text class="display title" font-size="86" font-weight="700" letter-spacing="-0.05em">
           <tspan x="0" y="0">${escapeXml(profileConfig.heroTitle[0])}</tspan>
           <tspan x="0" y="88">${escapeXml(profileConfig.heroTitle[1])}</tspan>
-          <tspan x="0" y="176" class="accent-soft">${escapeXml(profileConfig.heroTitle[2])}</tspan>
+          <tspan x="0" y="176">${escapeXml(profileConfig.heroTitle[2])}</tspan>
         </text>
 
-        <g transform="translate(0 228)">
-          <text class="muted fade-1" font-size="21">${escapeXml(profileConfig.rotatingLines[0])}</text>
-          <text class="muted fade-2" font-size="21">${escapeXml(profileConfig.rotatingLines[1])}</text>
-          <text class="muted fade-3" font-size="21">${escapeXml(profileConfig.rotatingLines[2])}</text>
-        </g>
-
-        ${renderWrappedText(wrapText(intro, 56, 3), 0, 294, 32, 'text', 20)}
-        <text x="0" y="412" class="accent" font-size="15" font-weight="700" letter-spacing="0.14em">NOW BUILDING</text>
-        ${renderWrappedText(wrapText(profileConfig.nowBuilding, 62, 2), 0, 446, 30, 'muted', 18)}
-        ${renderChipRow(profileConfig.capabilityStrip, 0, 498)}
+        ${renderWrappedText(wrapText(intro, 54, 3), 0, 254, 32, 'text', 20)}
+        <text x="0" y="392" class="accent" font-size="15" font-weight="700" letter-spacing="0.14em">NOW BUILDING</text>
+        <text x="0" y="444" class="display accent-soft" font-size="34" font-weight="700">${escapeXml(snapshot.latestRepoName)}</text>
+        <text x="0" y="480" class="muted" font-size="18">Most recently updated public repository on GitHub.</text>
       </g>
 
-      <g transform="translate(776 134)">
-        ${renderMetricCard({
+      <g transform="translate(736 140)">
+        ${renderListCard({
           x: 0,
           y: 0,
-          width: 204,
-          title: 'Total Stars',
-          value: formatCompactNumber(snapshot.totalStars),
-          note: 'across public repositories',
+          width: 220,
+          height: 160,
+          title: 'Top Languages',
+          lines: languageLines,
+          note: 'most used across recent public work',
         })}
         ${renderMetricCard({
-          x: 228,
+          x: 252,
           y: 0,
-          width: 204,
+          width: 220,
+          height: 160,
           title: 'Recent Activity',
           value: formatCompactNumber(snapshot.recentActivityCount),
           note: 'latest 28-day pulse',
         })}
         ${renderMetricCard({
           x: 0,
-          y: 156,
-          width: 204,
-          title: 'Followers',
-          value: formatCompactNumber(snapshot.followers),
-          note: 'people tracking the work',
-        })}
-        ${renderMetricCard({
-          x: 228,
-          y: 156,
-          width: 204,
+          y: 188,
+          width: 220,
+          height: 160,
           title: 'Active Repos',
           value: formatCompactNumber(snapshot.activeRepoCount),
           note: 'updated in the last 120 days',
         })}
+        ${renderMetricCard({
+          x: 252,
+          y: 188,
+          width: 220,
+          height: 160,
+          title: 'Followers',
+          value: formatCompactNumber(snapshot.followers),
+          note: 'people tracking the work',
+        })}
       </g>
 
-      <g transform="translate(72 632)">
-        <text class="muted" font-size="14" letter-spacing="0.14em">FEATURED SURFACES</text>
-        ${renderChipRow(featuredNames, 0, 20)}
-      </g>
-
-      <g transform="translate(846 622)">
+      <g transform="translate(736 648)">
         <circle cx="0" cy="0" r="7" fill="${palette.accent}" class="pulse" />
         <text x="20" y="6" class="muted" font-size="14">${escapeXml(sourceLabel(snapshot))}</text>
       </g>

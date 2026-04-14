@@ -21,6 +21,7 @@ export type ProfileSnapshot = {
   name: string
   login: string
   bio: string
+  latestRepoName: string
   followers: number
   publicRepos: number
   totalStars: number

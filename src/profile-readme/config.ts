@@ -6,23 +6,8 @@ export const profileConfig = {
   assetBaseUrl: 'https://richardwollyce.com/api/profile',
   websiteUrl: 'https://richardwollyce.com',
   intro:
-    'Frontend / 3D engineer building motion-rich product surfaces, browser-native realtime experiences, and interfaces with a systems mindset.',
-  heroTitle: ['INTERFACES', 'THAT FEEL', 'ALIVE.'],
-  rotatingLines: [
-    'Frontend systems with motion, depth, and live telemetry.',
-    'Shipping browser-native 3D experiments and cinematic UI.',
-    'Building product surfaces that stay sharp under real usage.',
-  ],
-  capabilityStrip: [
-    'TypeScript',
-    'React',
-    'Three.js',
-    'Motion Systems',
-    'Realtime UI',
-    'Product Engineering',
-  ],
-  nowBuilding:
-    'Now building hand-tracked 3D interactions, cinematic frontend systems, and profile surfaces powered by live GitHub data.',
+    'Building full stack products with sharp interfaces, resilient backend flows, and motion only where it improves the experience.',
+  heroTitle: ['FULL STACK', 'SOFTWARE', 'ENGINEER'],
   ctas: [
     { label: 'Website', href: 'https://richardwollyce.com' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/richardwollyce-/' },

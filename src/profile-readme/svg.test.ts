@@ -7,6 +7,7 @@ const snapshot: ProfileSnapshot = {
   name: 'Richard Wollyce',
   login: 'richard-wollyce',
   bio: 'Frontend / 3D engineer building cinematic interfaces with live telemetry.',
+  latestRepoName: 'richard-wollyce-website',
   followers: 4,
   publicRepos: 9,
   totalStars: 26,
@@ -47,9 +48,11 @@ describe('profile SVG renderers', () => {
   it('renders the hero with live metrics and featured surfaces', () => {
     const svg = renderHeroSvg(snapshot, 'dark')
 
-    expect(svg).toContain('LIVE PRODUCT HERO')
-    expect(svg).toContain('hand-shark')
+    expect(svg).toContain('FULL STACK')
+    expect(svg).toContain('TOP LANGUAGES')
+    expect(svg).toContain('richard-wollyce-website')
     expect(svg).toContain('RECENT ACTIVITY')
+    expect(svg).not.toContain('FEATURED SURFACES')
   })
 
   it('renders selected work cards from the featured repositories', () => {
