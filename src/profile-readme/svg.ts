@@ -278,6 +278,7 @@ export function renderHeroSvg(snapshot: ProfileSnapshot, theme: ThemeName): stri
     .map((language) => language.name)
     .join(' / ')
   const languageLines = wrapText(dominantLanguages || 'TypeScript / React', 18, 2)
+  const nowBuildingRepo = profileConfig.nowBuildingRepo || snapshot.latestRepoName
 
   return renderLayout({
     theme,
@@ -296,8 +297,8 @@ export function renderHeroSvg(snapshot: ProfileSnapshot, theme: ThemeName): stri
 
         ${renderWrappedText(wrapText(intro, 54, 3), 0, 254, 32, 'text', 20)}
         <text x="0" y="392" class="accent" font-size="15" font-weight="700" letter-spacing="0.14em">NOW BUILDING</text>
-        <text x="0" y="444" class="display accent-soft" font-size="34" font-weight="700">${escapeXml(snapshot.latestRepoName)}</text>
-        <text x="0" y="480" class="muted" font-size="18">Most recently updated public repository on GitHub.</text>
+        <text x="0" y="444" class="display accent-soft" font-size="34" font-weight="700">${escapeXml(nowBuildingRepo)}</text>
+        <text x="0" y="480" class="muted" font-size="18">Current build focus for this live profile surface.</text>
       </g>
 
       <g transform="translate(736 140)">
