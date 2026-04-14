@@ -56,7 +56,7 @@ function renderLayout({
       <stop offset="0" stop-color="rgba(0,212,255,0.35)" />
       <stop offset="1" stop-color="rgba(0,212,255,0)" />
     </linearGradient>
-    <filter id="soft-blur" x="-30%" y="-30%" width="160%" height="160%">
+    <filter id="soft-blur" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="28" />
     </filter>
   </defs>
