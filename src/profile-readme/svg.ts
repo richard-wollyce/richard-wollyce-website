@@ -1,12 +1,12 @@
-import { profileConfig } from './config'
+import { profileConfig } from './config.js'
 import {
   clamp,
   escapeXml,
   formatCompactNumber,
   formatRelativeDate,
   wrapText,
-} from './helpers'
-import type { LanguageRank, ProfileSnapshot, ThemeName, ThemePalette } from './types'
+} from './helpers.js'
+import type { LanguageRank, ProfileSnapshot, ThemeName, ThemePalette } from './types.js'
 
 function getThemePalette(theme: ThemeName): ThemePalette {
   if (theme === 'light') {

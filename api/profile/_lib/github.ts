@@ -1,9 +1,9 @@
-import { profileConfig } from '../../../src/profile-readme/config'
+import { profileConfig } from '../../../src/profile-readme/config.js'
 import type {
   LanguageRank,
   ProfileSnapshot,
   RepoSnapshot,
-} from '../../../src/profile-readme/types'
+} from '../../../src/profile-readme/types.js'
 
 const GITHUB_API_BASE = 'https://api.github.com'
 const GITHUB_GRAPHQL_URL = `${GITHUB_API_BASE}/graphql`

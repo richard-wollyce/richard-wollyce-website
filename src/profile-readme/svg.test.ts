@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
-import { renderHeroSvg, renderProjectsSvg, renderPulseSvg } from './svg'
-import type { ProfileSnapshot } from './types'
+import { renderHeroSvg, renderProjectsSvg, renderPulseSvg } from './svg.js'
+import type { ProfileSnapshot } from './types.js'
 
 const snapshot: ProfileSnapshot = {
   name: 'Richard Wollyce',
