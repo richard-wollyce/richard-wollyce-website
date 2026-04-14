@@ -18,8 +18,8 @@ function getThemePalette(theme: ThemeName): ThemePalette {
 
   return {
     name: 'dark',
-    background: '#0b0b0b',
-    backgroundAlt: '#0b0b0b',
+    background: '#0d1117',
+    backgroundAlt: '#0d1117',
     panel: '#202020',
     panelMuted: '#171717',
     panelBorder: '#2a2a2a',
@@ -176,10 +176,10 @@ function renderMetricCard({
   return `
     <g transform="translate(${x} ${y})">
       <rect class="panel" width="${width}" height="${height}" rx="14" />
-      <text x="22" y="28" class="muted" font-size="11" font-weight="700" letter-spacing="0.18em">${escapeXml(title.toUpperCase())}</text>
+      <text x="22" y="26" class="muted" font-size="11" font-weight="700" letter-spacing="0.18em">${escapeXml(title.toUpperCase())}</text>
       <g transform="translate(${width - 38} 16)">${icon}</g>
-      <text x="22" y="${height * 0.58}" class="display text" font-size="50" font-weight="700">${escapeXml(value)}</text>
-      <text x="22" y="${height - 18}" class="muted" font-size="15">${escapeXml(note)}</text>
+      <text x="22" y="72" class="display text" font-size="50" font-weight="700">${escapeXml(value)}</text>
+      <text x="22" y="94" class="muted" font-size="15">${escapeXml(note)}</text>
     </g>
   `.trim()
 }
@@ -187,19 +187,19 @@ function renderMetricCard({
 function renderRecentActivityCard(snapshot: ProfileSnapshot, x: number, y: number): string {
   return `
     <g transform="translate(${x} ${y})">
-      <rect class="panel" width="300" height="192" rx="14" />
-      <text x="22" y="28" class="muted" font-size="11" font-weight="700" letter-spacing="0.18em">RECENT ACTIVITY</text>
+      <rect class="panel" width="300" height="220" rx="14" />
+      <text x="22" y="26" class="muted" font-size="11" font-weight="700" letter-spacing="0.18em">RECENT ACTIVITY</text>
       <g transform="translate(260 16)">
         <path d="M0 18L8 10L14 16L24 4L34 14" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
       </g>
-      <text x="22" y="116" class="display text" font-size="56" font-weight="700">${escapeXml(
+      <text x="22" y="126" class="display text" font-size="56" font-weight="700">${escapeXml(
         formatCompactNumber(snapshot.recentActivityCount),
       )}</text>
-      <circle cx="116" cy="108" r="4" class="cyan pulse" />
-      <text x="128" y="113" class="cyan" font-size="14" font-weight="700" letter-spacing="0.12em">PULSE</text>
-      <text x="22" y="150" class="muted" font-size="14">Public activity</text>
-      <text x="22" y="170" class="muted" font-size="14">in the last 28 days.</text>
-      <g opacity="0.08" transform="translate(200 120)">
+      <circle cx="116" cy="118" r="4" class="cyan pulse" />
+      <text x="128" y="123" class="cyan" font-size="14" font-weight="700" letter-spacing="0.12em">PULSE</text>
+      <text x="22" y="174" class="muted" font-size="14">Public activity</text>
+      <text x="22" y="196" class="muted" font-size="14">in the last 28 days.</text>
+      <g opacity="0.08" transform="translate(200 134)">
         <path d="M0 52L18 34L32 46L52 18L82 48L82 74L0 74Z" fill="#f2f2ef" />
         <rect x="8" y="42" width="10" height="32" fill="#f2f2ef" />
         <rect x="26" y="28" width="10" height="46" fill="#f2f2ef" />
@@ -246,7 +246,7 @@ function renderTopLanguagesCard(snapshot: ProfileSnapshot, x: number, y: number)
   const shares = buildLanguageShares(snapshot.topLanguages)
   const rows = shares
     .map((language, index) => {
-      const rowY = 56 + index * 48
+      const rowY = 66 + index * 52
       const width = clamp(language.percent * 3.9, 46, 342)
 
       return `
@@ -262,8 +262,8 @@ function renderTopLanguagesCard(snapshot: ProfileSnapshot, x: number, y: number)
 
   return `
     <g transform="translate(${x} ${y})">
-      <rect class="panel" width="590" height="192" rx="14" />
-      <text x="20" y="28" class="muted" font-size="11" font-weight="700" letter-spacing="0.18em">TOP LANGUAGES</text>
+      <rect class="panel" width="590" height="220" rx="14" />
+      <text x="20" y="26" class="muted" font-size="11" font-weight="700" letter-spacing="0.18em">TOP LANGUAGES</text>
       <g transform="translate(552 16)">
         ${renderLanguageIcon()}
       </g>
@@ -385,7 +385,7 @@ export function renderHeroSvg(snapshot: ProfileSnapshot, theme: ThemeName): stri
         x: 946,
         y: 276,
         width: 316,
-        height: 92,
+        height: 106,
         title: 'Active Repos',
         value: formatCompactNumber(snapshot.activeRepoCount),
         note: 'updated in the last 120 days',
@@ -393,16 +393,16 @@ export function renderHeroSvg(snapshot: ProfileSnapshot, theme: ThemeName): stri
       })}
       ${renderMetricCard({
         x: 946,
-        y: 376,
+        y: 390,
         width: 316,
-        height: 92,
+        height: 106,
         title: 'Followers',
         value: formatCompactNumber(snapshot.followers),
         note: 'people tracking the work',
         icon: renderFollowersIcon(),
       })}
 
-      ${renderNowBuildingPanel(snapshot, 18, 504)}
+      ${renderNowBuildingPanel(snapshot, 18, 528)}
 
       <g transform="translate(24 874)">
         <circle cx="0" cy="0" r="6" fill="${palette.accentMuted}" class="pulse" />
