@@ -18,6 +18,9 @@
 /out/
 
 # production
+.docs/*
+docs/*
+docs/*/*
 /build
 
 # misc
