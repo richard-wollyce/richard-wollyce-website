@@ -15,7 +15,7 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata = {
-  title: 'Richard Wollyce — Full Stack Software Engineer',
+  title: 'Richard Wollyce',
   description:
     'Full Stack Software Engineer building secure, scalable web systems with real ownership across frontend, backend, database, and infrastructure. Based in Franca, SP, Brazil.',
   keywords: [
@@ -32,7 +32,7 @@ export const metadata = {
   creator: 'Richard Wollyce Santos de Souza',
   metadataBase: new URL('https://richardwollyce.com'),
   openGraph: {
-    title: 'Richard Wollyce — Full Stack Software Engineer',
+    title: 'Richard Wollyce',
     description:
       'Full Stack Software Engineer building secure, scalable web systems with real ownership from code to infrastructure.',
     url: 'https://richardwollyce.com',
@@ -42,7 +42,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Richard Wollyce — Full Stack Software Engineer',
+    title: 'Richard Wollyce',
     description:
       'Full Stack Software Engineer building secure, scalable web systems with real ownership from code to infrastructure.',
   },
