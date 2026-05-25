@@ -123,7 +123,7 @@ export const experience = [
     company: 'MG Laser',
     role: 'Software Engineer',
     location: 'Franca, Brazil',
-    period: 'November 2025 — Present',
+    period: 'November 2025 — May 2026',
     bullets: [
       'Build and maintain an ERP system processing 200+ orders per day across multiple teams, covering inventory, sales, and daily operations.',
       'Reduced manual data entry errors by ~95% by replacing spreadsheet workflows with structured forms and automated validation.',
