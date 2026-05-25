@@ -38,7 +38,7 @@ Strong foundation in system design, cybersecurity, and secure data access. I lea
 
 ### Software Engineer | MG Laser
 
-**Franca, Brazil | November 2025 - Present**
+**Franca, Brazil | November 2025 - May 2026**
 
 - Tech stack: TypeScript, React, Vite, Tailwind CSS, Node.js, Supabase, PostgreSQL, Linux VPS, EasyPanel.
 - Build and maintain an ERP system covering inventory, sales, and daily operations, processing 200+ orders per day across multiple teams.

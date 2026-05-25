@@ -38,6 +38,7 @@ export const projects = [
   {
     id: 'mg-laser-erp',
     name: 'E-Commerce ERP',
+    workplace: 'MG Laser',
     context:
       'MG Laser needed to replace fragile spreadsheet-based workflows with a reliable system to manage inventory, sales, and daily operations across multiple teams.',
     challenge:
@@ -53,6 +54,7 @@ export const projects = [
   {
   id: 'roadtocybersec',
   name: 'RoadToCyberSec',
+  workplace: 'Personal',
   context:
   'Cybersecurity learning resources are often fragmented, overly technical, or lack a clear progression path for beginners and non-technical professionals.',
   challenge:
@@ -68,8 +70,9 @@ export const projects = [
   {
     id: 'studio-r',
     name: 'Chatbot & Dashboard',
+    workplace: 'Contractor',
     context:
-      'Studio R, a tattoo and barber shop, needed a structured way to receive and manage service budget requests from clients instead of unstructured WhatsApp messages.',
+      'As a contractor for Studio R, a tattoo and barber shop, built a structured intake flow to receive and manage service budget requests instead of unstructured WhatsApp messages.',
     challenge:
       'Client requests arrived as free-form messages with missing details, making it hard to assess scope, pricing, and follow-up status.',
     solution:
@@ -79,12 +82,13 @@ export const projects = [
     stack: ['TypeScript', 'React', 'Next.js', 'Vite', 'Tailwind CSS', 'Node.js', 'Supabase', 'PostgreSQL', 'Linux VPS', 'EasyPanel'],
     link: 'https://mayara.richardwollyce.cloud/form',
     repo: null,
-	},
+  },
   {
     id: '13doze',
     name: 'Event Registration',
+    workplace: 'Contractor',
     context:
-      'A multi-company event at Franca Shopping needed a fast, reliable client registration app usable by staff across all participating businesses on event day.',
+      'As a contractor for a multi-company event at Franca Shopping, built a fast, reliable client registration app usable by staff across participating businesses on event day.',
     challenge:
       'Staff needed to quickly check existing clients, register new ones, and track event participation in real-time across desktop and mobile devices with no room for downtime.',
     solution:
@@ -98,8 +102,9 @@ export const projects = [
   {
     id: 'qr-imposto',
     name: 'QR Imposto',
+    workplace: 'Contractor',
     context:
-      'Brazilian citizens often have no visibility into the taxes they pay on everyday purchases like groceries, medicine, and fuel.',
+      'Built as a contractor-led open-source mobile app to give Brazilian citizens visibility into taxes paid on everyday purchases like groceries, medicine, and fuel.',
     challenge:
       'Fiscal data from NFC-e receipts is encoded in QR codes and not easily accessible or understandable to the average consumer.',
     solution:
@@ -118,7 +123,7 @@ export const experience = [
     company: 'MG Laser',
     role: 'Software Engineer',
     location: 'Franca, Brazil',
-    period: 'November 2025 — Present',
+    period: 'November 2025 — May 2026',
     bullets: [
       'Build and maintain an ERP system processing 200+ orders per day across multiple teams, covering inventory, sales, and daily operations.',
       'Reduced manual data entry errors by ~95% by replacing spreadsheet workflows with structured forms and automated validation.',
@@ -127,39 +132,16 @@ export const experience = [
     ],
   },
   {
-    id: '13doze',
-    company: '13doze',
-    role: 'Frontend Developer',
-    location: 'Franca, Brazil · Contractor',
-    period: 'April 2026 — Present',
-    bullets: [
-      'Built a client registration web app used live by staff across businesses at a Shopping Center event.',
-      'Implemented CPF and WhatsApp lookup with ~100-200ms verification time for real-time client checks.',
-      'Delivered end-to-end: design, development, deployment, and live event support.',
-    ],
-  },
-  {
-    id: 'studio-r',
-    company: 'Studio R — Tattoo & Barber',
-    role: 'Full Stack Software Engineer',
-    location: 'Franca, Brazil',
-    period: 'October 2025 — Present',
-    bullets: [
-      'Built a JSON-driven guided chatbot converting client conversations into structured service budget requests.',
-      'Built an owner-only dashboard for reviewing budget requests, managing follow-up, and tracking status.',
-      'Own the full lifecycle: frontend, backend, database, deployment, and maintenance on a self-managed VPS.',
-    ],
-  },
-  {
-    id: 'independent',
-    company: 'Independent',
-    role: 'Full Stack Software Engineer',
-    location: 'Freelance',
+    id: 'contractor',
+    company: 'Contractor',
+    role: 'Contractor / Freelance Software Engineer',
+    location: 'Franca, Brazil · Remote',
     period: '2024 — Present',
     bullets: [
-      'Build and ship full-stack web applications using React, Next.js, Node.js, and TypeScript for client and personal projects.',
-      'Built landing pages with Mercado Pago payment integrations, using webhooks to automate post-checkout workflows.',
-      'Adopted TDD with Vitest to reduce regressions and enable faster, safer refactors across projects.',
+      'Delivered client projects including 13doze (event registration app), Studio R (chatbot & dashboard), and QR Imposto (open-source mobile app).',
+      'Owned full lifecycle: requirements, design, development, deployment, and live event or post-launch support.',
+      'Implemented payment integrations, webhooks, conversational flows, and applied TDD with Vitest to reduce regressions.',
+      'Worked across frontend, backend, databases, and self-managed server deployments.',
     ],
   },
 ];
