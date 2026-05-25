@@ -12,11 +12,12 @@ export const siteConfig = {
 };
 
 export const hero = {
-  headline: 'I build secure, scalable web systems that turn messy operations into reliable products.',
+  headline: 'Hi, I\'m Richard Wollyce',
+  title: 'Full Stack Software Engineer',
   subheadline:
     'Full Stack Software Engineer with end to end ownership across frontend, backend, databases, and infrastructure. I build and ship production systems designed for real workloads, from ERP platforms handling 200+ daily orders to conversational systems that turn user interactions into structured, actionable workflows.',
   ctaPrimary: { label: "Let's Talk", href: '#contact' },
-  ctaSecondary: { label: 'View Work', href: '#work' },
+  ctaSecondary: { label: 'Recent Work', href: '#work' },
   trustStrip: [
     {
       icon: 'chart',
@@ -36,7 +37,7 @@ export const hero = {
 export const projects = [
   {
     id: 'mg-laser-erp',
-    name: 'MG Laser ERP',
+    name: 'E-Commerce ERP',
     context:
       'MG Laser needed to replace fragile spreadsheet-based workflows with a reliable system to manage inventory, sales, and daily operations across multiple teams.',
     challenge:
@@ -66,7 +67,7 @@ export const projects = [
   },
   {
     id: 'studio-r',
-    name: 'Studio R — Tattoo & Barber',
+    name: 'Chatbot & Dashboard',
     context:
       'Studio R, a tattoo and barber shop, needed a structured way to receive and manage service budget requests from clients instead of unstructured WhatsApp messages.',
     challenge:
@@ -81,7 +82,7 @@ export const projects = [
 	},
   {
     id: '13doze',
-    name: '13doze Event Registration',
+    name: 'Event Registration',
     context:
       'A multi-company event at Shopping Center de Franca needed a fast, reliable client registration app usable by staff across all participating businesses on event day.',
     challenge:

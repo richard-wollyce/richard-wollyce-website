@@ -34,14 +34,6 @@
   letter-spacing: 0.02em;
 }
 
-.badgeDot {
-  width: 8px;
-  height: 8px;
-  background-color: var(--accent);
-  border-radius: var(--radius-full);
-  animation: pulse 2s ease-in-out infinite;
-}
-
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.4; }

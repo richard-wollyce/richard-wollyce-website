@@ -7,10 +7,6 @@ export default function Hero() {
     <section className={styles.hero} id="hero">
       <div className={`container ${styles.container}`}>
         <div className={styles.content}>
-          <div className={styles.badge}>
-            <span className={styles.badgeDot} />
-            {siteConfig.title}
-          </div>
 
           <h1 className={styles.headline}>{hero.headline}</h1>
 
@@ -35,7 +31,7 @@ export default function Hero() {
           <div className={styles.portrait}>
             <Image
               src="/images/rw_pfp.jpg"
-              alt="Richard Wollyce Santos de Souza — Full Stack Software Engineer"
+              alt="Richard Wollyce - Full Stack Software Engineer"
               width={420}
               height={420}
               priority
