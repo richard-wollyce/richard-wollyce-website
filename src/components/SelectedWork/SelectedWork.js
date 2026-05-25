@@ -3,7 +3,7 @@ import styles from './SelectedWork.module.css';
 
 export default function SelectedWork() {
   return (
-    <section className="section" id="work">
+    <section className={`section ${styles.selectedWork}`} id="work">
       <div className="container">
         <header className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Selected Work</h2>

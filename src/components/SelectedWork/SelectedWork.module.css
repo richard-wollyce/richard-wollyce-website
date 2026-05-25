@@ -160,6 +160,10 @@
   border: 1px solid var(--border-light);
 }
 
+.selectedWork {
+  padding-top: clamp(2rem, 4vw, 3.5rem);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .narrativeGrid {

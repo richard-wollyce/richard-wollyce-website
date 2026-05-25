@@ -84,7 +84,7 @@ export const projects = [
     id: '13doze',
     name: 'Event Registration',
     context:
-      'A multi-company event at Shopping Center de Franca needed a fast, reliable client registration app usable by staff across all participating businesses on event day.',
+      'A multi-company event at Franca Shopping needed a fast, reliable client registration app usable by staff across all participating businesses on event day.',
     challenge:
       'Staff needed to quickly check existing clients, register new ones, and track event participation in real-time across desktop and mobile devices with no room for downtime.',
     solution:
