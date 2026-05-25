@@ -1,0 +1,208 @@
+export const siteConfig = {
+  name: 'Richard Wollyce',
+  shortName: 'Richard Wollyce',
+  title: 'Full Stack Software Engineer',
+  location: 'Franca, São Paulo, Brazil',
+  email: 'mail@richardwollyce.com',
+  phone: '+55 (16) 9 9159-7978',
+  linkedin: 'https://linkedin.com/in/richardwollyce-/',
+  github: 'https://github.com/richard-wollyce',
+  website: 'https://richardwollyce.com',
+  cvPath: '/richard-wollyce-cv.pdf',
+};
+
+export const hero = {
+  headline: 'I build secure, scalable web systems that turn messy operations into reliable products.',
+  subheadline:
+    'Full Stack Software Engineer with end to end ownership across frontend, backend, databases, and infrastructure. I build and ship production systems designed for real workloads, from ERP platforms handling 200+ daily orders to conversational systems that turn user interactions into structured, actionable workflows.',
+  ctaPrimary: { label: "Let's Talk", href: '#contact' },
+  ctaSecondary: { label: 'View Work', href: '#work' },
+  trustStrip: [
+    {
+      icon: 'chart',
+      text: 'ERP handling 200+ orders/day',
+    },
+    {
+      icon: 'check',
+      text: '~95% reduction in manual entry errors',
+    },
+    {
+      icon: 'bolt',
+      text: 'Production outage restored <10 min, zero data loss',
+    },
+  ],
+};
+
+export const projects = [
+  {
+    id: 'mg-laser-erp',
+    name: 'MG Laser ERP',
+    context:
+      'MG Laser needed to replace fragile spreadsheet-based workflows with a reliable system to manage inventory, sales, and daily operations across multiple teams.',
+    challenge:
+      'The business ran on manual data entry across disconnected spreadsheets, causing frequent errors, data inconsistencies, and slow order processing across teams handling 200+ orders per day.',
+    solution:
+      'Built and maintain a full ERP system covering inventory, sales, and daily operations. Implemented structured forms with automated validation, pagination and targeted RPC calls for performance, and Row-Level Security with Role-Based Access Control for data protection.',
+    impact:
+      'Reduced manual data entry errors by approximately 95%. The system processes 200+ orders per day reliably. Restored the system after a critical production outage in under 10 minutes with no data loss.',
+    stack: ['TypeScript', 'React', 'Vite', 'Tailwind CSS', 'Node.js', 'Supabase', 'PostgreSQL', 'Linux VPS', 'EasyPanel'],
+    link: null,
+    repo: null,
+  },
+  {
+  id: 'roadtocybersec',
+  name: 'RoadToCyberSec',
+  context:
+  'Cybersecurity learning resources are often fragmented, overly technical, or lack a clear progression path for beginners and non-technical professionals.',
+  challenge:
+  'Creating an accessible, structured learning path that covers fundamentals through advanced topics without overwhelming learners.',
+  solution:
+  'Curated and authored a structured, beginner-to-advanced cybersecurity learning path. Designed sequential modules covering fundamentals, threat analysis, password security, safe browsing, device hygiene, and incident response.',
+  impact:
+  'Provides a searchable, structured cybersecurity resource hub accessible to beginners, developers, and non-technical professionals.',
+  stack: ['Mintlify', 'Documentation', 'Content Creation', 'Cybersecurity Education', 'Markdown'],
+  link: 'https://roadtocybersec.com',
+  repo: 'https://github.com/richard-wollyce/road-to-cybersec',
+  },
+  {
+    id: 'studio-r',
+    name: 'Studio R — Tattoo & Barber',
+    context:
+      'Studio R, a tattoo and barber shop, needed a structured way to receive and manage service budget requests from clients instead of unstructured WhatsApp messages.',
+    challenge:
+      'Client requests arrived as free-form messages with missing details, making it hard to assess scope, pricing, and follow-up status.',
+    solution:
+      'Built a JSON-driven guided chatbot that converts client conversations into structured tattoo and barber service budget requests. Implemented conversation flows that parse text, images, and links. Built an owner-only dashboard to review requests, manage follow-up, and track statuses.',
+    impact:
+      'Replaced unstructured intake with a guided flow that captures complete budget requests. The owner dashboard provides full visibility into pending and completed requests.',
+    stack: ['TypeScript', 'React', 'Next.js', 'Vite', 'Tailwind CSS', 'Node.js', 'Supabase', 'PostgreSQL', 'Linux VPS', 'EasyPanel'],
+    link: 'https://mayara.richardwollyce.cloud/form',
+    repo: null,
+	},
+  {
+    id: '13doze',
+    name: '13doze Event Registration',
+    context:
+      'A multi-company event at Shopping Center de Franca needed a fast, reliable client registration app usable by staff across all participating businesses on event day.',
+    challenge:
+      'Staff needed to quickly check existing clients, register new ones, and track event participation in real-time across desktop and mobile devices with no room for downtime.',
+    solution:
+      'Built a client registration web app with CPF and WhatsApp lookup (~100-200ms verification), a responsive interface for desktop and mobile, and a CRUD system with day-based registration suffixes for accurate participant counting.',
+    impact:
+      'Used live by staff across participating businesses on event day. Delivered end-to-end including design, development, deployment, and live event support.',
+    stack: ['React', 'TypeScript', 'Vite', 'Supabase', 'Vercel', 'PostgreSQL'],
+    link: null,
+    repo: null,
+  },
+  {
+    id: 'qr-imposto',
+    name: 'QR Imposto',
+    context:
+      'Brazilian citizens often have no visibility into the taxes they pay on everyday purchases like groceries, medicine, and fuel.',
+    challenge:
+      'Fiscal data from NFC-e receipts is encoded in QR codes and not easily accessible or understandable to the average consumer.',
+    solution:
+      'Built an open-source mobile app that lets users scan NFC-e QR codes and see a clear breakdown of taxes paid on purchases. Covers the full workflow from QR scan and fiscal data parsing to logged entries and tax breakdown summaries.',
+    impact:
+      'Provides transparent tax visibility for everyday purchases. Open-source and distributed through EAS.',
+    stack: ['React Native', 'Expo', 'TypeScript', 'EAS'],
+    link: null,
+    repo: 'https://github.com/richard-wollyce/qr-imposto',
+  },
+];
+
+export const experience = [
+  {
+    id: 'mg-laser',
+    company: 'MG Laser',
+    role: 'Software Engineer',
+    location: 'Franca, Brazil',
+    period: 'November 2025 — Present',
+    bullets: [
+      'Build and maintain an ERP system processing 200+ orders per day across multiple teams, covering inventory, sales, and daily operations.',
+      'Reduced manual data entry errors by ~95% by replacing spreadsheet workflows with structured forms and automated validation.',
+      'Secured data access with RLS and RBAC, restricting records to appropriate user roles.',
+      'Restored the system after a critical production outage in under 10 minutes with no data loss.',
+    ],
+  },
+  {
+    id: '13doze',
+    company: '13doze',
+    role: 'Frontend Developer',
+    location: 'Franca, Brazil · Contractor',
+    period: 'April 2026 — Present',
+    bullets: [
+      'Built a client registration web app used live by staff across businesses at a Shopping Center event.',
+      'Implemented CPF and WhatsApp lookup with ~100-200ms verification time for real-time client checks.',
+      'Delivered end-to-end: design, development, deployment, and live event support.',
+    ],
+  },
+  {
+    id: 'studio-r',
+    company: 'Studio R — Tattoo & Barber',
+    role: 'Full Stack Software Engineer',
+    location: 'Franca, Brazil',
+    period: 'October 2025 — Present',
+    bullets: [
+      'Built a JSON-driven guided chatbot converting client conversations into structured service budget requests.',
+      'Built an owner-only dashboard for reviewing budget requests, managing follow-up, and tracking status.',
+      'Own the full lifecycle: frontend, backend, database, deployment, and maintenance on a self-managed VPS.',
+    ],
+  },
+  {
+    id: 'independent',
+    company: 'Independent',
+    role: 'Full Stack Software Engineer',
+    location: 'Freelance',
+    period: '2024 — Present',
+    bullets: [
+      'Build and ship full-stack web applications using React, Next.js, Node.js, and TypeScript for client and personal projects.',
+      'Built landing pages with Mercado Pago payment integrations, using webhooks to automate post-checkout workflows.',
+      'Adopted TDD with Vitest to reduce regressions and enable faster, safer refactors across projects.',
+    ],
+  },
+];
+
+export const technicalStrength = [
+  {
+    id: 'frontend',
+    title: 'Frontend',
+    icon: 'layout',
+    description:
+      'Building responsive, accessible interfaces with modern React patterns. From complex data tables to guided conversational flows, every UI is production-ready and performance-conscious.',
+    technologies: ['React', 'Next.js', 'Vite', 'Tailwind CSS', 'Three.js', 'Redux'],
+  },
+  {
+    id: 'backend',
+    title: 'Backend',
+    icon: 'server',
+    description:
+      'Designing APIs, authentication flows, and webhook integrations that handle real workloads. Every backend service is built for reliability and secure data handling.',
+    technologies: ['Node.js', 'REST APIs', 'GraphQL', 'Supabase', 'Auth', 'Webhooks'],
+  },
+  {
+    id: 'data-security',
+    title: 'Data & Security',
+    icon: 'shield',
+    description:
+      'Structuring databases with secure-by-default thinking. Row-Level Security and Role-Based Access Control are standard practice, not afterthoughts.',
+    technologies: ['PostgreSQL', 'SQL', 'RLS', 'RBAC', 'Database Design'],
+  },
+  {
+    id: 'infrastructure',
+    title: 'Infrastructure & Quality',
+    icon: 'terminal',
+    description:
+      'Owning the full deployment pipeline from container to production. Self-managed servers, CI/CD automation, and test-driven development keep systems reliable.',
+    technologies: ['Docker', 'Linux VPS', 'Nginx', 'GitHub Actions', 'CI/CD', 'Vitest', 'TDD'],
+  },
+];
+
+export const about = {
+  paragraphs: [
+    "I'm a Full Stack Software Engineer based in São Paulo, currently pursuing a B.Sc. in Software Engineering. I take ownership from problem definition to production, building systems that remain reliable under real conditions.",
+    'I work with a secure by default mindset. Row Level Security, Role Based Access Control, and structured data access are part of every system I design. I focus on getting the architecture right early so the system can grow without accumulating fragile solutions.',
+    'My interest in technology started early. At seven years old, I had my first computer and began formal IT training. That curiosity turned into a long term commitment to building useful and scalable software.',
+    'Outside of engineering, I am a father and passionate about music. Both influence how I think and build, bringing creativity, discipline, and a strong sense of responsibility to everything I do. I learn quickly, adapt fast, and focus on delivering work that truly matters.',
+  ],
+};
