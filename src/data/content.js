@@ -15,7 +15,7 @@ export const hero = {
   headline: 'Hi, I\'m Richard Wollyce',
   title: 'Full Stack Software Engineer',
   subheadline:
-    'Full Stack Software Engineer who takes care of everything from the interface to the database and servers. I build real products in production, from an ERP that handles over 200 orders a day to chat-based systems that turn conversations into clear, actionable tasks.',
+    'Full Stack Software Engineer who designs secure architectures and ships solutions that solve practical problems. I build products in production, from an ERP that handles over 200 orders a day to chat-based systems that turn conversations into clear, actionable tasks.',
   ctaPrimary: { label: "Let's Talk", href: '#contact' },
   ctaSecondary: { label: 'Recent Work', href: '#work' },
   trustStrip: [
