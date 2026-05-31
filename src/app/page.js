@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import ParticleBackground from '@/components/ParticleBackground/ParticleBackground';
 import Navbar from '@/components/Navbar/Navbar';
 import Hero from '@/components/Hero/Hero';
 import SelectedWork from '@/components/SelectedWork/SelectedWork';
@@ -42,16 +43,19 @@ export default function Home() {
 
   return (
     <>
-      <Navbar />
-      <main id="main-content" className={styles.main}>
-        <Hero />
-        <SelectedWork />
-        <Experience />
-        <TechnicalStrength />
-        <About />
-        <Contact />
-      </main>
-      <Footer />
+      <ParticleBackground />
+      <div className={styles.contentLayer}>
+        <Navbar />
+        <main id="main-content" className={styles.main}>
+          <Hero />
+          <SelectedWork />
+          <Experience />
+          <TechnicalStrength />
+          <About />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }

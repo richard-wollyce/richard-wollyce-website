@@ -7,7 +7,7 @@ export default function Contact() {
       <div className="container">
         <div className={styles.layout}>
           <header className={styles.header}>
-            <h2 className={styles.title}>Let's Connect</h2>
+            <h2 className={styles.title}>Let&apos;s Connect</h2>
             <p className={styles.subtitle}>
               Ready to talk systems, security, or full-stack engineering roles? Get in touch.
             </p>
