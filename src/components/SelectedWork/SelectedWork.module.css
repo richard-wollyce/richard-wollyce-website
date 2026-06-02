@@ -70,6 +70,15 @@
   color: var(--text-primary);
 }
 
+.projectCategory {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: var(--space-1);
+}
+
 .links {
   display: flex;
   gap: var(--space-3);
@@ -95,37 +104,41 @@
   background-color: var(--accent-subtle);
 }
 
-.narrativeGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-8);
-  margin-bottom: var(--space-6);
-}
-
-.narrativeCol {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
-}
-
-.narrativeBlock {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-
-.narrativeLabel {
-  font-size: var(--text-xs);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--accent);
-  font-weight: 700;
-}
-
-.narrativeText {
+.summary {
+  max-width: 780px;
   font-size: var(--text-sm);
   color: var(--text-secondary);
   line-height: 1.6;
+  margin-bottom: var(--space-5);
+}
+
+.highlights {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.highlightIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  background-color: var(--accent-subtle);
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
 .footer {
@@ -166,11 +179,6 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .narrativeGrid {
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
-  }
-
   .card {
     padding: var(--space-6);
   }

@@ -27,8 +27,8 @@ export default function Experience() {
                     <h4 className={styles.companyName}>{job.company}</h4>
                   </div>
                   <div className={styles.meta}>
-                    <span className={styles.period}>{job.period}</span>
-                    <span className={styles.location}>{job.location}</span>
+                    {job.period && <span className={styles.period}>{job.period}</span>}
+                    {job.location && <span className={styles.location}>{job.location}</span>}
                   </div>
                 </div>
 

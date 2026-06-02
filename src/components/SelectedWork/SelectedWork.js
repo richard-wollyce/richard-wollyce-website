@@ -6,9 +6,9 @@ export default function SelectedWork() {
     <section className={`section ${styles.selectedWork}`} id="work">
       <div className="container">
         <header className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Selected Work</h2>
+          <h2 className={styles.sectionTitle}>Projects</h2>
           <p className={styles.sectionSubtitle}>
-            A curated selection of systems built to solve operational, security, and business challenges.
+            Relevant technical project currently highlighted in the curriculum.
           </p>
         </header>
 
@@ -16,7 +16,10 @@ export default function SelectedWork() {
           {projects.map((project) => (
             <article key={project.id} className={`${styles.card} reveal`}>
               <div className={styles.cardHeader}>
-                <h3 className={styles.projectName}>{project.name}</h3>
+                <div>
+                  <p className={styles.projectCategory}>{project.category}</p>
+                  <h3 className={styles.projectName}>{project.name}</h3>
+                </div>
                 <div className={styles.links}>
                   {project.link && (
                     <a
@@ -51,29 +54,20 @@ export default function SelectedWork() {
                 </div>
               </div>
 
-              <div className={styles.narrativeGrid}>
-                <div className={styles.narrativeCol}>
-                  <div className={styles.narrativeBlock}>
-                    <h4 className={styles.narrativeLabel}>Context</h4>
-                    <p className={styles.narrativeText}>{project.context}</p>
-                  </div>
-                  <div className={styles.narrativeBlock}>
-                    <h4 className={styles.narrativeLabel}>Challenge</h4>
-                    <p className={styles.narrativeText}>{project.challenge}</p>
-                  </div>
-                </div>
+              <p className={styles.summary}>{project.summary}</p>
 
-                <div className={styles.narrativeCol}>
-                  <div className={styles.narrativeBlock}>
-                    <h4 className={styles.narrativeLabel}>Solution & Scope</h4>
-                    <p className={styles.narrativeText}>{project.solution}</p>
-                  </div>
-                  <div className={styles.narrativeBlock}>
-                    <h4 className={styles.narrativeLabel}>Outcome & Impact</h4>
-                    <p className={styles.narrativeText}>{project.impact}</p>
-                  </div>
-                </div>
-              </div>
+              <ul className={styles.highlights}>
+                {project.highlights.map((highlight) => (
+                  <li key={highlight} className={styles.highlight}>
+                    <span className={styles.highlightIcon}>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </span>
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
 
               <div className={styles.footer}>
                 <h4 className={styles.stackLabel}>Tech Stack</h4>

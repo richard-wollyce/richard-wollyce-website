@@ -1,8 +1,8 @@
 export const siteConfig = {
-  name: 'Richard Wollyce',
+  name: 'Richard Wollyce Santos de Souza',
   shortName: 'Richard Wollyce',
   title: 'Full Stack Software Engineer',
-  location: 'Franca, São Paulo, Brazil',
+  location: 'Franca, Sao Paulo, Brazil',
   email: 'mail@richardwollyce.com',
   phone: '+55 (16) 9 9159-7978',
   linkedin: 'https://linkedin.com/in/richardwollyce-/',
@@ -15,9 +15,9 @@ export const hero = {
   headline: 'Hi, I\'m Richard Wollyce',
   title: 'Full Stack Software Engineer',
   subheadline:
-    'A Full Stack Software Engineer who designs secure architectures and ships solutions that solve real practical problems. I build systems in production, from an ERP that handles over 200 orders a day to chat-based systems that turn conversations into clear, actionable tasks.',
+    'Full Stack Software Engineer focused on TypeScript, JavaScript, and Rust, building secure, scalable web applications end to end across React, Next.js, Node.js, Supabase, PostgreSQL, CI/CD, and Linux deployments.',
   ctaPrimary: { label: "Let's Talk", href: '#contact' },
-  ctaSecondary: { label: 'Recent Work', href: '#work' },
+  ctaSecondary: { label: 'View Projects', href: '#work' },
   trustStrip: [
     {
       icon: 'chart',
@@ -29,91 +29,59 @@ export const hero = {
     },
     {
       icon: 'bolt',
-      text: 'Production outage restored <10 min, zero data loss',
+      text: 'Security, networking, and digital forensics foundation',
     },
   ],
 };
 
+export const certifications = [
+  {
+    id: 'santander-rust-ai',
+    title: 'Santander Bootcamp: Rust and AI-Integrated Application Development',
+    issuer: 'Santander Bootcamp',
+    date: 'Issued June 2026',
+  },
+  {
+    id: 'computational-forensics',
+    title: 'Computational Forensics and Digital Evidence Investigation',
+    issuer: 'Universidade Cruzeiro do Sul',
+    date: 'Issued June 2, 2026',
+  },
+  {
+    id: 'harvardx-leadership',
+    title: 'LEAD1x: Exercising Leadership: Foundational Principles',
+    issuer: 'HarvardX / edX',
+    date: 'Issued May 2026',
+  },
+  {
+    id: 'cisco-intro-cybersecurity',
+    title: 'Introduction to Cybersecurity',
+    issuer: 'Cisco Networking Academy',
+    date: 'Issued July 2023',
+  },
+  {
+    id: 'cisco-networking-basics',
+    title: 'Networking Basics',
+    issuer: 'Cisco Networking Academy',
+    date: 'Issued July 2025',
+  },
+];
+
 export const projects = [
   {
-    id: 'mg-laser-erp',
-    name: 'E-Commerce ERP',
-    workplace: 'MG Laser',
-    context:
-      'MG Laser needed to replace fragile spreadsheet-based workflows with a reliable system to manage inventory, sales, and daily operations across multiple teams.',
-    challenge:
-      'The business ran on manual data entry across disconnected spreadsheets, causing frequent errors, data inconsistencies, and slow order processing across teams handling 200+ orders per day.',
-    solution:
-      'Built and maintain a full ERP system covering inventory, sales, and daily operations. Implemented structured forms with automated validation, pagination and targeted RPC calls for performance, and Row-Level Security with Role-Based Access Control for data protection.',
-    impact:
-      'Reduced manual data entry errors by approximately 95%. The system processes 200+ orders per day reliably. Restored the system after a critical production outage in under 10 minutes with no data loss.',
-    stack: ['TypeScript', 'React', 'Vite', 'Tailwind CSS', 'Node.js', 'Supabase', 'PostgreSQL', 'Linux VPS', 'EasyPanel'],
-    link: null,
+    id: 'roadtocybersec',
+    name: 'RoadToCyberSec.com',
+    category: 'Cybersecurity Project',
+    summary:
+      'A structured, beginner-to-advanced cybersecurity learning path and resource hub focused on practical, actionable guidance.',
+    highlights: [
+      'Curated and authored sequential learning material for beginners, developers, and non-technical professionals.',
+      'Designed modules covering fundamentals, threat analysis, password security and MFA, safe browsing, device hygiene, incident response, network fundamentals, and digital evidence handling.',
+      'Hosted on Mintlify with a searchable documentation index and a clear learning path.',
+    ],
+    stack: ['Mintlify', 'Markdown', 'Cybersecurity Education', 'Technical Documentation'],
+    link: 'https://roadtocybersec.com',
     repo: null,
-  },
-  {
-  id: 'roadtocybersec',
-  name: 'RoadToCyberSec',
-  workplace: 'Personal',
-  context:
-  'Cybersecurity learning resources are often fragmented, overly technical, or lack a clear progression path for beginners and non-technical professionals.',
-  challenge:
-  'Creating an accessible, structured learning path that covers fundamentals through advanced topics without overwhelming learners.',
-  solution:
-  'Curated and authored a structured, beginner-to-advanced cybersecurity learning path. Designed sequential modules covering fundamentals, threat analysis, password security, safe browsing, device hygiene, and incident response.',
-  impact:
-  'Provides a searchable, structured cybersecurity resource hub accessible to beginners, developers, and non-technical professionals.',
-  stack: ['Mintlify', 'Documentation', 'Content Creation', 'Cybersecurity Education', 'Markdown'],
-  link: 'https://roadtocybersec.com',
-  repo: 'https://github.com/richard-wollyce/road-to-cybersec',
-  },
-  {
-    id: 'studio-r',
-    name: 'Chatbot & Dashboard',
-    workplace: 'Contractor',
-    context:
-      'As a contractor for Studio R, a tattoo and barber shop, built a structured intake flow to receive and manage service budget requests instead of unstructured WhatsApp messages.',
-    challenge:
-      'Client requests arrived as free-form messages with missing details, making it hard to assess scope, pricing, and follow-up status.',
-    solution:
-      'Built a JSON-driven guided chatbot that converts client conversations into structured tattoo and barber service budget requests. Implemented conversation flows that parse text, images, and links. Built an owner-only dashboard to review requests, manage follow-up, and track statuses.',
-    impact:
-      'Replaced unstructured intake with a guided flow that captures complete budget requests. The owner dashboard provides full visibility into pending and completed requests.',
-    stack: ['TypeScript', 'React', 'Next.js', 'Vite', 'Tailwind CSS', 'Node.js', 'Supabase', 'PostgreSQL', 'Linux VPS', 'EasyPanel'],
-    link: 'https://mayara.richardwollyce.cloud/form',
-    repo: null,
-  },
-  {
-    id: '13doze',
-    name: 'Event Registration',
-    workplace: 'Contractor',
-    context:
-      'As a contractor for a multi-company event at Franca Shopping, built a fast, reliable client registration app usable by staff across participating businesses on event day.',
-    challenge:
-      'Staff needed to quickly check existing clients, register new ones, and track event participation in real-time across desktop and mobile devices with no room for downtime.',
-    solution:
-      'Built a client registration web app with CPF and WhatsApp lookup (~100-200ms verification), a responsive interface for desktop and mobile, and a CRUD system with day-based registration suffixes for accurate participant counting.',
-    impact:
-      'Used live by staff across participating businesses on event day. Delivered end-to-end including design, development, deployment, and live event support.',
-    stack: ['React', 'TypeScript', 'Vite', 'Supabase', 'Vercel', 'PostgreSQL'],
-    link: null,
-    repo: null,
-  },
-  {
-    id: 'qr-imposto',
-    name: 'QR Imposto',
-    workplace: 'Contractor',
-    context:
-      'Built as a contractor-led open-source mobile app to give Brazilian citizens visibility into taxes paid on everyday purchases like groceries, medicine, and fuel.',
-    challenge:
-      'Fiscal data from NFC-e receipts is encoded in QR codes and not easily accessible or understandable to the average consumer.',
-    solution:
-      'Built an open-source mobile app that lets users scan NFC-e QR codes and see a clear breakdown of taxes paid on purchases. Covers the full workflow from QR scan and fiscal data parsing to logged entries and tax breakdown summaries.',
-    impact:
-      'Provides transparent tax visibility for everyday purchases. Open-source and distributed through EAS.',
-    stack: ['React Native', 'Expo', 'TypeScript', 'EAS'],
-    link: null,
-    repo: 'https://github.com/richard-wollyce/qr-imposto',
   },
 ];
 
@@ -123,69 +91,104 @@ export const experience = [
     company: 'MG Laser',
     role: 'Software Engineer',
     location: 'Franca, Brazil',
-    period: 'November 2025 — May 2026',
+    period: 'November 2025 - Present',
     bullets: [
-      'Build and maintain an ERP system processing 200+ orders per day across multiple teams, covering inventory, sales, and daily operations.',
-      'Reduced manual data entry errors by ~95% by replacing spreadsheet workflows with structured forms and automated validation.',
-      'Secured data access with RLS and RBAC, restricting records to appropriate user roles.',
+      'Tech stack: TypeScript, React, Vite, Tailwind CSS, Node.js, Supabase, PostgreSQL, Linux VPS, EasyPanel.',
+      'Build and maintain an ERP system covering inventory, sales, and daily operations, processing 200+ orders per day across multiple teams.',
+      'Reduced manual data entry errors by approximately 95% by replacing spreadsheet-based workflows with structured forms and automated validation.',
+      'Improved responsiveness on high-volume data tables through pagination and targeted RPC calls.',
+      'Secured data access with Row-Level Security (RLS) and Role-Based Access Control (RBAC), restricting records to the appropriate user roles.',
+      'Apply secure coding, audit-aware access control, and incident-response thinking when designing business-critical workflows.',
+      'Manage deployment, monitoring, and server infrastructure on a self-managed Linux VPS.',
       'Restored the system after a critical production outage in under 10 minutes with no data loss.',
     ],
   },
   {
     id: 'contractor',
     company: 'Contractor',
-    role: 'Contractor / Freelance Software Engineer',
-    location: 'Franca, Brazil · Remote',
-    period: '2024 — Present',
+    role: 'Contractor - Software Engineer',
+    location: 'Franca, Brazil',
+    period: null,
     bullets: [
-      'Delivered client projects including 13doze (event registration app), Studio R (chatbot & dashboard), and QR Imposto (open-source mobile app).',
-      'Owned full lifecycle: requirements, design, development, deployment, and live event or post-launch support.',
-      'Implemented payment integrations, webhooks, conversational flows, and applied TDD with Vitest to reduce regressions.',
-      'Worked across frontend, backend, databases, and self-managed server deployments.',
+      'Work for multiple clients on freelance and contract projects.',
+      'Build full-stack web apps for clients using TypeScript, React, Next.js, Node.js, Supabase, PostgreSQL, Vite, Tailwind CSS, and Vercel.',
+      'Built a live event registration system used by staff across multiple companies, including CPF and WhatsApp validation, responsive UI, and participant tracking workflows.',
+      'Built and maintain a chatbot and admin dashboard for a tattoo and barber shop, turning chats into structured budget requests and follow-up tasks.',
+      'Built landing pages and small business systems with payment integrations and webhooks to automate checkout and day-to-day work.',
+      'Handle frontend, backend, database design, deployment, maintenance, live support, and ongoing improvements.',
+      'Use AI-assisted development workflows to accelerate implementation while keeping code review, testing, and production validation under developer control.',
+      'Use TDD with Vitest to avoid regressions and refactor safely.',
     ],
   },
 ];
 
 export const technicalStrength = [
   {
+    id: 'languages-ai',
+    title: 'Languages & AI Workflow',
+    icon: 'code',
+    description:
+      'Building with the core languages and workflow practices listed in the CV, including Rust and AI-assisted development under developer-controlled review, testing, and validation.',
+    technologies: ['TypeScript', 'JavaScript', 'Rust', 'HTML', 'CSS', 'Python', 'Bash', 'SQL fundamentals', 'Cargo', 'AI-assisted workflows'],
+  },
+  {
     id: 'frontend',
     title: 'Frontend',
     icon: 'layout',
     description:
-      'Building responsive, accessible interfaces with modern React patterns. From complex data tables to guided conversational flows, every UI is production-ready and performance-conscious.',
-    technologies: ['React', 'Next.js', 'Vite', 'Tailwind CSS', 'Three.js', 'Redux'],
+      'Building responsive interfaces and application flows across web and mobile using the frontend stack listed in the CV.',
+    technologies: ['React', 'Next.js', 'React Native', 'Expo', 'Three.js', 'Vite', 'Tailwind CSS', 'Redux', 'Responsive UI'],
   },
   {
     id: 'backend',
     title: 'Backend',
     icon: 'server',
     description:
-      'Designing APIs, authentication flows, and webhook integrations that handle real workloads. Every backend service is built for reliability and secure data handling.',
-    technologies: ['Node.js', 'REST APIs', 'GraphQL', 'Supabase', 'Auth', 'Webhooks'],
+      'Designing APIs, authentication flows, authorization, and webhooks for full-stack applications and client systems.',
+    technologies: ['Node.js', 'Next.js API routes', 'API development', 'API design', 'REST APIs', 'GraphQL', 'Supabase', 'Authentication', 'Authorization', 'Webhooks'],
   },
   {
     id: 'data-security',
-    title: 'Data & Security',
+    title: 'Data, Security & Forensics',
     icon: 'shield',
     description:
-      'Structuring databases with secure-by-default thinking. Row-Level Security and Role-Based Access Control are standard practice, not afterthoughts.',
-    technologies: ['PostgreSQL', 'SQL', 'RLS', 'RBAC', 'Database Design'],
+      'Applying secure data access, cybersecurity fundamentals, networking knowledge, and digital evidence handling to system design and implementation.',
+    technologies: ['PostgreSQL', 'Database design', 'RPC calls', 'RLS', 'RBAC', 'Secure coding', 'TCP/IP', 'IPv4', 'IPv6', 'Wireless security', 'Incident response', 'Digital evidence', 'Chain of custody'],
   },
   {
-    id: 'infrastructure',
+    id: 'infrastructure-quality',
     title: 'Infrastructure & Quality',
     icon: 'terminal',
     description:
-      'Owning the full deployment pipeline from container to production. Self-managed servers, CI/CD automation, and test-driven development keep systems reliable.',
-    technologies: ['Docker', 'Linux VPS', 'Nginx', 'GitHub Actions', 'CI/CD', 'Vitest', 'TDD'],
+      'Owning deployment, monitoring, automated validation, and production troubleshooting across managed and self-managed environments.',
+    technologies: ['AWS fundamentals', 'Docker', 'Linux', 'Nginx', 'Vercel', 'Self-managed VPS', 'EasyPanel', 'GitHub Actions', 'CI/CD', 'EAS', 'Vitest', 'TDD', 'Biome', 'Lefthook'],
+  },
+  {
+    id: 'methods-modeling',
+    title: 'Methods & Modeling',
+    icon: 'diagram',
+    description:
+      'Using structured software methods and modeling practices to reason about requirements, architecture, and implementation.',
+    technologies: ['Domain-driven design (DDD)', 'Specification-driven design (SDD)', 'Agile', 'UML', 'Class diagrams', 'Sequence diagrams', 'Component diagrams', 'Technical documentation'],
   },
 ];
 
 export const about = {
   paragraphs: [
-    "I'm a Full Stack Software Engineer based in São Paulo, currently pursuing a B.Sc. in Software Engineering. I take ownership from problem definition to production, building systems that remain reliable under real conditions.",
-    'I work with a secure by default mindset. Row Level Security, Role Based Access Control, and structured data access are part of every system I design. I focus on getting the architecture right early so the system can grow without accumulating fragile solutions.',
-    'My interest in technology started early. At seven years old, I had my first computer and began formal IT training. That curiosity turned into a long term commitment to building useful and scalable software.',
-    'Outside of engineering, I am a father and passionate about music. Both influence how I think and build, bringing creativity, discipline, and a strong sense of responsibility to everything I do. I learn quickly, adapt fast, and focus on delivering work that truly matters.',
+    'Full Stack Software Engineer focused on TypeScript, JavaScript, and Rust, building secure, scalable web applications end to end.',
+    'Experienced with React, Next.js, Node.js, Supabase, PostgreSQL, REST APIs, authentication, CI/CD, AWS fundamentals, and Linux server deployments.',
+    'Strong foundation in system design, cybersecurity, network fundamentals, digital forensics, secure data access, and AI-assisted development workflows.',
   ],
 };
+
+export const education = {
+  degree: 'B.Sc. Software Engineering',
+  institution: 'Universidade de Franca',
+  period: '2025 - 2029',
+};
+
+export const languages = [
+  { name: 'Portuguese (Brazil)', level: 'Native' },
+  { name: 'English', level: 'Advanced (C1)' },
+  { name: 'Spanish', level: 'Intermediate' },
+];

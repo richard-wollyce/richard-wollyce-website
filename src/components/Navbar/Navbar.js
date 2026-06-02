@@ -5,8 +5,10 @@ import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import styles from './Navbar.module.css';
 
 const navLinks = [
-  { label: 'Work', href: '#work' },
+  { label: 'Certifications', href: '#certifications' },
   { label: 'Experience', href: '#experience' },
+  { label: 'Projects', href: '#work' },
+  { label: 'Skills', href: '#skills' },
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];

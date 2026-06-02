@@ -230,6 +230,7 @@
 @media (max-width: 768px) {
   .hero {
     padding-top: calc(var(--space-16) + var(--space-8));
+    padding-bottom: var(--space-6);
   }
 
   .trustContainer {

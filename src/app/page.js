@@ -4,8 +4,9 @@ import { useEffect } from 'react';
 import ParticleBackground from '@/components/ParticleBackground/ParticleBackground';
 import Navbar from '@/components/Navbar/Navbar';
 import Hero from '@/components/Hero/Hero';
-import SelectedWork from '@/components/SelectedWork/SelectedWork';
+import Certifications from '@/components/Certifications/Certifications';
 import Experience from '@/components/Experience/Experience';
+import SelectedWork from '@/components/SelectedWork/SelectedWork';
 import TechnicalStrength from '@/components/TechnicalStrength/TechnicalStrength';
 import About from '@/components/About/About';
 import Contact from '@/components/Contact/Contact';
@@ -48,8 +49,9 @@ export default function Home() {
         <Navbar />
         <main id="main-content" className={styles.main}>
           <Hero />
-          <SelectedWork />
+          <Certifications />
           <Experience />
+          <SelectedWork />
           <TechnicalStrength />
           <About />
           <Contact />

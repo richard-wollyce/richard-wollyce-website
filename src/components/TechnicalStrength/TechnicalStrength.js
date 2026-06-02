@@ -43,6 +43,21 @@ export default function TechnicalStrength() {
                       <line x1="12" y1="19" x2="20" y2="19" />
                     </svg>
                   )}
+                  {strength.icon === 'code' && (
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <polyline points="16 18 22 12 16 6" />
+                      <polyline points="8 6 2 12 8 18" />
+                    </svg>
+                  )}
+                  {strength.icon === 'diagram' && (
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <rect x="3" y="3" width="6" height="6" rx="1" />
+                      <rect x="15" y="3" width="6" height="6" rx="1" />
+                      <rect x="9" y="15" width="6" height="6" rx="1" />
+                      <path d="M9 6h6" />
+                      <path d="M12 9v6" />
+                    </svg>
+                  )}
                 </div>
                 <h3 className={styles.cardTitle}>{strength.title}</h3>
               </div>
