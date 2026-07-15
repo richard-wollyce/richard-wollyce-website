@@ -1,0 +1,58 @@
+.scene {
+  position: absolute;
+  z-index: 0;
+  top: -8%;
+  right: -12%;
+  bottom: -10%;
+  left: 18%;
+  min-width: 1px;
+  min-height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateZ(0);
+  transition: opacity 700ms ease;
+}
+
+.scene :global([data-us-text='f569d571-3250-49dd-ba21-f7c5490e94ee']) {
+  display: none !important;
+}
+
+.scene[data-state='ready'] {
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+}
+
+:global([data-theme='dark']) .scene[data-state='ready'] {
+  opacity: 0.38;
+  mix-blend-mode: screen;
+}
+
+@media (max-width: 1199px) {
+  .scene {
+    top: -3%;
+    right: -22%;
+    bottom: -8%;
+    left: 8%;
+  }
+}
+
+@media (max-width: 767px) {
+  .scene {
+    top: 8%;
+    right: -52%;
+    bottom: 11%;
+    left: -14%;
+  }
+
+  .scene[data-state='ready'] {
+    opacity: 0.28;
+    mix-blend-mode: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene {
+    display: none;
+  }
+}

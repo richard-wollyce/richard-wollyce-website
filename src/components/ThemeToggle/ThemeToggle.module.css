@@ -1,42 +1,24 @@
 .toggle {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border: none;
-  border-radius: var(--radius-full);
+  border: 0;
   background: transparent;
-  color: var(--text-primary);
+  color: var(--muted);
   cursor: pointer;
-  transition: background-color var(--transition-fast), color var(--transition-fast);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  transition: color var(--transition-fast);
 }
 
 .toggle:hover {
-  background-color: var(--accent-subtle);
   color: var(--accent);
 }
 
-.placeholder {
-  width: 44px;
-  height: 44px;
-}
-
-.icon {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  transition: opacity var(--transition-base), transform var(--transition-base);
-}
-
-.visible {
-  opacity: 1;
-  transform: rotate(0deg) scale(1);
-}
-
-.hidden {
-  opacity: 0;
-  transform: rotate(90deg) scale(0.5);
-  pointer-events: none;
+.compact {
+  color: var(--ink);
+  font-size: 0.78rem;
+  writing-mode: horizontal-tb;
+  transform: none;
 }

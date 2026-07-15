@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: 'Richard Wollyce Santos de Souza',
   shortName: 'Richard Wollyce',
-  title: 'Full Stack Software Engineer',
+  title: 'Tech Lead & Full-Stack Software Engineer',
   location: 'Franca, Sao Paulo, Brazil',
   email: 'mail@richardwollyce.com',
   phone: '+55 (16) 9 9159-7978',
@@ -12,26 +12,19 @@ export const siteConfig = {
 };
 
 export const hero = {
-  headline: 'Hi, I\'m Richard Wollyce',
-  title: 'Full Stack Software Engineer',
-  subheadline:
-    'Full Stack Software Engineer focused on TypeScript, JavaScript, and Rust, building secure, scalable web applications end to end across React, Next.js, Node.js, Supabase, PostgreSQL, CI/CD, and Linux deployments.',
-  ctaPrimary: { label: "Let's Talk", href: '#contact' },
-  ctaSecondary: { label: 'View Projects', href: '#work' },
-  trustStrip: [
-    {
-      icon: 'chart',
-      text: 'ERP handling 200+ orders/day',
-    },
-    {
-      icon: 'check',
-      text: '~95% reduction in manual entry errors',
-    },
-    {
-      icon: 'bolt',
-      text: 'Security, networking, and digital forensics foundation',
-    },
+  title: 'Systems that ship.',
+  titleLines: ['Systems', 'That', 'Ship.'],
+  role: 'Tech Lead & Full-Stack Software Engineer',
+  statement: 'I lead complex software products from architecture to production.',
+  ctaPrimary: { label: 'Explore selected work', href: '#work' },
+  ctaSecondary: { label: 'Download CV', href: siteConfig.cvPath },
+  domains: [
+    'Platform architecture',
+    'Security & data',
+    'Payments & integrations',
+    'Production operations',
   ],
+  ownership: 'Architecture, delivery and production ownership.',
 };
 
 export const certifications = [
@@ -69,6 +62,38 @@ export const certifications = [
 
 export const projects = [
   {
+    id: 'biblinhaplay',
+    name: 'BiblinhaPlay',
+    category: 'Cross-Platform Learning Ecosystem',
+    summary:
+      'A subscription-based family learning and entertainment ecosystem spanning a production web/PWA and an Expo mobile client in development, with streaming, music, printables, gamification, interactive games, protected media, and recurring billing.',
+    highlights: [
+      'Led the architecture of a TypeScript monorepo with TanStack Start, React, Expo/React Native, PostgreSQL, Drizzle, and shared UI and transactional-email packages.',
+      'Designed entitlement-based access, hosted checkout, idempotent webhooks, financial reconciliation, and session-bound protected media delivery.',
+      'Built an immutable content-release pipeline with validation, atomic activation, public/private media separation, and rollback independent of the CMS.',
+      'Developed BiblinhaCraft, a Three.js voxel experience with deterministic terrain, progressive region streaming, versioned saves, and touch-first controls.',
+    ],
+    stack: ['TypeScript', 'TanStack Start', 'React', 'Expo', 'React Native', 'Three.js', 'PostgreSQL', 'Drizzle ORM', 'Docker', 'GitHub Actions'],
+    link: null,
+    repo: null,
+  },
+  {
+    id: 'casa-seth-platform',
+    name: 'Casa Seth Product Platform',
+    category: 'Multi-Product Commerce Platform',
+    summary:
+      'A shared product and operations platform connecting personalized digital experiences, AI media generation, Pix payments, attribution, financial reconciliation, and physical-product workflows.',
+    highlights: [
+      'Structured shared domain and UI packages across independent product funnels, centralizing payments, session recovery, attribution, and backend integrations.',
+      'Designed a resilient generative-image pipeline with idempotency, caching, concurrency control, telemetry, persistence, and a configurable provider rollback path.',
+      'Implemented first-party browser/server conversion tracking, event deduplication, financial reconciliation, and dashboards for revenue, conversion, and media performance.',
+      'Connected digital checkout to physical production through address validation, print-ready processing, an operational queue, and order-status workflows.',
+    ],
+    stack: ['TypeScript', 'React', 'Vite', 'Supabase', 'PostgreSQL', 'Edge Functions', 'OpenAI API', 'Mercado Pago', 'Tailwind CSS', 'Vercel', 'Turborepo'],
+    link: null,
+    repo: null,
+  },
+  {
     id: 'roadtocybersec',
     name: 'RoadToCyberSec.com',
     category: 'Cybersecurity Project',
@@ -87,6 +112,21 @@ export const projects = [
 
 export const experience = [
   {
+    id: 'casa-seth',
+    company: 'Casa Seth',
+    role: 'Tech Lead & Software Engineer',
+    location: 'Brazil',
+    period: '2026 - Present',
+    bullets: [
+      'Lead the architecture and end-to-end delivery of BiblinhaPlay, spanning a production web/PWA, an Expo/React Native client in development, protected media, gamification, and interactive games.',
+      'Structured a TypeScript monorepo with TanStack Start, React, Expo/React Native, PostgreSQL, Drizzle, and reusable UI and transactional-email packages.',
+      'Designed hosted subscription checkout, entitlement-based authorization, idempotent webhooks, financial reconciliation, and protected media delivery.',
+      'Built a versioned content pipeline with validation, atomic activation, rollback, and public/private media separation.',
+      'Developed BiblinhaCraft in Three.js with procedural terrain, progressive region streaming, persistent progression, and touch-first controls.',
+      'Lead a separate multi-product platform integrating AI media generation, Pix payments, attribution, browser/server tracking, financial dashboards, and physical-product operations.',
+    ],
+  },
+  {
     id: 'mg-laser',
     company: 'MG Laser',
     role: 'Software Engineer',
@@ -94,90 +134,85 @@ export const experience = [
     period: 'November 2025 - Present',
     bullets: [
       'Tech stack: TypeScript, React, Vite, Tailwind CSS, Node.js, Supabase, PostgreSQL, Linux VPS, EasyPanel.',
-      'Build and maintain an ERP system covering inventory, sales, and daily operations, processing 200+ orders per day across multiple teams.',
-      'Reduced manual data entry errors by approximately 95% by replacing spreadsheet-based workflows with structured forms and automated validation.',
+      'Build and maintain an ERP system covering inventory, sales, and daily operations across multiple teams and high-volume workflows.',
+      'Replaced spreadsheet-based workflows with structured forms and automated validation, substantially reducing manual-entry errors.',
       'Improved responsiveness on high-volume data tables through pagination and targeted RPC calls.',
       'Secured data access with Row-Level Security (RLS) and Role-Based Access Control (RBAC), restricting records to the appropriate user roles.',
-      'Apply secure coding, audit-aware access control, and incident-response thinking when designing business-critical workflows.',
-      'Manage deployment, monitoring, and server infrastructure on a self-managed Linux VPS.',
-      'Restored the system after a critical production outage in under 10 minutes with no data loss.',
+      'Manage deployment, monitoring, and a self-managed Linux VPS; restored service after a critical production outage in under 10 minutes with no data loss.',
     ],
   },
   {
     id: 'contractor',
-    company: 'Contractor',
-    role: 'Contractor - Software Engineer',
+    company: 'Independent / Contract',
+    role: 'Independent Software Engineer',
     location: 'Franca, Brazil',
     period: null,
     bullets: [
-      'Work for multiple clients on freelance and contract projects.',
       'Build full-stack web apps for clients using TypeScript, React, Next.js, Node.js, Supabase, PostgreSQL, Vite, Tailwind CSS, and Vercel.',
       'Built a live event registration system used by staff across multiple companies, including CPF and WhatsApp validation, responsive UI, and participant tracking workflows.',
       'Built and maintain a chatbot and admin dashboard for a tattoo and barber shop, turning chats into structured budget requests and follow-up tasks.',
       'Built landing pages and small business systems with payment integrations and webhooks to automate checkout and day-to-day work.',
-      'Handle frontend, backend, database design, deployment, maintenance, live support, and ongoing improvements.',
-      'Use AI-assisted development workflows to accelerate implementation while keeping code review, testing, and production validation under developer control.',
-      'Use TDD with Vitest to avoid regressions and refactor safely.',
+      'Own frontend, backend, database design, deployment, maintenance, and live support, using TDD with Vitest to prevent regressions and refactor safely.',
     ],
   },
 ];
 
 export const technicalStrength = [
   {
-    id: 'languages-ai',
-    title: 'Languages & AI Workflow',
-    icon: 'code',
+    id: 'platform-leadership',
+    title: 'Platform Architecture & Leadership',
+    icon: 'diagram',
     description:
-      'Building with the core languages and workflow practices listed in the CV, including Rust and AI-assisted development under developer-controlled review, testing, and validation.',
-    technologies: ['TypeScript', 'JavaScript', 'Rust', 'HTML', 'CSS', 'Python', 'Bash', 'SQL fundamentals', 'Cargo', 'AI-assisted workflows'],
+      'Leading architecture and delivery across multi-product, cross-platform systems while keeping domain boundaries, technical decisions, and operational ownership explicit.',
+    technologies: ['System Design', 'Software Architecture', 'Monorepos', 'Domain Modeling', 'Technical Leadership', 'TypeScript', 'JavaScript', 'Rust', 'UML', 'Technical Documentation'],
   },
   {
-    id: 'frontend',
-    title: 'Frontend',
+    id: 'web-mobile',
+    title: 'Web & Mobile',
     icon: 'layout',
     description:
-      'Building responsive interfaces and application flows across web and mobile using the frontend stack listed in the CV.',
-    technologies: ['React', 'Next.js', 'React Native', 'Expo', 'Three.js', 'Vite', 'Tailwind CSS', 'Redux', 'Responsive UI'],
+      'Building responsive web, PWA, and native mobile product surfaces, including media experiences and touch-first 3D gameplay.',
+    technologies: ['React', 'TanStack Start', 'Next.js', 'Expo', 'React Native', 'Three.js', 'Vite', 'Tailwind CSS', 'Responsive UI', 'PWA'],
   },
   {
-    id: 'backend',
-    title: 'Backend',
+    id: 'backend-data',
+    title: 'Backend & Data',
     icon: 'server',
     description:
-      'Designing APIs, authentication flows, authorization, and webhooks for full-stack applications and client systems.',
-    technologies: ['Node.js', 'Next.js API routes', 'API development', 'API design', 'REST APIs', 'GraphQL', 'Supabase', 'Authentication', 'Authorization', 'Webhooks'],
+      'Designing APIs, identity, data models, and protected content flows shared safely across web and mobile clients.',
+    technologies: ['Node.js', 'PostgreSQL', 'Supabase', 'Drizzle ORM', 'Better Auth', 'REST APIs', 'Edge Functions', 'RLS', 'RBAC', 'Protected Media'],
   },
   {
-    id: 'data-security',
-    title: 'Data, Security & Forensics',
+    id: 'commerce-product',
+    title: 'Commerce & Product Systems',
     icon: 'shield',
     description:
-      'Applying secure data access, cybersecurity fundamentals, networking knowledge, and digital evidence handling to system design and implementation.',
-    technologies: ['PostgreSQL', 'Database design', 'RPC calls', 'RLS', 'RBAC', 'Secure coding', 'TCP/IP', 'IPv4', 'IPv6', 'Wireless security', 'Incident response', 'Digital evidence', 'Chain of custody'],
+      'Building reliable monetization and product-measurement flows around server-side rules, asynchronous events, and recoverable state.',
+    technologies: ['Hosted Checkout', 'Pix', 'Webhooks', 'Billing Reconciliation', 'Entitlements', 'Idempotency', 'Product Analytics', 'Attribution', 'PostHog', 'A/B Testing'],
+  },
+  {
+    id: 'ai-media-interactive',
+    title: 'AI, Media & Interactive Systems',
+    icon: 'code',
+    description:
+      'Designing AI and media pipelines with explicit safety, rollback paths, caching, observability, and human-operational boundaries.',
+    technologies: ['Generative AI', 'RAG', 'ASR', 'TTS', 'OpenAI API', 'Image Processing', 'Three.js', 'Streaming Media', 'Gamification', 'Prompt Evaluation'],
   },
   {
     id: 'infrastructure-quality',
     title: 'Infrastructure & Quality',
     icon: 'terminal',
     description:
-      'Owning deployment, monitoring, automated validation, and production troubleshooting across managed and self-managed environments.',
-    technologies: ['AWS fundamentals', 'Docker', 'Linux', 'Nginx', 'Vercel', 'Self-managed VPS', 'EasyPanel', 'GitHub Actions', 'CI/CD', 'EAS', 'Vitest', 'TDD', 'Biome', 'Lefthook'],
-  },
-  {
-    id: 'methods-modeling',
-    title: 'Methods & Modeling',
-    icon: 'diagram',
-    description:
-      'Using structured software methods and modeling practices to reason about requirements, architecture, and implementation.',
-    technologies: ['Domain-driven design (DDD)', 'Specification-driven design (SDD)', 'Agile', 'UML', 'Class diagrams', 'Sequence diagrams', 'Component diagrams', 'Technical documentation'],
+      'Owning deployment, release gates, testing, monitoring, incident response, and recovery across managed and self-hosted environments.',
+    technologies: ['Docker', 'GitHub Actions', 'CI/CD', 'Linux', 'Nginx', 'Vercel', 'Vitest', 'Playwright', 'Maestro', 'TDD', 'Biome', 'Lefthook'],
   },
 ];
 
 export const about = {
   paragraphs: [
-    'Full Stack Software Engineer focused on TypeScript, JavaScript, and Rust, building secure, scalable web applications end to end.',
-    'Experienced with React, Next.js, Node.js, Supabase, PostgreSQL, REST APIs, authentication, CI/CD, AWS fundamentals, and Linux server deployments.',
-    'Strong foundation in system design, cybersecurity, network fundamentals, digital forensics, secure data access, and AI-assisted development workflows.',
+    'I\'m a Tech Lead and Full-Stack Software Engineer who turns complex product requirements into secure, maintainable systems across web, mobile, backend, data, and infrastructure.',
+    'At Casa Seth, I lead technical delivery across BiblinhaPlay and a broader multi-product commerce platform, working across subscription billing, protected media, gamification, 3D experiences, generative AI, analytics, and production operations.',
+    'My approach combines product judgment with hands-on engineering. I define clear boundaries, keep sensitive integrations server-side, design for recovery, and build validation into critical workflows.',
   ],
 };
 

@@ -1,44 +1,56 @@
-import { Inter, Instrument_Serif } from 'next/font/google';
+import { Anton, Bebas_Neue, Roboto_Condensed } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({
+const anton = Anton({
+  weight: '400',
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-anton',
   display: 'swap',
 });
 
-const instrumentSerif = Instrument_Serif({
+const bebasNeue = Bebas_Neue({
   weight: '400',
   subsets: ['latin'],
-  variable: '--font-instrument-serif',
+  variable: '--font-bebas-neue',
+  display: 'swap',
+});
+
+const robotoCondensed = Roboto_Condensed({
+  subsets: ['latin'],
+  variable: '--font-roboto-condensed',
   display: 'swap',
 });
 
 export const metadata = {
-  title: 'Richard Wollyce',
+  title: 'Richard Wollyce | Tech Lead & Full-Stack Software Engineer',
   description:
-    'Full Stack Software Engineer building secure, scalable web systems with real ownership across frontend, backend, database, and infrastructure. Based in Franca, SP, Brazil.',
+    'Tech Lead and Full-Stack Software Engineer leading product engineering across web, mobile, payments, protected media, 3D experiences, generative AI, analytics, and production operations.',
   keywords: [
+    'Tech Lead',
     'Full Stack Software Engineer',
+    'Product Engineering',
+    'Software Architecture',
     'React',
     'Next.js',
+    'TanStack Start',
+    'Expo',
+    'React Native',
+    'Three.js',
     'Node.js',
     'TypeScript',
-    'JavaScript',
-    'Rust',
     'Supabase',
     'PostgreSQL',
-    'Cybersecurity',
-    'Digital Forensics',
+    'Generative AI',
+    'Payment Systems',
     'Portfolio',
   ],
   authors: [{ name: 'Richard Wollyce Santos de Souza' }],
   creator: 'Richard Wollyce Santos de Souza',
   metadataBase: new URL('https://richardwollyce.com'),
   openGraph: {
-    title: 'Richard Wollyce',
+    title: 'Richard Wollyce | Tech Lead & Full-Stack Software Engineer',
     description:
-      'Full Stack Software Engineer building secure, scalable web systems with real ownership from code to infrastructure.',
+      'Leading end-to-end product engineering across web, mobile, payments, protected media, 3D experiences, generative AI, and production operations.',
     url: 'https://richardwollyce.com',
     siteName: 'Richard Wollyce Portfolio',
     locale: 'en_US',
@@ -46,9 +58,9 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Richard Wollyce',
+    title: 'Richard Wollyce | Tech Lead & Full-Stack Software Engineer',
     description:
-      'Full Stack Software Engineer building secure, scalable web systems with real ownership from code to infrastructure.',
+      'Leading end-to-end product engineering across web, mobile, payments, protected media, 3D experiences, generative AI, and production operations.',
   },
   robots: {
     index: true,
@@ -58,7 +70,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${instrumentSerif.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${anton.variable} ${bebasNeue.variable} ${robotoCondensed.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{

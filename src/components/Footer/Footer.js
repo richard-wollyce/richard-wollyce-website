@@ -11,7 +11,7 @@ export default function Footer() {
           &copy; {currentYear} {siteConfig.name}. All rights reserved.
         </p>
 
-        <div className={styles.links}>
+        <nav className={styles.links} aria-label="Footer links">
           <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" className={styles.link}>
             LinkedIn
           </a>
@@ -21,7 +21,7 @@ export default function Footer() {
           <a href={`mailto:${siteConfig.email}`} className={styles.link}>
             Email
           </a>
-        </div>
+        </nav>
       </div>
     </footer>
   );
