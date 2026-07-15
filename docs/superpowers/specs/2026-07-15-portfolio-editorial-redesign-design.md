@@ -2,7 +2,7 @@
 
 Data: 2026-07-15
 
-Status: direção visual aprovada. Lettering refinado e documentado para validação final. Esta especificação precede qualquer alteração no código de produção.
+Status: direção visual e integração WebGL aprovadas. Lettering revisado para reproduzir a referência tipográfica. Esta especificação precede qualquer alteração no código de produção.
 
 ## 1. Resultado desejado
 
@@ -10,7 +10,7 @@ Transformar o site em um portfólio técnico editorial, memorável no primeiro c
 
 1. Richard lidera produtos complexos de ponta a ponta.
 2. Seu trabalho cobre arquitetura, segurança, dados, integrações, experiência, entrega e operação em produção.
-3. BiblinhaPlay é a principal prova dessa capacidade, dentro da atuação como Tech Lead e Software Engineer na Casa Seth desde abril de 2026, conforme o conteúdo já consolidado no projeto.
+3. BiblinhaPlay é a principal prova dessa capacidade, dentro da atuação como Tech Lead e Software Engineer na Casa Seth desde aproximadamente abril de 2026, conforme o conteúdo já consolidado no projeto.
 
 O redesign é uma revisão visual completa sobre conteúdo real. Não muda a identidade profissional, não inventa resultados e não expõe informações internas.
 
@@ -38,14 +38,14 @@ Brief inferido: portfólio internacional de Tech Lead com estética de pôster e
 
 ## 4. Referência aprovada e artefatos
 
-- Referência fornecida durante a sessão: `C:/Users/richa/AppData/Local/Temp/codex-clipboard-973f8b74-1f58-4ee3-a0ec-e5665ecb4141.png`. Esse caminho é histórico e não é necessário para executar a especificação.
+- Referência visual normativa: `docs/superpowers/specs/assets/portfolio-editorial-reference.png` (1487 por 1058 px).
 - Protótipo local: `.superpowers/brainstorm/manual-1784142878/prototype/reference-faithful.html`
-- Prévia clara final: `.superpowers/brainstorm/manual-1784142878/assets/concepts/reference-faithful-warped-light.png`
-- Prévia escura final: `.superpowers/brainstorm/manual-1784142878/assets/concepts/reference-faithful-warped-dark.png`
+- Prévia clara intermediária: `.superpowers/brainstorm/manual-1784142878/assets/concepts/reference-faithful-warped-light.png`
+- Prévia escura intermediária: `.superpowers/brainstorm/manual-1784142878/assets/concepts/reference-faithful-warped-dark.png`
 - Retrato claro: `.superpowers/brainstorm/manual-1784142878/assets/photo-cutout/richard-editorial-cutout.png`
 - Retrato escuro: `.superpowers/brainstorm/manual-1784142878/assets/photo-cutout/richard-editorial-cutout-dark.png`
 
-Os artefatos em `.superpowers` são referências locais de design, não arquivos de produção nem dependências de implementação. As medidas, tokens e critérios deste documento formam o baseline durável.
+Os artefatos em `.superpowers` são referências locais de design, não arquivos de produção nem dependências de implementação. As duas prévias registram a composição aprovada, mas ainda usam o lettering `Anybody` descartado e não são baseline tipográfico. A imagem normativa em `docs`, as medidas, os tokens e os critérios deste documento formam o baseline durável.
 
 ## 5. Arquitetura da página
 
@@ -100,19 +100,27 @@ Fecho: `Architecture, delivery and production ownership.`
 
 ### 6.2 Lettering monumental
 
-Fonte selecionada para validação final: `Anybody Variable`, peso 900, com `Impact` e `Anton` apenas como fallback de emergência. A fonte de produção deve ser self-hosted ou carregada por `next/font` para evitar troca de métricas durante o carregamento.
+A família preferida para implementar o lettering é `Anton`, peso 400 — o peso único da família — por ser a alternativa livre mais próxima da referência nos desenhos de `S`, `A`, `T`, `M` e `P`, nas contraformas abertas e na massa industrial uniforme. A referência visual, e não o nome da fonte isoladamente, é a verdade normativa. `Anybody Variable` deixa de fazer parte do lockup porque seus terminais pinçados e suas contraformas orgânicas se afastam da referência. Se `Anton` não reproduzir as formas após a calibração por overlay, a implementação para e solicita aprovação antes de substituir a família. A fonte de produção deve ser self-hosted ou carregada por `next/font` para evitar troca de métricas durante o carregamento.
 
-O título usa um único `h1` com três spans visíveis. Cada linha recebe eixo de largura e transformação próprios. Não usar SVG, canvas, filtro de displacement, imagem ou outline convertido em path.
+O título usa um único `h1` com três spans visíveis. Cada linha recebe transformação affine própria para alongamento vertical e ajuste horizontal. Não usar SVG, canvas, filtro de displacement, imagem ou outline convertido em path. O ponto de `SHIP.` recebe ajuste óptico independente: entre 72% e 80% da escala aparente do ponto padrão e com o espaço anterior reduzido, sem alterar o texto acessível.
 
-Parâmetros do canvas desktop:
+No canvas de 1440 por 1024 px, as caixas de tinta abaixo são normativas e foram normalizadas a partir da referência de 1487 por 1058 px. As posições são relativas ao início do hero, depois do rail de 84 px:
 
-| Linha | Top | Left | Tamanho | `wdth` | `scaleX` | `scaleY` | `skewY` |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| SYSTEMS | -86 px | 0 | 420 px | 50 | 0.985 | 1.500 | -0.45 deg |
-| THAT | 323 px | 0 | 300 px | 62 | 1.364 | 1.245 | 0.30 deg |
-| SHIP. | 567 px | 37 px | 250 px | 63 | 1.324 | 1.231 | -0.25 deg |
+| Linha | X | Y visível | Largura | Altura visível | Observação |
+|---|---:|---:|---:|---:|---|
+| SYSTEMS | 14 px | 0 px | 984 px | 318 px | topo deliberadamente recortado |
+| THAT | 14 px | 323 px | 607 px | 240 px | intervalo mínimo com a primeira linha |
+| SHIP. | 50 px | 569 px | 534 px | 195 px | ponto menor e opticamente aproximado |
 
-Esses valores definem a proporção, não tamanhos fixos para todos os dispositivos. A implementação usa `clamp()` e variáveis CSS para interpolar sem perder a relação entre as linhas. Shear nunca passa de 0.5 grau. Stroke opcional limitado a 1 px caso o rendering de uma plataforma enfraqueça os traços.
+Tamanho de fonte, transformação, tracking e offsets são meios de atingir essas caixas, não valores visuais autônomos. Para spans CSS, a calibração inicial é:
+
+| Linha | Font size | `scaleX` | `scaleY` | Tracking | Stroke pré-transform | `transform-origin` |
+|---|---:|---:|---:|---:|---:|---|
+| SYSTEMS | 470 px | 0.630 | 1.000 | -0.024 em | 9 px | left top |
+| THAT | 283 px | 1.235 | 1.000 | -0.018 em | 4 px | left top |
+| SHIP. | 235 px | 1.245 | 1.000 | -0.018 em | 3.5 px | left top |
+
+A implementação usa `clamp()` e variáveis CSS para preservar a relação entre as linhas. Shear perceptível não faz parte da referência e, se um ajuste óptico for indispensável, fica limitado a ±0.15 grau. O stroke deve resultar em aproximadamente 4 a 6 px visíveis após a transformação, mantendo counters abertos. A validação tipográfica ocorre por overlay contra a referência no mesmo viewport; não por comparação entre screenshots de proporções diferentes.
 
 ### 6.3 Retrato
 
@@ -123,6 +131,35 @@ A correção de cor é editorial e neutra. Ela remove o excesso amarelado sem re
 - O retrato sempre permanece livre, sobreposto ao título e cortado pelo limite do hero.
 - Nunca apresentar a foto em card quadrado.
 - O rosto deve manter área livre suficiente para não competir com o painel de identidade.
+
+### 6.4 Cena WebGL do hero
+
+A animação autoral do Unicorn Studio integra o hero como uma única cena decorativa:
+
+- Project ID: `vW6LSKmFeRkV42794kQv`.
+- SDK oficial fixado em `2.2.7`.
+- URL fixada: `https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.2.7/dist/unicornStudio.umd.js`.
+- Integridade do arquivo UMD fixada em `sha384-14HjVRDtBcQ7rEVDgWtdziQVa+NKHxCpaU1mcbxFnSE0g2DE0kuowLhWdcM4qiN5`, com `crossorigin="anonymous"`. Falha de integridade aciona o fallback estático.
+- Integração direta pelo SDK oficial, sem `unicornstudio-react`, dentro de uma pequena Client Component dedicada ao ciclo de vida da cena.
+
+Ordem obrigatória de camadas: papel e fallback → lettering monumental → cena WebGL → retrato recortado → navegação, identidade e CTAs. A cena fica acima das letras para criar profundidade, mas abaixo do retrato. Seu fundo precisa permanecer transparente e sua intensidade não pode comprometer a legibilidade do título.
+
+O ponto de origem radial deve permanecer dentro da área opaca do retrato em todos os breakpoints. Assim, a foto esconde o início do radial e os vetores parecem emergir de trás do corpo. O posicionamento obrigatório não depende do manifest: o container recebe overscan, translate e scale suficientes para atingir o alinhamento. Na primeira execução isolada, `getVariableManifest()` e `getPresets()` são inspecionados e registrados no relatório de QA. Variáveis autorais de posição, escala, paleta ou intensidade podem substituir ajustes equivalentes do container quando existirem; não se alteram layers internos da cena por meios não documentados.
+
+O container tem largura e altura explícitas, ocupa o hero de forma absoluta, recorta apenas o excedente externo e não participa do layout. Ele usa `pointer-events: none` e não pode capturar clique, foco, toque ou scroll. A reação de desktop deve continuar funcionando pelo listener global do SDK e será verificada no protótipo; se o SDK exigir eventos no canvas, a implementação não pode sacrificar a interatividade dos controles. O hero completo — papel, lettering, retrato, texto e CTAs — continua funcional se o canvas não carregar.
+
+Tema claro e escuro reutilizam a mesma cena. Quando o manifest expuser variáveis ou presets de paleta, a troca usa `setVariables()` ou o preset documentado sem recriar o canvas. Se a cena não expuser controle de paleta, opacity e blend do container são calibrados por tema, sem duplicar projetos nem manipular layers internos.
+
+Comportamento por dispositivo:
+
+- Breakpoints publicados para a cena: Desktop de 1200 px a `Infinity`, Tablet de 768 a 1199 px e Mobile de 0 a 767 px.
+- Perfil interativo somente com largura mínima de 1200 px, `(hover: hover)` e `(pointer: fine)`: `interactivity.mouse.disabled: false`, `disableMobile: true` e a cena reage ao cursor enquanto mantém seu movimento temporal.
+- Perfil ambiente para Tablet, Mobile ou qualquer dispositivo sem hover/pointer fino: `interactivity.mouse.disabled: true`, `disableMobile: true` e `UnicornStudio.setScroll(0)` fixa a entrada de scroll da cena. Toque, gesto e rolagem da página não alteram o WebGL; apenas a timeline temporal autoral continua.
+- Ao voltar para o perfil interativo ou desmontar a única cena, `UnicornStudio.useNativeScroll()` restaura o comportamento global do SDK.
+- Se a cena publicada não tiver movimento temporal autônomo no perfil ambiente, a integração para e solicita uma nova publicação da cena com loop próprio; não se simula interação mobile.
+- Mudança de perfil durante a sessão destrói e recria apenas a cena, sem duplicar script, listeners ou canvas.
+- Cada inicialização recebe um token de geração. Se o timeout de oito segundos, unmount ou troca de perfil invalidar esse token, qualquer `addScene()` que resolva depois é destruído imediatamente e não pode inserir uma cena obsoleta.
+- `prefers-reduced-motion: reduce`, Save-Data, ausência de WebGL, erro ou timeout: a cena não inicializa ou é destruída e o hero editorial estático permanece como fallback.
 
 ## 7. Tokens visuais
 
@@ -148,7 +185,7 @@ Cada tema se aplica à página inteira. Não inverter apenas seções isoladas. 
 
 ### Tipografia de apoio
 
-- Display: Anybody Variable Black.
+- Lettering monumental: Anton.
 - Navegação, corpo e interface: Roboto Condensed ou alternativa condensada equivalente já hospedada pelo projeto.
 - Faixa inferior e rótulos de grande impacto: Bebas Neue.
 - Evitar Inter e Instrument Serif como assinatura principal do redesign.
@@ -183,8 +220,8 @@ BiblinhaPlay é o caso principal. A narrativa deve demonstrar escopo, decisões 
 
 - Sistema desktop/operacional para estoque, vendas e rotinas diárias.
 - Fluxos estruturados no lugar de planilhas frágeis.
-- Processamento de mais de 200 pedidos por dia.
-- Redução aproximada de 95% em erros de digitação manual.
+- Processamento de mais de 200 pedidos por dia — evidência interna, privada por padrão.
+- Redução aproximada de 95% em erros de digitação manual — evidência interna, privada por padrão.
 - Paginação e RPCs direcionadas para tabelas de alto volume.
 
 Os três casos devem usar famílias visuais distintas: estudo editorial amplo, faixa técnica ou diagrama de fronteiras e timeline operacional. Não repetir três cards iguais.
@@ -193,12 +230,12 @@ Os três casos devem usar famílias visuais distintas: estudo editorial amplo, f
 
 - Papel, período, escopo técnico e métricas partem do conteúdo já consolidado em `src/data/content.js`.
 - A implementação não adiciona números, resultados, clientes, usuários, receita, uptime ou escala que não existam nessa fonte.
-- Os claims de mais de 200 pedidos por dia e redução aproximada de 95% em erros podem ser mantidos por já fazerem parte do conteúdo consolidado. Qualquer alteração quantitativa exige nova evidência e aprovação do usuário.
+- Os claims de mais de 200 pedidos por dia e redução aproximada de 95% em erros permanecem privados por padrão. Eles só entram na copy pública após confirmação explícita do usuário de que podem ser divulgados, mesmo já existindo no conteúdo local.
 - Antes de qualquer publicação, o diff final de copy deve ser revisado pelo usuário. Implementar e verificar localmente não equivale a autorizar deploy.
 
 ## 9. Experiência, capacidades e credenciais
 
-Experiência deve priorizar impacto e responsabilidade, não repetir integralmente os estudos de caso. A entrada Casa Seth continua usando `April 2026 - Present` e o cargo `Tech Lead & Software Engineer`, conforme o conteúdo já consolidado no projeto.
+Experiência deve priorizar impacto e responsabilidade, não repetir integralmente os estudos de caso. A atuação na Casa Seth é descrita como iniciada aproximadamente em abril de 2026 e usa o cargo `Tech Lead & Software Engineer`; a data pública exata deve seguir a confirmação final do usuário.
 
 Capacidades são agrupadas por problema de engenharia:
 
@@ -236,6 +273,7 @@ Tecnologias aparecem como evidência dentro de contexto, não como nuvem extensa
 - A página usa `100dvh`, safe areas e nenhuma rolagem horizontal.
 - Texto mínimo de leitura: 16 px.
 - Alvos interativos: mínimo de 44 por 44 px.
+- A cena WebGL mantém movimento ambiente em perfil reduzido, sem responder a toque, arraste ou scroll.
 
 Os breakpoints normativos são 1200 px e 768 px. Ajustes intermediários podem melhorar fluidez, mas não substituem esses limites nem a matriz fixa de viewports dos critérios de aceite.
 
@@ -244,11 +282,12 @@ Os breakpoints normativos são 1200 px e 768 px. Ajustes intermediários podem m
 - Entrada do hero: linhas do título reveladas por clip e pequeno deslocamento vertical.
 - Retrato entra depois do título para reforçar profundidade.
 - CTA e painel de identidade entram por opacity e translate curto.
+- A cena do Unicorn Studio reage ao cursor apenas em desktop com ponteiro fino. No mobile ela continua como movimento ambiente sem interação.
 - Seções internas usam IntersectionObserver ou animações CSS, com conteúdo visível por padrão.
 - Hover de links pode usar underline direcional e deslocamento curto da seta.
-- Não usar partículas contínuas no fundo.
+- Não adicionar uma segunda camada genérica de partículas; o WebGL autoral é a única animação contínua de fundo do hero.
 - Não usar scroll listener manual.
-- `prefers-reduced-motion: reduce` remove reveal, parallax e transições não essenciais.
+- `prefers-reduced-motion: reduce` remove reveal, parallax, cena WebGL e transições não essenciais.
 
 Toda animação precisa servir hierarquia, storytelling, feedback ou mudança de estado.
 
@@ -260,6 +299,8 @@ Toda animação precisa servir hierarquia, storytelling, feedback ou mudança de
 - Foco visível com contraste suficiente nos dois temas.
 - Menu mobile fecha com Escape, prende e restaura foco, usa `aria-expanded`, `aria-controls` e deixa o fundo inerte.
 - Conteúdo nunca inicia invisível sem que JavaScript tenha confirmado a disponibilidade da animação.
+- O canvas WebGL é decorativo, `aria-hidden`, não recebe foco e não altera a ordem de leitura.
+- A interação visual com cursor não é necessária para entender conteúdo nem executar ação.
 - Imagem principal tem alt útil; cópia escura decorativa usa `aria-hidden`.
 - Links externos informam nova aba no nome acessível quando aplicável.
 - Datas usam `time`; listas e timeline usam elementos semânticos.
@@ -270,10 +311,13 @@ Toda animação precisa servir hierarquia, storytelling, feedback ou mudança de
 
 - Usar os recortes já otimizados e `next/image` com `sizes` correto.
 - Precarregar apenas a fonte display necessária à primeira dobra.
-- Self-hostar ou usar `next/font` para Anybody Variable.
+- Self-hostar ou usar `next/font` para Anton.
 - Manter a página como Server Component sempre que possível.
-- Isolar menu, tema e motion em pequenas ilhas client.
+- Isolar menu, tema e a cena Unicorn em pequenas ilhas client.
 - Remover o canvas de partículas da primeira dobra.
+- Carregar uma única instância do SDK oficial com promise compartilhada; criar uma única cena e chamar `scene.destroy()` no unmount ou na troca de perfil.
+- Como a cena está acima da dobra, iniciar sem lazy load após a hidratação da ilha e reservar suas dimensões antes do carregamento para evitar CLS.
+- Usar `production: true`. Perfil inicial: desktop até 60 FPS, `scale` entre 0.75 e 1 e DPI até 1.25; mobile 30 FPS, `scale` próximo de 0.5 e DPI 1. Ajustar para baixo se a mediana de performance não atingir os critérios de aceite.
 - Evitar hidratação de conteúdo estático.
 - Em build local de produção, medir LCP e CLS com Lighthouse mobile padrão, cold load, cache limpo, slow 4G simulado e CPU slowdown padrão da ferramenta. Usar a mediana de três execuções.
 - Metas locais: LCP menor que 2.5 s e CLS menor que 0.1.
@@ -289,7 +333,7 @@ Publicar somente informações já aprovadas e úteis para avaliação profissio
 - Nenhuma limitação operacional interna, estratégia de fallback ou comportamento de provedor é publicado.
 - Nenhum endpoint, segredo, regra interna ou detalhe de infraestrutura sensível é publicado.
 
-Claims quantitativos permanecem somente quando já sustentados pelo material do projeto. Não criar métricas de uptime, usuários, receita ou escala sem fonte verificável.
+Claims quantitativos permanecem somente quando sustentados pelo material do projeto e liberados explicitamente para publicação pelo usuário. Não criar métricas de uptime, usuários, receita ou escala sem fonte verificável.
 
 ### Vocabulário público permitido
 
@@ -299,8 +343,11 @@ Não pode aparecer: URLs ou paths de endpoint, payloads de webhook, nomes de eve
 
 ## 15. Critérios de aceite
 
-- No viewport 1440 por 1024, o hero claro e escuro mantém rail, título, retrato, painel, CTA e faixa inferior dentro de 12 px das medidas numéricas deste documento.
-- O lettering usa Anybody Variable Black e warp affine por linha, sem ruído ou rasterização. A caixa de cada linha permanece dentro de 12 px das medidas documentadas.
+- No viewport 1440 por 1024, rail de 84 px, faixa inferior de 115 px e caixas do lettering permanecem dentro de 12 px das medidas numéricas deste documento. Retrato, painel e CTAs passam comparação visual no mesmo viewport sem diferenças P0, P1 ou P2 no relatório de design QA.
+- O lettering começa com Anton e warp affine por linha, sem ruído ou rasterização. A referência visual prevalece: no viewport 1440 por 1024, o overlay mantém as caixas de tinta dentro de 12 px das medidas documentadas e preserva os desenhos de `S`, `A`, `T`, `M` e `P`. Qualquer troca de família exige nova aprovação.
+- A cena usa o projeto `vW6LSKmFeRkV42794kQv` com SDK 2.2.7, permanece entre lettering e retrato e mantém sua origem radial escondida pela área opaca da foto.
+- Em desktop de pelo menos 1200 px com ponteiro fino, o movimento reage ao cursor sem bloquear CTAs. Em 1024 por 1366, 768 por 1024, 390 por 844 e 360 por 800, a animação temporal ambiente continua, mas toque, arraste e scroll não alteram a cena.
+- Com reduced motion, Save-Data ou WebGL indisponível, nenhum canvas é necessário para o hero permanecer completo e utilizável.
 - As versões clara e escura mantêm a mesma hierarquia. Texto normal passa 4.5:1; texto grande, componentes e indicadores essenciais passam 3:1.
 - Os viewports 1440 por 1024, 1024 por 1366, 768 por 1024, 390 por 844 e 360 por 800 não têm overflow horizontal, clipping acidental ou CTA fora de alcance.
 - O recorte deliberado do título no topo e do retrato na linha inferior do hero é preservado. Nenhum conteúdo informativo ou controle pode ser cortado.
