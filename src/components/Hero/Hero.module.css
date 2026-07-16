@@ -3,7 +3,7 @@
   min-height: 100svh;
   margin-left: var(--rail-width);
   display: grid;
-  grid-template-rows: minmax(720px, 1fr) var(--domain-strip-height);
+  grid-template-rows: minmax(0, calc(100svh - var(--domain-strip-height))) var(--domain-strip-height);
   background: var(--paper);
 }
 
@@ -20,7 +20,7 @@
   z-index: 1;
   inset-block-start: 0;
   inset-inline-start: 0;
-  inline-size: min(100cqi, 177.5cqb);
+  inline-size: min(100cqi, 150cqb);
   aspect-ratio: 1356 / 790;
   margin: 0;
   overflow: hidden;
@@ -116,8 +116,8 @@
   position: absolute;
   z-index: 4;
   top: 2.85rem;
-  right: clamp(1.75rem, 2.3vw, 3rem);
-  width: clamp(10.75rem, 14vw, 13.5rem);
+  right: clamp(1.75rem, 2.7vw, 3.75rem);
+  width: clamp(11.5rem, 14vw, 14.25rem);
   color: var(--ink);
 }
 
@@ -155,7 +155,7 @@
   position: absolute;
   z-index: 4;
   left: clamp(3rem, 3.8vw, 4.25rem);
-  bottom: clamp(2.35rem, 4.4vh, 3.5rem);
+  bottom: clamp(4.4rem, 7vh, 5.6rem);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -199,9 +199,9 @@
 .portrait {
   position: absolute;
   z-index: 3;
-  right: -1.5cqi;
-  bottom: -1.5cqb;
-  width: min(64cqi, 92cqb);
+  right: -2.25cqi;
+  bottom: -1.25cqb;
+  width: min(56cqi, 86cqb);
   margin: 0;
   pointer-events: none;
 }
@@ -282,11 +282,11 @@
     min-height: calc(100svh - 4.5rem);
     margin-left: 0;
     padding-top: 4.5rem;
-    grid-template-rows: minmax(690px, 1fr) auto;
+    grid-template-rows: minmax(620px, calc(100svh - 4.5rem - 10rem)) auto;
   }
 
   .heroStage {
-    min-height: 690px;
+    min-height: 620px;
   }
 
   .heroTitle {
@@ -299,9 +299,9 @@
   }
 
   .portrait {
-    right: -6%;
+    right: -8%;
     bottom: -1%;
-    width: min(66%, 44rem);
+    width: min(64%, 42rem);
   }
 
   .actions {
@@ -436,8 +436,8 @@
   .portrait {
     z-index: 3;
     align-self: flex-end;
-    width: 112%;
-    margin: -2.5rem -25% -2% 0;
+    width: 94%;
+    margin: -2rem -20% -10.5rem 0;
   }
 
   .domainStrip {

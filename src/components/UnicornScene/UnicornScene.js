@@ -161,6 +161,7 @@ export default function UnicornScene() {
         setStatus('ready');
 
         requestAnimationFrame(() => {
+          scene.resize?.();
           document.querySelectorAll(`#${CONTAINER_ID} canvas`).forEach((canvas) => {
             canvas.setAttribute('aria-hidden', 'true');
             canvas.setAttribute('role', 'presentation');

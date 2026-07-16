@@ -1,10 +1,10 @@
 .scene {
   position: absolute;
   z-index: 0;
-  top: -8%;
-  right: -12%;
-  bottom: -10%;
-  left: 18%;
+  top: -10%;
+  right: -18%;
+  bottom: -8%;
+  left: 48%;
   min-width: 1px;
   min-height: 1px;
   overflow: hidden;
@@ -19,13 +19,21 @@
 }
 
 .scene[data-state='ready'] {
-  opacity: 0.5;
+  opacity: 0.58;
   mix-blend-mode: multiply;
 }
 
 :global([data-theme='dark']) .scene[data-state='ready'] {
-  opacity: 0.38;
+  opacity: 0.34;
   mix-blend-mode: screen;
+}
+
+.scene[data-profile='interactive'] {
+  pointer-events: auto;
+}
+
+.scene[data-profile='interactive'] :global(canvas) {
+  pointer-events: auto;
 }
 
 @media (max-width: 1199px) {

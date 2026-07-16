@@ -35,7 +35,7 @@ export default function Hero() {
         <div className={styles.actions}>
           <a href={hero.ctaPrimary.href} className={styles.primaryAction}>
             {hero.ctaPrimary.label}
-            <span aria-hidden="true">→</span>
+            <span aria-hidden="true">&rarr;</span>
           </a>
           <a href={hero.ctaSecondary.href} className={styles.secondaryAction} download>
             {hero.ctaSecondary.label}
