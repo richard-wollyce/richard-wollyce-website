@@ -4,49 +4,94 @@ import { useEffect, useSyncExternalStore } from 'react';
 import styles from './ThemeToggle.module.css';
 
 const THEME_CHANGE_EVENT = 'themechange';
+const DARK_MODE_QUERY = '(prefers-color-scheme: dark)';
 
 function getThemeSnapshot() {
-  if (typeof window === 'undefined') return 'light';
+  if (typeof window === 'undefined') {
+    return 'light';
+  }
+
   const stored = localStorage.getItem('theme');
-  if (stored === 'dark' || stored === 'light') return stored;
-  return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+
+  if (stored === 'dark' || stored === 'light') {
+    return stored;
+  }
+
+  return window.matchMedia(DARK_MODE_QUERY).matches ? 'dark' : 'light';
 }
 
 function subscribeToThemeChanges(callback) {
-  const handleStorage = (event) => event.key === 'theme' && callback();
+  const mediaQuery = window.matchMedia(DARK_MODE_QUERY);
+  const handleStorage = (event) => {
+    if (event.key === 'theme') {
+      callback();
+    }
+  };
 
   window.addEventListener('storage', handleStorage);
   window.addEventListener(THEME_CHANGE_EVENT, callback);
+  mediaQuery.addEventListener('change', callback);
 
   return () => {
     window.removeEventListener('storage', handleStorage);
     window.removeEventListener(THEME_CHANGE_EVENT, callback);
+    mediaQuery.removeEventListener('change', callback);
   };
 }
 
-export default function ThemeToggle({ compact = false }) {
+export default function ThemeToggle() {
   const theme = useSyncExternalStore(subscribeToThemeChanges, getThemeSnapshot, () => 'light');
-  const nextTheme = theme === 'light' ? 'dark' : 'light';
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {
-    localStorage.setItem('theme', nextTheme);
-    document.documentElement.setAttribute('data-theme', nextTheme);
+    const next = theme === 'light' ? 'dark' : 'light';
+    localStorage.setItem('theme', next);
+    document.documentElement.setAttribute('data-theme', next);
     window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
   };
 
   return (
     <button
-      type="button"
-      className={`${styles.toggle} ${compact ? styles.compact : ''}`}
+      className={styles.toggle}
       onClick={toggleTheme}
-      aria-label={`Switch to ${nextTheme} mode`}
-      title={`Switch to ${nextTheme} mode`}
+      aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+      title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
     >
-      <span aria-hidden="true">{nextTheme === 'dark' ? 'Dark' : 'Light'}</span>
+      <svg
+        className={`${styles.icon} ${theme === 'light' ? styles.visible : styles.hidden}`}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+      </svg>
+      <svg
+        className={`${styles.icon} ${theme === 'dark' ? styles.visible : styles.hidden}`}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="5" />
+        <line x1="12" y1="1" x2="12" y2="3" />
+        <line x1="12" y1="21" x2="12" y2="23" />
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+        <line x1="1" y1="12" x2="3" y2="12" />
+        <line x1="21" y1="12" x2="23" y2="12" />
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+      </svg>
     </button>
   );
 }

@@ -1,23 +1,16 @@
-import { Anton, Bebas_Neue, Roboto_Condensed } from 'next/font/google';
+import { Inter, Instrument_Serif } from 'next/font/google';
 import './globals.css';
 
-const anton = Anton({
-  weight: '400',
+const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-anton',
+  variable: '--font-inter',
   display: 'swap',
 });
 
-const bebasNeue = Bebas_Neue({
+const instrumentSerif = Instrument_Serif({
   weight: '400',
   subsets: ['latin'],
-  variable: '--font-bebas-neue',
-  display: 'swap',
-});
-
-const robotoCondensed = Roboto_Condensed({
-  subsets: ['latin'],
-  variable: '--font-roboto-condensed',
+  variable: '--font-instrument-serif',
   display: 'swap',
 });
 
@@ -70,11 +63,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${anton.variable} ${bebasNeue.variable} ${robotoCondensed.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={`${inter.variable} ${instrumentSerif.variable}`} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -82,10 +71,10 @@ export default function RootLayout({ children }) {
               (function() {
                 try {
                   var theme = localStorage.getItem('theme');
-                  document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
-                } catch(e) {
-                  document.documentElement.setAttribute('data-theme', 'light');
-                }
+                  if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                  }
+                } catch(e) {}
               })();
             `,
           }}

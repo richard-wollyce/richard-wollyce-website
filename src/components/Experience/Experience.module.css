@@ -1,235 +1,174 @@
-.experience {
-  padding-top: clamp(6rem, 10vw, 10rem);
-}
-
 .sectionHeader {
-  display: grid;
-  grid-template-columns: minmax(8rem, 0.45fr) minmax(0, 1.55fr);
-  gap: clamp(2rem, 5vw, 7rem);
-  align-items: end;
-  padding-bottom: clamp(2.5rem, 5vw, 5rem);
-  border-bottom: 1px solid var(--line-strong);
-}
-
-.sectionIndex,
-.companyName {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-  line-height: 1.2;
-  text-transform: uppercase;
-}
-
-.sectionIndex,
-.companyName {
-  color: var(--accent);
-}
-
-.headingGroup {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.46fr);
-  gap: clamp(2rem, 5vw, 6rem);
-  align-items: end;
+  margin-bottom: var(--space-16);
+  max-width: 650px;
 }
 
 .sectionTitle {
-  max-width: 11ch;
-  color: var(--ink);
-  font-family: var(--font-label);
-  font-size: clamp(4.25rem, 8.5vw, 9rem);
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
   font-weight: 400;
-  letter-spacing: -0.025em;
-  line-height: 0.83;
-  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.01em;
 }
 
 .sectionSubtitle {
-  max-width: 31rem;
-  color: var(--copy);
-  font-size: clamp(1.05rem, 1.45vw, 1.32rem);
-  line-height: 1.42;
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 
 .timeline {
-  border-bottom: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
 }
 
 .timelineItem {
-  border-top: 1px solid var(--line-strong);
-}
-
-.timelineItem:first-child {
-  border-top: 0;
-}
-
-.role {
   display: grid;
-  grid-template-columns: minmax(8rem, 0.45fr) minmax(15rem, 0.58fr) minmax(22rem, 1fr);
-  gap: clamp(2rem, 5vw, 7rem);
-  padding-block: clamp(3.5rem, 7vw, 6.5rem);
+  grid-template-columns: 40px 1fr;
+  gap: var(--space-6);
+  position: relative;
 }
 
-.indexColumn {
+.timelineItem:last-child .markerLine {
+  display: none;
+}
+
+.timelineMarker {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  position: relative;
 }
 
-.roleIndex {
-  margin-bottom: clamp(2rem, 5vw, 4.75rem);
-  color: var(--muted);
-  font-family: var(--font-label);
-  font-size: clamp(2.4rem, 4.5vw, 5rem);
-  line-height: 0.8;
+.markerDot {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+  background-color: var(--accent);
+  border: 3px solid var(--bg-primary);
+  z-index: 2;
+  margin-top: 10px;
+  box-shadow: 0 0 0 4px var(--accent-subtle);
+  transition: transform var(--transition-fast);
 }
 
-.period {
-  color: var(--ink);
-  font-size: 0.96rem;
-  font-weight: 700;
-  line-height: 1.3;
+.timelineItem:hover .markerDot {
+  transform: scale(1.2);
 }
 
-.location {
-  margin-top: 0.35rem;
-  color: var(--muted);
-  font-size: 0.82rem;
-  letter-spacing: 0.035em;
-  line-height: 1.35;
+.markerLine {
+  width: 2px;
+  flex-grow: 1;
+  background-color: var(--border);
+  z-index: 1;
+}
+
+.timelineContent {
+  padding-bottom: var(--space-16);
 }
 
 .roleHeader {
-  align-self: start;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+  gap: var(--space-2);
 }
 
 .roleTitle {
-  max-width: 11ch;
-  margin-top: 0.65rem;
-  color: var(--ink);
-  font-family: var(--font-label);
-  font-size: clamp(2.75rem, 5.5vw, 6.5rem);
-  font-weight: 400;
-  letter-spacing: -0.025em;
-  line-height: 0.86;
-  text-transform: uppercase;
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
-.responsibilities {
-  counter-reset: responsibility;
-  border-top: 1px solid var(--line);
-}
-
-.responsibilities li {
-  counter-increment: responsibility;
-  display: grid;
-  grid-template-columns: 2.6rem minmax(0, 1fr);
-  gap: 1.25rem;
-  padding-block: 1.2rem;
-  border-bottom: 1px solid var(--line);
-  color: var(--copy);
-  font-size: clamp(0.98rem, 1.15vw, 1.12rem);
-  line-height: 1.5;
-}
-
-.responsibilities li::before {
-  content: counter(responsibility, decimal-leading-zero);
+.companyName {
+  font-size: var(--text-sm);
+  font-weight: 600;
   color: var(--accent);
-  font-family: var(--font-label);
-  font-size: 1.15rem;
-  line-height: 1.25;
 }
 
-@media (max-width: 1199px) {
-  .headingGroup {
-    grid-template-columns: 1fr;
-  }
-
-  .role {
-    grid-template-columns: minmax(7rem, 0.3fr) minmax(14rem, 0.7fr) minmax(20rem, 1.25fr);
-    gap: clamp(1.5rem, 4vw, 3.5rem);
-  }
+.meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
 }
 
-@media (max-width: 900px) {
-  .role {
-    grid-template-columns: minmax(7rem, 0.25fr) minmax(0, 1fr);
-  }
-
-  .responsibilities {
-    grid-column: 2;
-  }
+.period {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
-@media (max-width: 767px) {
-  .experience {
-    padding-top: 6rem;
-  }
+.location {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
 
+.bullets {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.bulletIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  background-color: var(--accent-subtle);
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.bulletText {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (min-width: 1025px) {
   .sectionHeader {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    margin-bottom: var(--space-12);
   }
 
-  .sectionTitle {
-    font-size: clamp(3.8rem, 19vw, 6rem);
+  .timelineContent {
+    padding-bottom: var(--space-12);
   }
 
-  .sectionSubtitle {
-    font-size: 1.05rem;
-  }
-
-  .role {
-    grid-template-columns: 3.2rem minmax(0, 1fr);
-    gap: 1rem;
-  }
-
-  .roleIndex {
-    margin-bottom: 2rem;
-    font-size: 2.2rem;
-  }
-
-  .period {
-    font-size: 0.78rem;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-  }
-
-  .location {
-    display: none;
-  }
-
-  .roleTitle {
-    font-size: clamp(3rem, 16vw, 5rem);
-  }
-
-  .responsibilities {
-    grid-column: 1 / -1;
-    margin-top: 1rem;
+  .timelineItem:last-child .timelineContent {
+    padding-bottom: 0;
   }
 }
 
-@media (max-width: 389px) {
-  .role {
-    grid-template-columns: 1fr;
+@media (max-width: 768px) {
+  .roleHeader {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .indexColumn {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1rem;
-    align-items: start;
+  .meta {
+    align-items: flex-start;
+    text-align: left;
+    margin-top: var(--space-1);
   }
 
-  .roleIndex {
-    margin-bottom: 0;
-  }
-
-  .period {
-    writing-mode: initial;
-    transform: none;
-  }
-
-  .responsibilities {
-    grid-column: auto;
+  .timelineContent {
+    padding-bottom: var(--space-10);
   }
 }

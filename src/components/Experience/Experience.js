@@ -3,44 +3,51 @@ import styles from './Experience.module.css';
 
 export default function Experience() {
   return (
-    <section className={`section ${styles.experience}`} id="experience" aria-labelledby="experience-title">
+    <section className="section" id="experience">
       <div className="container">
         <header className={styles.sectionHeader}>
-          <p className={styles.sectionIndex}>02 / Experience</p>
-          <div className={styles.headingGroup}>
-            <h2 className={styles.sectionTitle} id="experience-title">Responsibility at production scale.</h2>
-            <p className={styles.sectionSubtitle}>
-              Technical leadership and end-to-end ownership across product platforms, business-critical systems, and client work.
-            </p>
-          </div>
+          <h2 className={styles.sectionTitle}>Experience</h2>
+          <p className={styles.sectionSubtitle}>
+            A history of production engineering, secure system ownership, and reliable software delivery.
+          </p>
         </header>
 
-        <ol className={styles.timeline}>
-          {experience.map((job, index) => (
-            <li key={job.id} className={`${styles.timelineItem} reveal`}>
-              <article className={styles.role} aria-labelledby={`${job.id}-role`}>
-                <div className={styles.indexColumn}>
-                  <p className={styles.roleIndex} aria-hidden="true">
-                    {String(index + 1).padStart(2, '0')}
-                  </p>
-                  {job.period && <time className={styles.period}>{job.period}</time>}
-                  {job.location && <p className={styles.location}>{job.location}</p>}
+        <div className={styles.timeline}>
+          {experience.map((job) => (
+            <div key={job.id} className={`${styles.timelineItem} reveal`}>
+              <div className={styles.timelineMarker}>
+                <div className={styles.markerDot} />
+                <div className={styles.markerLine} />
+              </div>
+
+              <div className={styles.timelineContent}>
+                <div className={styles.roleHeader}>
+                  <div>
+                    <h3 className={styles.roleTitle}>{job.role}</h3>
+                    <h4 className={styles.companyName}>{job.company}</h4>
+                  </div>
+                  <div className={styles.meta}>
+                    {job.period && <span className={styles.period}>{job.period}</span>}
+                    {job.location && <span className={styles.location}>{job.location}</span>}
+                  </div>
                 </div>
 
-                <header className={styles.roleHeader}>
-                  <p className={styles.companyName}>{job.company}</p>
-                  <h3 className={styles.roleTitle} id={`${job.id}-role`}>{job.role}</h3>
-                </header>
-
-                <ol className={styles.responsibilities}>
-                  {job.bullets.map((bullet) => (
-                    <li key={bullet}>{bullet}</li>
+                <ul className={styles.bullets}>
+                  {job.bullets.map((bullet, i) => (
+                    <li key={i} className={styles.bullet}>
+                      <span className={styles.bulletIcon}>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                      </span>
+                      <span className={styles.bulletText}>{bullet}</span>
+                    </li>
                   ))}
-                </ol>
-              </article>
-            </li>
+                </ul>
+              </div>
+            </div>
           ))}
-        </ol>
+        </div>
       </div>
     </section>
   );
