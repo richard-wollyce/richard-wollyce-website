@@ -7,13 +7,13 @@ const content = {
     headline: "Hi, I'm Richard Wollyce",
     title: 'Tech Lead & Full-Stack Software Engineer',
     subheadline:
-      'I build the systems other software depends on. Ulpia, my open-source memory layer for AI agents, is written in Rust and answers offline in under a millisecond. The rest of my work is commerce: infoproducts, payments, and the measurement layer that tells you which of them actually sold.',
+      'I build infrastructure and then stay on call for it. Ulpia is the open-source one: a memory layer for AI agents, written in Rust, with no model anywhere in the retrieval path, which is why it answers offline in under a millisecond. The other half of my week is commerce work, where I build the payment flow and the measurement sitting under it, which is how anyone knows which infoproduct actually sold.',
     ctaPrimary: { label: "Let's Talk", href: '#contact' },
     ctaSecondary: { label: 'View Projects', href: '#work' },
     trustStrip: [
-      { icon: 'bolt', text: 'Creator of Ulpia, an open-source AI memory system in Rust' },
-      { icon: 'chart', text: 'Infoproducts, payments, and conversion systems at Casa Seth' },
-      { icon: 'check', text: 'Architecture through production ownership' },
+      { icon: 'bolt', text: 'Creator of Ulpia, an open-source AI memory layer written in Rust' },
+      { icon: 'chart', text: 'Tech lead for the commerce and payments stack at Casa Seth' },
+      { icon: 'check', text: 'Still on call for everything I ship' },
     ],
   },
 
@@ -56,14 +56,14 @@ const content = {
       name: 'Ulpia',
       category: 'Local-First AI Memory Infrastructure',
       summary:
-        'An open-source memory layer for fleets of AI agents, written in Rust and released under Apache 2.0. Retrieval is plain software with no embedding model in the path, so it runs offline, returns the same answer twice, and can say that nobody covers a question instead of handing back the least wrong file.',
+        'An open-source memory layer for fleets of AI agents, written in Rust and released under Apache 2.0. There is no embedding model anywhere in the retrieval path. It is a keyword index, a full-text index, and the code that fuses them. No network, and the same ranking on the same question every time. It can also tell you that nobody covers a question, instead of handing back the least wrong file.',
       highlights: [
-        'Designed a two-scorer retrieval engine: a keyword index built from the keys each file declares, plus SQLite full-text search, fused with Reciprocal Rank Fusion, then measured which scorer wins which job instead of assuming they were interchangeable.',
-        'Made refusal a first-class verdict. On a question set authored blind and adversarially checked, 28 of 30 out-of-scope questions are not answered confidently by the deterministic layer alone.',
-        'Benchmarked the pipeline end to end: warm route latency of 0.68 ms p50 and 1.16 ms p95 in process, and 97 percent on abstention over the 500 questions of LongMemEval-S, the ability that benchmark\'s own paper reports memory systems fail hardest.',
-        'Shipped it as an MCP server with four read-only tools, so Claude and anything else that speaks MCP reads the same base. There is deliberately no write tool reachable by a model.',
-        'Built the privacy model out of git rather than configuration: a file git does not track is a file the system will not serve, and it refuses to open a base at all when git cannot be consulted.',
-        'Around 17,000 lines of Rust across three crates with a single runtime dependency, over 200 tests, 33 architecture decision records, and a benchmark harness that stamps every result with its command, commit, machine, and date.',
+        'Retrieval runs two scorers rather than one. A keyword index built from the keys each file declares, and SQLite full-text search over the prose, fused with Reciprocal Rank Fusion. Then I measured which scorer wins which kind of question, because they are not interchangeable.',
+        'Refusal is a first-class verdict here. On a question set authored blind and then checked adversarially, the deterministic layer alone declines to confidently answer 28 of the 30 out-of-scope questions.',
+        'Warm route latency measures 0.68 ms p50 and 1.16 ms p95, in process. On a full 500-question run of LongMemEval-S it scores 97 percent on abstention, which that benchmark\'s own paper names as the ability memory systems fail hardest.',
+        'Ships as an MCP server with four read-only tools, so Claude and anything else that speaks MCP reads the same base I do. There is deliberately no write tool a model can reach.',
+        'Git is the privacy model, and there is no configuration file for it. A file git does not track is a file the system will not serve, and it refuses to open a base at all when git cannot be consulted.',
+        'Roughly 17,000 lines of Rust across three crates, a single runtime dependency, over 200 tests, 33 architecture decision records. Every benchmark result carries the command, commit, machine and date that produced it.',
       ],
       stack: ['Rust', 'SQLite FTS5', 'Information Retrieval', 'MCP', 'Tauri', 'Cargo', 'GitHub Actions', 'Apache 2.0'],
       link: 'https://ulpia.io',
@@ -74,15 +74,15 @@ const content = {
       name: 'Casa Seth',
       category: 'Infoproducts, Commerce & Conversion Systems',
       summary:
-        'The house I lead engineering for. It ships digital products and infoproducts, and the measurement layer underneath them: Pix checkout, attribution, server-side conversion tracking, and financial reconciliation. BiblinhaPlay, a cross-platform learning and entertainment subscription serving roughly 500 users, is the longest-running product inside it.',
+        'The house I lead engineering for. It ships digital products and infoproducts, and my half is everything underneath the sale, from Pix checkout and attribution through server-side conversion tracking to the financial reconciliation at the end of the month. BiblinhaPlay is the oldest product still running in it, a cross-platform learning and entertainment subscription with roughly 500 users.',
       highlights: [
-        'Built the revenue instrumentation the house runs on: first-party browser and server conversion tracking, event deduplication, UTM attribution, revenue reconciliation, and dashboards operators use to decide what to run again.',
-        'Designed a generative-image pipeline with idempotent jobs, bounded concurrency, caching, persistence, and telemetry, so a failed job retries without duplicating work or double-charging a customer.',
-        'Structured shared domain and UI packages across independently deployed product funnels, centralizing payments, session recovery, attribution, and backend integrations.',
-        'Ship and operate BiblinhaPlay for roughly 500 users across a production web/PWA and an Expo/React Native client: video streaming, music, printables, interactive games, and gamification behind entitlement-based access.',
-        'Ran BiblinhaPlay billing end to end with hosted subscription checkout, verified idempotent webhooks, plan-based entitlements, session-bound protected media delivery, and an immutable content-release pipeline with atomic activation and rollback.',
-        'Built BiblinhaCraft, a Three.js voxel experience with deterministic terrain, progressive region streaming, versioned saves, and touch-first controls.',
-        'Connected digital checkout to physical production through address validation, print-ready processing, an operational queue, and order-status workflows.',
+        'I built the revenue instrumentation the house runs on. First-party browser and server conversion tracking, event deduplication, UTM attribution, revenue reconciliation, and the dashboards operators read before deciding what to run again.',
+        'A generative-image pipeline with idempotent jobs, bounded concurrency, caching, persistence and telemetry. All of that exists so a failed job can retry without duplicating work or charging a customer twice.',
+        'Product funnels deploy independently but share domain and UI packages, which is how payments, session recovery, attribution and backend integrations ended up living in one place.',
+        'BiblinhaPlay I both ship and operate, for roughly 500 users, across a production web/PWA and an Expo/React Native client. Video streaming, music, printables, interactive games and gamification, all of it behind entitlement-based access.',
+        'Billing runs on hosted subscription checkout with verified idempotent webhooks, plan-based entitlements and session-bound delivery of protected media. Content goes out through an immutable release pipeline that activates atomically and rolls back.',
+        'BiblinhaCraft is a Three.js voxel world with deterministic terrain, progressive region streaming, versioned saves and touch-first controls.',
+        'Digital checkout reaches physical production through address validation, print-ready processing, an operational queue and order-status workflows.',
       ],
       stack: ['TypeScript', 'React', 'TanStack Start', 'Expo', 'React Native', 'Three.js', 'PostgreSQL', 'Supabase', 'Drizzle ORM', 'Mercado Pago', 'Turborepo', 'Vercel'],
       link: 'https://biblinhaplay.com',
@@ -96,9 +96,9 @@ const content = {
       summary:
         'A cybersecurity learning path and resource hub for beginners, developers, and non-technical professionals.',
       highlights: [
-        'Wrote and organized learning material for beginners, developers, and non-technical professionals.',
-        'Designed modules covering fundamentals, threat analysis, password security and MFA, safe browsing, device hygiene, incident response, network fundamentals, and digital evidence handling.',
-        'Hosted on Mintlify with a searchable documentation index and a clear learning path.',
+        'I wrote and organized the material myself.',
+        'Modules cover fundamentals, threat analysis, password security and MFA, safe browsing, device hygiene, incident response, network fundamentals, and digital evidence handling.',
+        'It runs on Mintlify, with a searchable documentation index and a path you can follow in order.',
       ],
       stack: ['Mintlify', 'Markdown', 'Cybersecurity Education', 'Technical Documentation'],
       link: 'https://roadtocybersec.com',
@@ -114,11 +114,11 @@ const content = {
       location: 'Apache 2.0, ulpia.io',
       period: 'August 2026 - Present',
       bullets: [
-        'Design and build a local-first memory layer for fleets of AI agents in Rust, with no embedding model in the retrieval path, so results are offline, reproducible, and explainable when they are wrong.',
-        'Built a two-scorer engine over a keyword index and SQLite full-text search, fused with Reciprocal Rank Fusion, plus a confidence gate that lets the system decline a question no file covers.',
-        'Wrote the benchmark harness alongside the product: abstention against a blind adversarial set, latency, and the full 500 questions of LongMemEval-S, each result stamped with command, commit, machine, and date.',
-        'Exposed the library over MCP with four read-only tools for Claude Desktop and any other MCP client, keeping write access off the surface a model can reach.',
-        'Maintain roughly 17,000 lines of Rust across three crates with one runtime dependency, over 200 tests, CI on GitHub Actions, and 33 architecture decision records that carry the reasoning behind each trade.',
+        'I design and build a local-first memory layer for fleets of AI agents in Rust. Nothing in the retrieval path is a model, so it runs offline, and when a result is wrong you can read why.',
+        'The engine runs two scorers over a keyword index and SQLite full-text search, fused with Reciprocal Rank Fusion, behind a confidence gate that lets the system decline a question no file covers.',
+        'The benchmark harness went in alongside the product. It covers abstention against a blind adversarial set, latency, and the full 500 questions of LongMemEval-S, and every result it prints is stamped with command, commit, machine and date.',
+        'Everything reaches Claude Desktop and other MCP clients through four read-only tools. Write access never touches the surface a model can see.',
+        'I maintain roughly 17,000 lines of Rust across three crates, one runtime dependency, over 200 tests and CI on GitHub Actions. There are 33 architecture decision records, and each one says what the trade was and why I took that side of it.',
       ],
     },
     {
@@ -128,13 +128,13 @@ const content = {
       location: 'Brazil',
       period: 'April 2026 - Present',
       bullets: [
-        'Lead architecture and delivery across the house: infoproducts, digital commerce funnels, and the measurement systems that report what each of them earned.',
-        'Own conversion engineering end to end, including Pix checkout, server-controlled pricing, UTM attribution, browser and server event deduplication, revenue reconciliation, and operational dashboards.',
-        'Designed a generative-image pipeline with idempotent jobs, bounded concurrency, caching, telemetry, and retries that cannot duplicate paid work.',
-        'Lead BiblinhaPlay, the subscription learning and entertainment product serving roughly 500 users, with a production web/PWA and an Expo/React Native client covering video, music, printables, games, and gamification.',
-        'Structured a TypeScript monorepo with TanStack Start, React, Expo/React Native, PostgreSQL, Drizzle, and reusable UI and transactional-email packages.',
-        'Designed hosted subscription checkout, entitlement-based authorization, idempotent webhooks, protected media delivery, and a versioned content pipeline with atomic activation and rollback.',
-        'Built BiblinhaCraft in Three.js with procedural terrain, progressive region streaming, persistent progression, and touch-first controls.',
+        'I lead architecture and delivery for the house. Infoproducts, the digital commerce funnels, and the measurement systems that report what each one earned.',
+        'The conversion path is mine, all of it. Pix checkout, server-controlled pricing, UTM attribution, deduplication of browser and server events, revenue reconciliation, and the operational dashboards on top.',
+        'Designed a generative-image pipeline around idempotent jobs, bounded concurrency, caching, telemetry, and retries that cannot duplicate paid work.',
+        'I lead BiblinhaPlay, the subscription learning and entertainment product with roughly 500 users, running on a production web/PWA and an Expo/React Native client that carry video, music, printables, games and gamification.',
+        'I structured the TypeScript monorepo behind all of it, on TanStack Start, React, Expo/React Native, PostgreSQL and Drizzle, with reusable UI and transactional-email packages shared across it.',
+        'On the billing side: hosted subscription checkout, entitlement-based authorization, idempotent webhooks, protected media delivery, and a versioned content pipeline that activates atomically and rolls back.',
+        'Built BiblinhaCraft in Three.js, with procedural terrain, progressive region streaming, persistent progression and touch-first controls.',
       ],
     },
     {
@@ -145,11 +145,11 @@ const content = {
       period: 'November 2025 - April 2026',
       bullets: [
         'Tech stack: TypeScript, React, Vite, Tailwind CSS, Node.js, Supabase, PostgreSQL, Linux VPS, EasyPanel.',
-        'Built and maintained an ERP for inventory, sales, and daily operations across multiple teams.',
-        'Replaced spreadsheet workflows with structured forms and automated validation, reducing manual-entry errors.',
-        'Reduced load time on large data tables with pagination and targeted RPC calls.',
-        'Secured data access with Row-Level Security (RLS) and Role-Based Access Control (RBAC), restricting records to the appropriate user roles.',
-        'Managed deployment, monitoring, and a self-managed Linux VPS; restored service after a critical production outage in under 10 minutes with no data loss.',
+        'Built and maintained an ERP that several teams used at once for inventory, sales and daily operations.',
+        'Replaced spreadsheet workflows with structured forms and automatic validation, and the manual-entry errors fell with them.',
+        'The large data tables were slow until pagination and targeted RPC calls went in.',
+        'Row-Level Security (RLS) and Role-Based Access Control (RBAC) decide which records a role can see, enforced in the database rather than in the UI.',
+        'I handled deployment, monitoring and the self-managed Linux VPS. One critical production outage, service back in under 10 minutes, no data lost.',
       ],
     },
     {
@@ -159,11 +159,11 @@ const content = {
       location: 'Franca, Brazil',
       period: null,
       bullets: [
-        'Build full-stack web apps for clients using TypeScript, React, Next.js, Node.js, Supabase, PostgreSQL, Vite, Tailwind CSS, and Vercel.',
-        'Built a live event registration system used by staff across multiple companies, including CPF and WhatsApp validation, responsive UI, and participant tracking workflows.',
-        'Built and maintain a chatbot and admin dashboard for a tattoo and barber shop, turning chats into structured budget requests and follow-up tasks.',
-        'Built landing pages and internal tools with payment integrations and webhooks to automate checkout and day-to-day work.',
-        'Own frontend, backend, database design, deployment, maintenance, and live support, using TDD with Vitest to prevent regressions and refactor safely.',
+        'Full-stack web apps for clients, on TypeScript, React, Next.js, Node.js, Supabase, PostgreSQL, Vite, Tailwind CSS and Vercel.',
+        'A live event registration system that staff across several companies use, with CPF and WhatsApp validation, a responsive UI and participant tracking.',
+        'For a tattoo and barber shop, a chatbot and admin dashboard that turn chats into structured budget requests and follow-up tasks. I still maintain it.',
+        'Landing pages and internal tools with payment integrations and webhooks wired in, to automate checkout and the day-to-day work behind it.',
+        'Frontend, backend, database design, deployment, maintenance and live support are all me. I work in TDD with Vitest, so regressions get caught and a refactor stays safe.',
       ],
     },
   ],
@@ -174,7 +174,7 @@ const content = {
       title: 'Systems & AI Engineering',
       icon: 'terminal',
       description:
-        'I build retrieval and memory infrastructure in Rust, measured against benchmarks I wrote to be able to fail.',
+        'Retrieval and memory infrastructure in Rust, measured by a benchmark harness that ships in the same repository.',
       technologies: ['Rust', 'Information Retrieval', 'SQLite FTS5', 'Reciprocal Rank Fusion', 'MCP', 'Local-First', 'Benchmarking', 'Deterministic Systems', 'Cargo', 'Tauri'],
     },
     {
@@ -182,7 +182,7 @@ const content = {
       title: 'Platform Architecture & Leadership',
       icon: 'diagram',
       description:
-        'I lead architecture and delivery across web and mobile products, and I stay accountable once they are in production.',
+        'I lead architecture and delivery across web and mobile products, and I am still the one on call after they go live.',
       technologies: ['System Design', 'Software Architecture', 'Monorepos', 'Domain Modeling', 'Technical Leadership', 'Architecture Decision Records', 'TypeScript', 'JavaScript', 'UML', 'Technical Documentation'],
     },
     {
@@ -190,7 +190,7 @@ const content = {
       title: 'Commerce & Conversion Engineering',
       icon: 'shield',
       description:
-        'I build the money path and the measurement under it, with events that are safe to retry and numbers that reconcile.',
+        'The money path, and the measurement underneath it. Events that are safe to retry, numbers that add up at the end of the month.',
       technologies: ['Pix', 'Hosted Checkout', 'Webhooks', 'Idempotency', 'Entitlements', 'Billing Reconciliation', 'Server-Side Tracking', 'Attribution', 'Conversion Analytics', 'PostHog', 'A/B Testing'],
     },
     {
@@ -198,7 +198,7 @@ const content = {
       title: 'Web & Mobile',
       icon: 'layout',
       description:
-        'I build responsive web, PWA, and native mobile apps, including streaming interfaces and touch-first 3D gameplay.',
+        'Responsive web, PWA and native mobile apps, up to and including streaming interfaces and touch-first 3D gameplay.',
       technologies: ['React', 'TanStack Start', 'Next.js', 'Expo', 'React Native', 'Three.js', 'Vite', 'Tailwind CSS', 'Responsive UI', 'PWA'],
     },
     {
@@ -206,7 +206,7 @@ const content = {
       title: 'Backend & Data',
       icon: 'server',
       description:
-        'I design APIs, authentication, data models, and protected-content flows shared across web and mobile.',
+        'I design the APIs, the authentication, the data models, and the protected-content flows that web and mobile both read from.',
       technologies: ['Node.js', 'PostgreSQL', 'Supabase', 'Drizzle ORM', 'Better Auth', 'REST APIs', 'Edge Functions', 'RLS', 'RBAC', 'Protected Media'],
     },
     {
@@ -214,17 +214,17 @@ const content = {
       title: 'Infrastructure & Quality',
       icon: 'code',
       description:
-        'I handle deployment, testing, monitoring, incidents, and recovery across managed services and self-hosted infrastructure.',
+        'Deployment, testing, monitoring, incidents and recovery, on managed services and on Linux boxes I administer myself.',
       technologies: ['Docker', 'GitHub Actions', 'CI/CD', 'Linux', 'Nginx', 'Vercel', 'Vitest', 'Playwright', 'Maestro', 'TDD', 'Biome', 'Lefthook'],
     },
   ],
 
   about: {
     paragraphs: [
-      'I\'m a Tech Lead and Full-Stack Software Engineer. I turn product requirements into working software and stay responsible after it ships.',
-      'My main project is Ulpia, an open-source memory layer for AI agents written in Rust. It keeps every model out of the retrieval path, which is what makes it run offline, answer the same way twice, and admit when no file in the library covers your question. It is Apache 2.0, and the benchmarks that could embarrass it are published in the same repository.',
-      'At Casa Seth I lead the commerce side: infoproducts, payment flows, and the attribution and conversion systems that report what each launch actually earned. BiblinhaPlay, the subscription learning platform serving roughly 500 users across web and mobile, is the product I built first and still operate.',
-      'I stay close to the code. I define clear boundaries, keep sensitive integrations server-side, plan for recovery, and validate critical workflows.',
+      "I'm a Tech Lead and Full-Stack Software Engineer. I take product requirements and turn them into software that works, and then I keep answering for it after it ships.",
+      'The project I care most about is Ulpia, an open-source memory layer for AI agents, written in Rust. There is no model in the retrieval path at all. That is what lets it run offline, answer the same way twice, and tell you when no file in the library covers your question. It is Apache 2.0, and the benchmarks live in the same repository, including the categories where it scores badly.',
+      'At Casa Seth I lead the commerce side. Infoproducts and payment flows, plus the attribution and conversion systems that report what each launch actually earned. BiblinhaPlay is the one I built first and still operate, a subscription learning platform with roughly 500 users across web and mobile.',
+      'I stay close to the code. Sensitive integrations stay server-side, boundaries get drawn on purpose, critical workflows get tested, and I plan for the day something has to be restored.',
     ],
   },
 
@@ -257,11 +257,11 @@ const content = {
     certifications: { title: 'Certifications' },
     experience: {
       title: 'Experience',
-      subtitle: 'A history of production engineering, secure system ownership, and reliable software delivery.',
+      subtitle: 'The roles, and what I actually owned inside each one.',
     },
     work: {
       title: 'Projects',
-      subtitle: 'Selected systems spanning AI memory infrastructure, commerce and conversion operations, and cybersecurity education.',
+      subtitle: 'An AI memory layer, a commerce operation, and a cybersecurity learning hub.',
       accessProject: 'Access Project',
       visit: (name) => `Visit ${name}`,
       visitAria: (name) => `Visit ${name} live site`,
@@ -271,7 +271,7 @@ const content = {
     },
     strength: {
       title: 'Technical Strength',
-      subtitle: 'A structured breakdown of core capabilities built across frontend, backend, data, and infrastructure.',
+      subtitle: 'What I know how to do, grouped roughly by where it sits in the stack.',
       technologies: 'Technologies & Frameworks',
     },
     about: {
@@ -281,7 +281,7 @@ const content = {
     },
     contact: {
       title: "Let's Connect",
-      subtitle: 'Ready to talk systems, security, or full-stack engineering roles? Get in touch.',
+      subtitle: 'If you have a systems problem, a security problem, or an engineering role to fill, write to me.',
       email: 'Email',
       linkedin: 'LinkedIn',
       github: 'GitHub',
