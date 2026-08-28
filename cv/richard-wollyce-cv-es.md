@@ -1,4 +1,4 @@
-<!-- Generado a partir de scripts/cv_content.py por scripts/generate-cv.py. No editar a mano. -->
+<!-- Generado en cv/ a partir de scripts/cv_content.py por scripts/generate-cv.py. No editar a mano. -->
 
 # Richard Wollyce Santos de Souza
 

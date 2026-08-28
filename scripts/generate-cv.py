@@ -36,8 +36,11 @@ from reportlab.platypus import (
 
 
 ROOT = Path(__file__).resolve().parents[1]
+# The PDFs are served by the site; the Markdown mirrors are the readable source of
+# the same copy. Both are public, so cv/ is versioned and sits outside the ignored
+# docs/ tree. Any new locale or format lands here too.
 OUTPUT_DIR = ROOT / "public"
-DOCS_DIR = ROOT / "docs"
+CV_DIR = ROOT / "cv"
 
 ACCENT = colors.HexColor("#176B5B")
 TEXT = colors.HexColor("#18201E")
@@ -249,9 +252,9 @@ def page_painter(doc_title: str, page_word: str):
 
 
 GENERATED_NOTE = {
-    "en": "Generated from scripts/cv_content.py by scripts/generate-cv.py. Do not edit by hand.",
-    "pt-BR": "Gerado a partir de scripts/cv_content.py por scripts/generate-cv.py. Nao edite a mao.",
-    "es": "Generado a partir de scripts/cv_content.py por scripts/generate-cv.py. No editar a mano.",
+    "en": "Generated into cv/ from scripts/cv_content.py by scripts/generate-cv.py. Do not edit by hand.",
+    "pt-BR": "Gerado em cv/ a partir de scripts/cv_content.py por scripts/generate-cv.py. Nao edite a mao.",
+    "es": "Generado en cv/ a partir de scripts/cv_content.py por scripts/generate-cv.py. No editar a mano.",
 }
 
 
@@ -424,10 +427,10 @@ def parse_args() -> argparse.Namespace:
         help=f"Directory for the PDFs (default: {OUTPUT_DIR})",
     )
     parser.add_argument(
-        "--docs-dir",
+        "--md-dir",
         type=Path,
-        default=DOCS_DIR,
-        help=f"Directory for the Markdown mirrors (default: {DOCS_DIR})",
+        default=CV_DIR,
+        help=f"Directory for the Markdown mirrors (default: {CV_DIR})",
     )
     return parser.parse_args()
 
@@ -442,6 +445,6 @@ if __name__ == "__main__":
             build_cv(code, destination)
             print(f"{code:>6}  {destination}")
         if args.format in ("md", "all"):
-            destination = (args.docs_dir / f"{stem}.md").resolve()
+            destination = (args.md_dir / f"{stem}.md").resolve()
             build_markdown(code, destination)
             print(f"{code:>6}  {destination}")
