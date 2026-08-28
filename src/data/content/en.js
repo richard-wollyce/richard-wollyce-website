@@ -293,6 +293,12 @@ const content = {
     language: {
       switcherAria: 'Choose language',
     },
+    rail: {
+      previous: 'Previous',
+      next: 'Next',
+      regionLabel: (section) => `${section}, horizontal list`,
+      position: (current, total) => `Card ${current} of ${total}`,
+    },
   },
 };
 

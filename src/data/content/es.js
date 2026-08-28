@@ -295,6 +295,12 @@ const content = {
     language: {
       switcherAria: 'Elegir idioma',
     },
+    rail: {
+      previous: 'Anterior',
+      next: 'Siguiente',
+      regionLabel: (section) => `${section}, lista horizontal`,
+      position: (current, total) => `Tarjeta ${current} de ${total}`,
+    },
   },
 };
 

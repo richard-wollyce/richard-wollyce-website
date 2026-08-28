@@ -16,12 +16,6 @@
   letter-spacing: -0.01em;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-6);
-}
-
 .card {
   background-color: var(--bg-card);
   border: 1px solid var(--border);
@@ -83,12 +77,6 @@
 @media (min-width: 1025px) {
   .certifications {
     padding-top: var(--space-12);
-  }
-}
-
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: 1fr;
   }
 }
 

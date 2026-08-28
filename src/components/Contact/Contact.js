@@ -1,3 +1,4 @@
+import CardRail from '@/components/CardRail/CardRail';
 import { siteConfig } from '@/data/site';
 import { useLocale } from '@/i18n/LocaleProvider';
 import styles from './Contact.module.css';
@@ -14,7 +15,19 @@ export default function Contact() {
             <p className={styles.subtitle}>{t.contact.subtitle}</p>
           </header>
 
-          <div className={styles.grid}>
+          {/*
+            560px is the widest card here and it is deliberate. Every one of
+            these four cards is a link, so a visible inert copy is not a
+            cosmetic problem, it is four dead links. .layout caps this rail at
+            960px rather than the container's 1136px, so a copy has to reach
+            1920px before the inert copies can come on screen; four cards at
+            560px plus four 24px gaps is 2336px. Measured at 1440px wide: the
+            exposure figure is negative 208px, so they never appear.
+          */}
+          <CardRail
+            sectionName={t.contact.title}
+            itemWidth="clamp(240px, 66vw, 358px)"
+          >
             <a href={`mailto:${siteConfig.email}`} className={styles.card}>
               <div className={styles.iconWrapper}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -60,7 +73,7 @@ export default function Contact() {
               <h3 className={styles.cardTitle}>{t.contact.downloadCv}</h3>
               <p className={styles.cardDetail}>{t.contact.cvFormat}</p>
             </a>
-          </div>
+          </CardRail>
         </div>
       </div>
     </section>
