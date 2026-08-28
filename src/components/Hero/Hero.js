@@ -31,7 +31,6 @@ export default function Hero() {
         </div>
 
         <div className={styles.portraitWrapper}>
-          <div className={styles.portraitGlow} />
           <div className={styles.portrait}>
             <Image
               src="/images/rw_pfp.jpg"

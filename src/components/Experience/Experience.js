@@ -15,7 +15,7 @@ export default function Experience() {
 
         <div className={styles.timeline}>
           {experience.map((job) => (
-            <div key={job.id} className={`${styles.timelineItem} reveal`}>
+            <div key={job.id} className={styles.timelineItem}>
               <div className={styles.timelineMarker}>
                 <div className={styles.markerDot} />
                 <div className={styles.markerLine} />

@@ -15,7 +15,7 @@ export default function SelectedWork() {
 
         <div className={styles.projectList}>
           {projects.map((project) => (
-            <article key={project.id} className={`${styles.card} reveal`}>
+            <article key={project.id} className={styles.card}>
               <div className={styles.cardHeader}>
                 <div>
                   <p className={styles.projectCategory}>{project.category}</p>

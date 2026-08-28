@@ -9,9 +9,8 @@ export default function About() {
     <section className="section" id="about">
       <div className="container">
         <div className={styles.layout}>
-          <header className={styles.header}>
+          <header>
             <h2 className={styles.title}>{t.about.title}</h2>
-            <div className={styles.accentBar} />
           </header>
 
           <div className={styles.content}>
@@ -22,14 +21,14 @@ export default function About() {
             ))}
 
             <div className={styles.detailsGrid}>
-              <article className={`${styles.detailCard} reveal`}>
+              <article className={styles.detailCard}>
                 <h3 className={styles.detailTitle}>{t.about.education}</h3>
                 <p className={styles.detailPrimary}>{education.degree}</p>
                 <p className={styles.detailSecondary}>{education.institution}</p>
                 <p className={styles.detailMeta}>{education.period}</p>
               </article>
 
-              <article className={`${styles.detailCard} reveal`}>
+              <article className={styles.detailCard}>
                 <h3 className={styles.detailTitle}>{t.about.languages}</h3>
                 <ul className={styles.languageList}>
                   {languages.map((language) => (

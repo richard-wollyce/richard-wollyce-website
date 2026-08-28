@@ -15,7 +15,7 @@ export default function TechnicalStrength() {
 
         <div className={styles.grid}>
           {technicalStrength.map((strength) => (
-            <article key={strength.id} className={`${styles.card} reveal`}>
+            <article key={strength.id} className={styles.card}>
               <div className={styles.cardHeader}>
                 <div className={styles.iconWrapper}>
                   {strength.icon === 'layout' && (

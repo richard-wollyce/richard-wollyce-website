@@ -30,26 +30,6 @@
   border-radius: var(--radius-lg);
   padding: var(--space-8);
   box-shadow: var(--shadow-sm);
-  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
-  position: relative;
-  overflow: hidden;
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 4px;
-  background-color: var(--accent);
-  opacity: 0.8;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--accent-light);
 }
 
 .cardHeader {
@@ -134,8 +114,6 @@
   justify-content: center;
   width: 20px;
   height: 20px;
-  border-radius: var(--radius-full);
-  background-color: var(--accent-subtle);
   color: var(--accent);
   flex-shrink: 0;
   margin-top: 2px;

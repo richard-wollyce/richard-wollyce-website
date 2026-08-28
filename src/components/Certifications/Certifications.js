@@ -14,7 +14,7 @@ export default function Certifications() {
 
         <div className={styles.grid}>
           {certifications.map((certification) => (
-            <article key={certification.id} className={`${styles.card} reveal`}>
+            <article key={certification.id} className={styles.card}>
               <div className={styles.cardTop}>
                 <span className={styles.icon} aria-hidden="true">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

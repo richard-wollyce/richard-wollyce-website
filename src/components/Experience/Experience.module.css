@@ -52,12 +52,6 @@
   border: 3px solid var(--bg-primary);
   z-index: 2;
   margin-top: 10px;
-  box-shadow: 0 0 0 4px var(--accent-subtle);
-  transition: transform var(--transition-fast);
-}
-
-.timelineItem:hover .markerDot {
-  transform: scale(1.2);
 }
 
 .markerLine {
@@ -128,8 +122,6 @@
   justify-content: center;
   width: 20px;
   height: 20px;
-  border-radius: var(--radius-full);
-  background-color: var(--accent-subtle);
   color: var(--accent);
   flex-shrink: 0;
   margin-top: 2px;

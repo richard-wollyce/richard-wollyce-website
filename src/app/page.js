@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
 import { LocaleProvider, useLocale } from '@/i18n/LocaleProvider';
 import ParticleBackground from '@/components/ParticleBackground/ParticleBackground';
 import Navbar from '@/components/Navbar/Navbar';
@@ -25,34 +24,6 @@ function SkipLink() {
 }
 
 function PageBody() {
-  useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    const reveals = document.querySelectorAll('.reveal');
-    reveals.forEach((element) => {
-      observer.observe(element);
-    });
-
-    return () => {
-      reveals.forEach((element) => {
-        observer.unobserve(element);
-      });
-    };
-  }, []);
-
   return (
     <>
       <SkipLink />
