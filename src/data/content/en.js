@@ -222,7 +222,7 @@ const content = {
   about: {
     paragraphs: [
       "I'm a Tech Lead and Full-Stack Software Engineer. I take product requirements and turn them into software that works, and then I keep answering for it after it ships.",
-      'The project I care most about is Ulpia, an open-source memory layer for AI agents, written in Rust. There is no model in the retrieval path at all. That is what lets it run offline, answer the same way twice, and tell you when no file in the library covers your question. It is Apache 2.0, and the benchmarks live in the same repository, including the categories where it scores badly.',
+      'The project I care most about is Ulpia, an open-source memory layer for AI agents, written in Rust. There is no model in the retrieval path at all. That is what lets it run offline, stay consistent between answers, and tell you when no file in the library covers your question. It is Apache 2.0, and the benchmarks live in the same repository, including the categories where it scores badly.',
       'At Casa Seth I lead the commerce side. Infoproducts and payment flows, plus the attribution and conversion systems that report what each launch actually earned. BiblinhaPlay is the one I built first and still operate, a subscription learning platform with roughly 500 users across web and mobile.',
       'I stay close to the code. Sensitive integrations stay server-side, boundaries get drawn on purpose, critical workflows get tested, and I plan for the day something has to be restored.',
     ],

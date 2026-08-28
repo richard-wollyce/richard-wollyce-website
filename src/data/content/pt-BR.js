@@ -224,7 +224,7 @@ const content = {
   about: {
     paragraphs: [
       'Sou Tech Lead e Full-Stack Software Engineer. Pego requisito de produto e devolvo software que funciona. Depois que ele entra no ar, continua sendo meu.',
-      'O projeto que ocupa a maior parte do meu tempo é o Ulpia, camada de memória open source para agentes de IA escrita em Rust. Modelo nenhum entra no caminho da recuperação, e é isso que permite rodar offline, responder igual duas vezes e admitir quando nenhum arquivo da biblioteca cobre a pergunta. É Apache 2.0, e os benchmarks capazes de desmentir tudo isso estão no mesmo repositório.',
+      'O projeto que ocupa a maior parte do meu tempo é o Ulpia, camada de memória open source para agentes de IA escrita em Rust. Modelo nenhum entra no caminho da recuperação, e é isso que permite rodar offline, manter consistência entre as respostas e admitir quando nenhum arquivo da biblioteca cobre a pergunta. É Apache 2.0, e os benchmarks capazes de desmentir tudo isso estão no mesmo repositório.',
       'Na Casa Seth eu cuido do lado do comércio, que é infoproduto, fluxo de pagamento e os sistemas de atribuição e conversão que dizem quanto cada lançamento rendeu de verdade. O BiblinhaPlay, assinatura com cerca de 500 usuários entre web e mobile, foi o primeiro produto que construí lá e continua comigo.',
       'Continuo perto do código. Gosto de fronteira bem definida, integração sensível não sai do servidor, o plano de recuperação existe antes de alguém precisar dele, e todo fluxo crítico eu testo manualmente.',
     ],

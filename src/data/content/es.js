@@ -224,7 +224,7 @@ const content = {
   about: {
     paragraphs: [
       'Soy Tech Lead y Full-Stack Software Engineer. Convierto requisitos de producto en software que funciona, y después sigo respondiendo por él cuando ya está publicado.',
-      'Mi proyecto principal es Ulpia, una capa de memoria open source escrita en Rust para agentes de IA. Deja cualquier modelo fuera del camino de recuperación, y de ahí le viene lo demás: funciona sin conexión, contesta igual la segunda vez y admite cuando ningún archivo de la biblioteca cubre tu pregunta. Es Apache 2.0, y los benchmarks capaces de dejarla en evidencia están publicados en el mismo repositorio.',
+      'Mi proyecto principal es Ulpia, una capa de memoria open source escrita en Rust para agentes de IA. Deja cualquier modelo fuera del camino de recuperación, y de ahí le viene lo demás: funciona sin conexión, mantiene la consistencia entre respuestas y admite cuando ningún archivo de la biblioteca cubre tu pregunta. Es Apache 2.0, y los benchmarks capaces de dejarla en evidencia están publicados en el mismo repositorio.',
       'En Casa Seth llevo el lado comercial, que son los infoproductos, los flujos de pago y los sistemas de atribución y conversión que dicen cuánto rindió de verdad cada lanzamiento. BiblinhaPlay, la plataforma de suscripción con cerca de 500 usuarios entre web y móvil, fue lo primero que construí ahí y lo sigo operando.',
       'Sigo cerca del código. Marco fronteras claras, dejo las integraciones sensibles del lado del servidor y pienso la recuperación antes de que haga falta. Los flujos que no pueden fallar los valido yo.',
     ],
