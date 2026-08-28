@@ -1,8 +1,12 @@
 import Image from 'next/image';
-import { hero, siteConfig } from '@/data/content';
+import { siteConfig } from '@/data/site';
+import { useLocale } from '@/i18n/LocaleProvider';
 import styles from './Hero.module.css';
 
 export default function Hero() {
+  const { c } = useLocale();
+  const hero = c.hero;
+
   return (
     <section className={styles.hero} id="hero">
       <div className={`container ${styles.container}`}>

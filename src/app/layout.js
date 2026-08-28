@@ -17,10 +17,17 @@ const instrumentSerif = Instrument_Serif({
 export const metadata = {
   title: 'Richard Wollyce | Tech Lead & Full-Stack Software Engineer',
   description:
-    'Tech Lead and Full-Stack Software Engineer leading product engineering across web, mobile, payments, protected media, 3D experiences, generative AI, analytics, and production operations.',
+    'Tech Lead and Full-Stack Software Engineer. Creator of Ulpia, an open-source local-first memory layer for AI agents written in Rust, and the engineer behind Casa Seth infoproducts, payments, attribution, and conversion systems.',
   keywords: [
     'Tech Lead',
     'Full Stack Software Engineer',
+    'AI Memory System',
+    'AI Agents',
+    'Local-First Software',
+    'Rust',
+    'Model Context Protocol',
+    'Information Retrieval',
+    'Conversion Engineering',
     'Product Engineering',
     'Software Architecture',
     'React',
@@ -43,7 +50,7 @@ export const metadata = {
   openGraph: {
     title: 'Richard Wollyce | Tech Lead & Full-Stack Software Engineer',
     description:
-      'Leading end-to-end product engineering across web, mobile, payments, protected media, 3D experiences, generative AI, and production operations.',
+      'Creator of Ulpia, an open-source local-first AI memory system in Rust. Leading infoproducts, payments, attribution, and conversion engineering at Casa Seth.',
     url: 'https://richardwollyce.com',
     siteName: 'Richard Wollyce Portfolio',
     locale: 'en_US',
@@ -53,7 +60,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Richard Wollyce | Tech Lead & Full-Stack Software Engineer',
     description:
-      'Leading end-to-end product engineering across web, mobile, payments, protected media, 3D experiences, generative AI, and production operations.',
+      'Creator of Ulpia, an open-source local-first AI memory system in Rust. Leading infoproducts, payments, attribution, and conversion engineering at Casa Seth.',
   },
   robots: {
     index: true,
@@ -81,7 +88,6 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <a href="#main-content" className="skip-to-content">Skip to main content</a>
         {children}
       </body>
     </html>

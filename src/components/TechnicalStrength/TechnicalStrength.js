@@ -1,15 +1,16 @@
-import { technicalStrength } from '@/data/content';
+import { useLocale } from '@/i18n/LocaleProvider';
 import styles from './TechnicalStrength.module.css';
 
 export default function TechnicalStrength() {
+  const { c, t } = useLocale();
+  const technicalStrength = c.technicalStrength;
+
   return (
     <section className="section" id="skills">
       <div className="container">
         <header className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Technical Strength</h2>
-          <p className={styles.sectionSubtitle}>
-            A structured breakdown of core capabilities built across frontend, backend, data, and infrastructure.
-          </p>
+          <h2 className={styles.sectionTitle}>{t.strength.title}</h2>
+          <p className={styles.sectionSubtitle}>{t.strength.subtitle}</p>
         </header>
 
         <div className={styles.grid}>
@@ -65,7 +66,7 @@ export default function TechnicalStrength() {
               <p className={styles.description}>{strength.description}</p>
 
               <div className={styles.techWrapper}>
-                <h4 className={styles.techLabel}>Technologies & Frameworks</h4>
+                <h4 className={styles.techLabel}>{t.strength.technologies}</h4>
                 <div className={styles.pills}>
                   {strength.technologies.map((tech) => (
                     <span key={tech} className={styles.pill}>

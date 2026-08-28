@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useSyncExternalStore } from 'react';
+import { useLocale } from '@/i18n/LocaleProvider';
 import styles from './ThemeToggle.module.css';
 
 const THEME_CHANGE_EVENT = 'themechange';
@@ -40,6 +41,7 @@ function subscribeToThemeChanges(callback) {
 }
 
 export default function ThemeToggle() {
+  const { t } = useLocale();
   const theme = useSyncExternalStore(subscribeToThemeChanges, getThemeSnapshot, () => 'light');
 
   useEffect(() => {
@@ -57,8 +59,8 @@ export default function ThemeToggle() {
     <button
       className={styles.toggle}
       onClick={toggleTheme}
-      aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-      title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+      aria-label={theme === 'light' ? t.theme.toDark : t.theme.toLight}
+      title={theme === 'light' ? t.theme.toDark : t.theme.toLight}
     >
       <svg
         className={`${styles.icon} ${theme === 'light' ? styles.visible : styles.hidden}`}

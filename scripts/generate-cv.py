@@ -9,10 +9,17 @@ from reportlab.lib.enums import TA_RIGHT
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import mm
+from cv_content import (
+    AUTHOR,
+    CONTACT_LINE_SUFFIX,
+    CONTENT,
+    LINKS_LINE,
+    NAME,
+    ROLE_LINE,
+)
 from reportlab.platypus import (
     HRFlowable,
     KeepTogether,
-    PageBreak,
     Paragraph,
     SimpleDocTemplate,
     Spacer,
@@ -22,7 +29,7 @@ from reportlab.platypus import (
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_OUTPUT = ROOT / "public" / "richard-wollyce-cv.pdf"
+OUTPUT_DIR = ROOT / "public"
 
 ACCENT = colors.HexColor("#176B5B")
 TEXT = colors.HexColor("#18201E")
@@ -210,23 +217,36 @@ def project(
     story.append(KeepTogether(block))
 
 
-def draw_page(canvas, document) -> None:
-    canvas.saveState()
-    canvas.setTitle("Richard Wollyce - Tech Lead and Full-Stack Software Engineer")
-    canvas.setAuthor("Richard Wollyce Santos de Souza")
-    canvas.setSubject("Professional curriculum vitae")
-    canvas.setStrokeColor(RULE)
-    canvas.setLineWidth(0.4)
-    canvas.line(LEFT_MARGIN, 9 * mm, PAGE_WIDTH - RIGHT_MARGIN, 9 * mm)
-    canvas.setFont("Helvetica", 7.5)
-    canvas.setFillColor(MUTED)
-    canvas.drawString(LEFT_MARGIN, 5.5 * mm, "richardwollyce.com")
-    footer = f"Page {canvas.getPageNumber()}"
-    canvas.drawRightString(PAGE_WIDTH - RIGHT_MARGIN, 5.5 * mm, footer)
-    canvas.restoreState()
+def page_painter(doc_title: str, page_word: str):
+    """The footer rule and page number, in the locale's own word for 'page'."""
+
+    def draw_page(canvas, document) -> None:
+        canvas.saveState()
+        canvas.setTitle(doc_title)
+        canvas.setAuthor(AUTHOR)
+        canvas.setStrokeColor(RULE)
+        canvas.setLineWidth(0.4)
+        canvas.line(LEFT_MARGIN, 9 * mm, PAGE_WIDTH - RIGHT_MARGIN, 9 * mm)
+        canvas.setFont("Helvetica", 7.5)
+        canvas.setFillColor(MUTED)
+        canvas.drawString(LEFT_MARGIN, 5.5 * mm, "richardwollyce.com")
+        canvas.drawRightString(
+            PAGE_WIDTH - RIGHT_MARGIN,
+            5.5 * mm,
+            f"{page_word} {canvas.getPageNumber()}",
+        )
+        canvas.restoreState()
+
+    return draw_page
 
 
-def build_cv(output: Path) -> None:
+PAGE_WORD = {"en": "Page", "pt-BR": "Página", "es": "Página"}
+
+
+def build_cv(locale: str, output: Path) -> None:
+    data = CONTENT[locale]
+    labels = data["sections"]
+
     output.parent.mkdir(parents=True, exist_ok=True)
     styles = build_styles()
     document = SimpleDocTemplate(
@@ -236,168 +256,78 @@ def build_cv(output: Path) -> None:
         rightMargin=RIGHT_MARGIN,
         topMargin=TOP_MARGIN,
         bottomMargin=BOTTOM_MARGIN,
-        title="Richard Wollyce - Tech Lead and Full-Stack Software Engineer",
-        author="Richard Wollyce Santos de Souza",
-        subject="Professional curriculum vitae",
+        title=data["doc_title"],
+        author=AUTHOR,
+        subject=data["subject"],
     )
 
     story: list = []
 
-    story.append(Paragraph("RICHARD WOLLYCE SANTOS DE SOUZA", styles["name"]))
-    story.append(Paragraph("TECH LEAD | FULL-STACK SOFTWARE ENGINEER", styles["title"]))
+    story.append(Paragraph(NAME, styles["name"]))
+    story.append(Paragraph(ROLE_LINE, styles["title"]))
     story.append(
-        Paragraph(
-            "Franca, SP, Brazil | +55 (16) 9 9159-7978 | "
-            '<link href="mailto:mail@richardwollyce.com" color="#52605C">mail@richardwollyce.com</link>',
-            styles["contact"],
-        )
+        Paragraph(f'{escape(data["location"])} | {CONTACT_LINE_SUFFIX}', styles["contact"])
     )
-    story.append(
-        Paragraph(
-            '<link href="https://richardwollyce.com" color="#52605C">richardwollyce.com</link> | '
-            '<link href="https://linkedin.com/in/richardwollyce-/" color="#52605C">linkedin.com/in/richardwollyce-/</link> | '
-            '<link href="https://github.com/richard-wollyce" color="#52605C">github.com/richard-wollyce</link>',
-            styles["contact"],
-        )
-    )
+    story.append(Paragraph(LINKS_LINE, styles["contact"]))
     story.append(Spacer(1, 3))
 
-    section(story, styles, "Professional Summary")
-    story.append(
-        Paragraph(
-            "Tech Lead and Full-Stack Software Engineer building and operating product platforms across web, mobile, backend, payments, protected media, gamification, 3D experiences, generative AI, analytics, and infrastructure. Hands-on experience designing TypeScript monorepos, PostgreSQL data models, entitlement systems, resilient content releases, and event-driven commerce workflows. Combines architecture leadership with implementation, incident response, CI/CD, and production ownership.",
-            styles["body"],
-        )
-    )
+    section(story, styles, labels["summary"])
+    story.append(Paragraph(escape(data["summary"]), styles["body"]))
 
-    section(story, styles, "Technical Skills")
-    skill_lines = [
-        ("Languages", "TypeScript, JavaScript, SQL; working knowledge of Python, Rust, and Bash"),
-        ("Web & Mobile", "React, TanStack Start/Router/Query, Next.js, Expo, React Native, Three.js, Vite, Tailwind CSS"),
-        ("Backend & Data", "Node.js, PostgreSQL, Supabase, Drizzle ORM, Better Auth, REST APIs, Edge Functions, RLS, RBAC"),
-        ("Platforms & Delivery", "Docker, Linux, Nginx, GitHub Actions, Vercel, EAS, CI/CD, BaseHub, PostHog, Mercado Pago"),
-        ("Quality", "Vitest, Playwright, Maestro, TDD, automated linting, type checking, build gates, production monitoring"),
-    ]
-    for label, value in skill_lines:
+    section(story, styles, labels["skills"])
+    for label, value in data["skills"]:
         story.append(Paragraph(f"<b>{escape(label)}:</b> {escape(value)}", styles["skills"]))
 
-    section(story, styles, "Professional Experience")
-    role(
-        story,
-        styles,
-        "Casa Seth",
-        "Tech Lead & Software Engineer",
-        "April 2026 - Present",
-        "Brazil",
-        [
-            "Lead the architecture and hands-on delivery of BiblinhaPlay, spanning a production web/PWA, shared backend services, an Expo/React Native client in development, protected media, recurring billing, gamification, and interactive games.",
-            "Structured a TypeScript monorepo with pnpm, Turborepo, React, TanStack Start, shared UI and transactional-email packages, PostgreSQL/Supabase, Drizzle ORM, and automated quality gates.",
-            "Designed server-side authentication and authorization, plan-based entitlements, hosted subscription checkout, verified and idempotent webhooks, payment reconciliation, and protected media streaming.",
-            "Engineered immutable content releases with validation, hash-aware manifests, public/private media separation, atomic activation, and rollback-friendly snapshots independent of CMS runtime availability.",
-            "Built BiblinhaCraft, a Three.js voxel experience with deterministic procedural terrain, lazy regional streaming, versioned save migration, creative and survival modes, missions, and touch-first controls.",
-            "Lead development across Casa Seth's wider multi-product platform, including shared product packages, generative-image workflows, Pix payments, attribution, financial reconciliation, operational dashboards, and physical-product operations.",
-        ],
-    )
-    role(
-        story,
-        styles,
-        "MG Laser",
-        "Software Engineer",
-        "November 2025 - April 2026",
-        "Franca, Brazil",
-        [
-            "Built and maintained an ERP covering inventory, sales, and daily operations across multiple teams.",
-            "Replaced spreadsheet workflows with structured forms and automated validation, reducing manual data-entry errors.",
-            "Improved high-volume table performance through pagination and targeted PostgreSQL RPC calls while enforcing Row-Level Security and Role-Based Access Control.",
-            "Managed deployment, monitoring, and infrastructure on a self-managed Linux VPS; restored service after a critical production outage in under 10 minutes with no data loss.",
-        ],
-    )
+    section(story, styles, labels["experience"])
+    for job in data["experience"]:
+        role(
+            story,
+            styles,
+            job["company"],
+            job["title"],
+            job["period"],
+            job["location"],
+            job["bullets"],
+        )
 
-    story.append(PageBreak())
+    section(story, styles, labels["projects"])
+    for item in data["projects"]:
+        project(story, styles, item["title"], item["subtitle"], item["items"], url=item["url"])
 
-    section(story, styles, "Professional Experience - Continued")
-    role(
-        story,
-        styles,
-        "Independent / Contract",
-        "Independent Software Engineer",
-        "Ongoing",
-        "Franca, Brazil",
-        [
-            "Deliver full-stack web applications using TypeScript, React, Next.js, Node.js, Supabase, PostgreSQL, Vite, Tailwind CSS, and Vercel.",
-            "Built a live-event registration system with Brazilian identity and WhatsApp validation, responsive staff workflows, and participant tracking.",
-            "Built service-business chat and administrative workflows that turn conversations into structured budget requests and follow-up tasks.",
-            "Own frontend, backend, database design, deployment, maintenance, and live support, using Vitest and TDD to prevent regressions.",
-        ],
-    )
+    section(story, styles, labels["education"])
+    story.append(Paragraph(data["education"], styles["small"]))
 
-    section(story, styles, "Selected Engineering Work")
-    project(
-        story,
-        styles,
-        "BiblinhaPlay",
-        "Cross-Platform Learning Ecosystem",
-        [
-            "Production web/PWA plus an Expo/React Native client in development, backed by shared APIs and server-controlled integrations.",
-            "Subscription billing, entitlement-based access, authenticated media delivery, HTTP Range streaming, and immutable content snapshots.",
-            "Persistent gamification and BiblinhaCraft, a custom Three.js voxel experience with procedural terrain and progressive world loading.",
-            "Separate, not-yet-launched conversational AI R&D prototype with curated retrieval, adult consent, ASR/TTS, and child-safety-oriented guardrails.",
-        ],
-        url="https://biblinhaplay.com",
-    )
-    project(
-        story,
-        styles,
-        "Casa Seth Product Platform",
-        "Commerce & Operations",
-        [
-            "Shared domain and UI packages across independently deployed product funnels and Supabase/Postgres Edge Functions.",
-            "Paid-order validation, idempotent image generation, caching, concurrency control, telemetry, storage, and production-faithful benchmarking.",
-            "Pix checkout, server-controlled pricing, UTM attribution, browser/server event deduplication, revenue reconciliation, and operator-led physical fulfillment workflows.",
-        ],
-    )
-    project(
-        story,
-        styles,
-        "RoadToCyberSec.com",
-        "Cybersecurity Education",
-        [
-            "Authored a structured learning hub covering threat analysis, MFA, safe browsing, incident response, networking fundamentals, and digital evidence handling.",
-            "Published the material through a searchable Mintlify documentation experience for technical and non-technical learners.",
-        ],
-    )
+    section(story, styles, labels["certifications"])
+    bullets(story, styles, data["certifications"])
 
-    section(story, styles, "Education")
-    story.append(Paragraph("<b>B.Sc. in Software Engineering</b> | Universidade de Franca | 2025 - 2029", styles["small"]))
+    section(story, styles, labels["languages"])
+    story.append(Paragraph(escape(data["languages"]), styles["small"]))
 
-    section(story, styles, "Certifications")
-    certifications = [
-        "Santander Bootcamp: Rust and AI-Integrated Application Development | June 2026",
-        "Computational Forensics and Digital Evidence Investigation, Universidade Cruzeiro do Sul | June 2026",
-        "LEAD1x: Exercising Leadership: Foundational Principles, HarvardX / edX | May 2026",
-        "Networking Basics, Cisco Networking Academy | July 2025",
-        "Introduction to Cybersecurity, Cisco Networking Academy | July 2023",
-    ]
-    bullets(story, styles, certifications)
-
-    section(story, styles, "Languages")
-    story.append(Paragraph("Portuguese - Native | English - Advanced (C1) | Spanish - Intermediate", styles["small"]))
-
-    document.build(story, onFirstPage=draw_page, onLaterPages=draw_page)
+    painter = page_painter(data["doc_title"], PAGE_WORD[locale])
+    document.build(story, onFirstPage=painter, onLaterPages=painter)
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Generate Richard Wollyce's CV PDF.")
+    parser = argparse.ArgumentParser(description="Generate Richard Wollyce's CV PDFs.")
     parser.add_argument(
-        "--output",
+        "--locale",
+        choices=[*CONTENT.keys(), "all"],
+        default="all",
+        help="Which locale to render (default: all).",
+    )
+    parser.add_argument(
+        "--output-dir",
         type=Path,
-        default=DEFAULT_OUTPUT,
-        help=f"Output PDF path (default: {DEFAULT_OUTPUT})",
+        default=OUTPUT_DIR,
+        help=f"Directory for the PDFs (default: {OUTPUT_DIR})",
     )
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     args = parse_args()
-    build_cv(args.output.resolve())
-    print(args.output.resolve())
+    targets = list(CONTENT.keys()) if args.locale == "all" else [args.locale]
+    for code in targets:
+        destination = (args.output_dir / CONTENT[code]["output"]).resolve()
+        build_cv(code, destination)
+        print(f"{code:>6}  {destination}")

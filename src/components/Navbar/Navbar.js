@@ -1,21 +1,24 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useLocale } from '@/i18n/LocaleProvider';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 import styles from './Navbar.module.css';
 
-const navLinks = [
-  { label: 'Certifications', href: '#certifications' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#work' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
-];
-
 export default function Navbar() {
+  const { t } = useLocale();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const navLinks = [
+    { label: t.nav.certifications, href: '#certifications' },
+    { label: t.nav.experience, href: '#experience' },
+    { label: t.nav.projects, href: '#work' },
+    { label: t.nav.skills, href: '#skills' },
+    { label: t.nav.about, href: '#about' },
+    { label: t.nav.contact, href: '#contact' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,8 +43,8 @@ export default function Navbar() {
 
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
-      <nav className={styles.nav} aria-label="Main navigation">
-        <a href="#" className={styles.logo} aria-label="Richard Wollyce - Home">
+      <nav className={styles.nav} aria-label={t.nav.mainNavigation}>
+        <a href="#" className={styles.logo} aria-label={t.nav.home}>
           <span className={styles.logoMark}>RW</span>
         </a>
 
@@ -56,11 +59,12 @@ export default function Navbar() {
         </ul>
 
         <div className={styles.actions}>
+          <LanguageSwitcher />
           <ThemeToggle />
           <button
             className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-label={menuOpen ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={menuOpen}
           >
             <span className={styles.hamburgerLine} />

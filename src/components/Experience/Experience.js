@@ -1,15 +1,16 @@
-import { experience } from '@/data/content';
+import { useLocale } from '@/i18n/LocaleProvider';
 import styles from './Experience.module.css';
 
 export default function Experience() {
+  const { c, t } = useLocale();
+  const experience = c.experience;
+
   return (
     <section className="section" id="experience">
       <div className="container">
         <header className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Experience</h2>
-          <p className={styles.sectionSubtitle}>
-            A history of production engineering, secure system ownership, and reliable software delivery.
-          </p>
+          <h2 className={styles.sectionTitle}>{t.experience.title}</h2>
+          <p className={styles.sectionSubtitle}>{t.experience.subtitle}</p>
         </header>
 
         <div className={styles.timeline}>

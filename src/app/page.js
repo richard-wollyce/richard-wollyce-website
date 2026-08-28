@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { LocaleProvider, useLocale } from '@/i18n/LocaleProvider';
 import ParticleBackground from '@/components/ParticleBackground/ParticleBackground';
 import Navbar from '@/components/Navbar/Navbar';
 import Hero from '@/components/Hero/Hero';
@@ -11,9 +12,19 @@ import TechnicalStrength from '@/components/TechnicalStrength/TechnicalStrength'
 import About from '@/components/About/About';
 import Contact from '@/components/Contact/Contact';
 import Footer from '@/components/Footer/Footer';
+import LanguageModal from '@/components/LanguageModal/LanguageModal';
 import styles from './page.module.css';
 
-export default function Home() {
+function SkipLink() {
+  const { t } = useLocale();
+  return (
+    <a href="#main-content" className="skip-to-content">
+      {t.nav.skipToContent}
+    </a>
+  );
+}
+
+function PageBody() {
   useEffect(() => {
     const observerOptions = {
       root: null,
@@ -44,6 +55,7 @@ export default function Home() {
 
   return (
     <>
+      <SkipLink />
       <ParticleBackground />
       <div className={styles.contentLayer}>
         <Navbar />
@@ -58,6 +70,15 @@ export default function Home() {
         </main>
         <Footer />
       </div>
+      <LanguageModal />
     </>
+  );
+}
+
+export default function Home() {
+  return (
+    <LocaleProvider>
+      <PageBody />
+    </LocaleProvider>
   );
 }

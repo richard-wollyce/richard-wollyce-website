@@ -1,12 +1,15 @@
-import { certifications } from '@/data/content';
+import { useLocale } from '@/i18n/LocaleProvider';
 import styles from './Certifications.module.css';
 
 export default function Certifications() {
+  const { c, t } = useLocale();
+  const certifications = c.certifications;
+
   return (
     <section className={`section ${styles.certifications}`} id="certifications">
       <div className="container">
         <header className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Certifications</h2>
+          <h2 className={styles.sectionTitle}>{t.certifications.title}</h2>
         </header>
 
         <div className={styles.grid}>
