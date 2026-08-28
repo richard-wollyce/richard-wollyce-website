@@ -97,6 +97,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.portraitGlow {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-light) 0%, transparent 70%);
+  filter: blur(40px);
+  z-index: 0;
 }
 
 .portrait {
@@ -106,7 +117,8 @@
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid var(--border);
-  box-shadow: var(--shadow-md);
+  z-index: 1;
+  box-shadow: var(--shadow-lg);
 }
 
 .portraitImage {
@@ -204,6 +216,11 @@
     width: 280px;
     height: 280px;
   }
+
+  .portraitGlow {
+    width: 300px;
+    height: 300px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -233,5 +250,10 @@
   .portrait {
     width: 220px;
     height: 220px;
+  }
+
+  .portraitGlow {
+    width: 240px;
+    height: 240px;
   }
 }

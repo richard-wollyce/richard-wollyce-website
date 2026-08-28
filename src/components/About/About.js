@@ -9,8 +9,9 @@ export default function About() {
     <section className="section" id="about">
       <div className="container">
         <div className={styles.layout}>
-          <header>
+          <header className={styles.header}>
             <h2 className={styles.title}>{t.about.title}</h2>
+            <div className={styles.accentBar} />
           </header>
 
           <div className={styles.content}>

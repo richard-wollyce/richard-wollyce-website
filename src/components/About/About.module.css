@@ -6,12 +6,25 @@
   margin: 0 auto;
 }
 
+.header {
+  position: relative;
+}
+
+.accentBar {
+  width: 40px;
+  height: 4px;
+  background-color: var(--accent);
+  border-radius: var(--radius-full);
+}
+
 .title {
   font-family: var(--font-display);
   font-size: var(--text-5xl);
   font-weight: 400;
   color: var(--text-primary);
   letter-spacing: -0.01em;
+  /* The bar's spacing, not decoration: without it the 4px rule sits on the descenders. */
+  margin-bottom: var(--space-4);
 }
 
 .content {
