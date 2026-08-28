@@ -119,6 +119,25 @@
    */
   padding-block: var(--space-5);
   margin-block: calc(var(--space-5) * -1);
+
+  /*
+   * Cards dissolve into the edges instead of being cut off by them, which is
+   * what makes a rail read as continuing past the frame.
+   *
+   * A mask, not a pair of gradient overlays. An overlay has to be painted in the
+   * page background colour, so it forks a colour out of the theme tokens and
+   * breaks over the particle canvas, which is not a flat surface. A mask removes
+   * alpha from whatever is actually there, so it is correct on any backdrop in
+   * either theme with one declaration.
+   */
+  --rail-fade: clamp(24px, 5%, 64px);
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--rail-fade),
+    #000 calc(100% - var(--rail-fade)),
+    transparent 100%
+  );
 }
 
 .viewport::-webkit-scrollbar {

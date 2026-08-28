@@ -80,6 +80,11 @@ export default function CardRail({
   const [activeIndex, setActiveIndex] = useState(0);
   const counterFrame = useRef(0);
 
+  // True while an arrow driven smooth scroll is in flight. The loop jump must
+  // stand down for its duration, see normaliseFor below.
+  const smoothing = useRef(false);
+  const smoothingTimer = useRef(0);
+
   // The padding copies are hidden from assistive tech but stay CLICKABLE.
   //
   // `inert` was the obvious choice and it is the wrong one here, because it
@@ -157,6 +162,12 @@ export default function CardRail({
     const { copy } = measure();
     if (!el || copy <= 0) return;
 
+    // A jump landing mid animation is worse than no jump. scrollBy captured an
+    // absolute target when it started and keeps travelling to it, so the jump is
+    // simply undone and the rail appears to refuse the click. scrollByCard
+    // normalises the position before it starts instead.
+    if (smoothing.current) return;
+
     let delta = 0;
     if (el.scrollLeft < copy * 0.5) delta = copy;
     else if (el.scrollLeft > copy * 1.5) delta = -copy;
@@ -218,19 +229,55 @@ export default function CardRail({
 
   useEffect(() => () => {
     if (counterFrame.current) cancelAnimationFrame(counterFrame.current);
+    window.clearTimeout(smoothingTimer.current);
   }, []);
+
+  // Shift the parked position by whole copies so that the animation about to
+  // start lands inside the band without ever needing a jump on the way. The
+  // copies are identical, so the shift is invisible, and doing it first is what
+  // stops the loop from fighting the browser's own scroll animation.
+  const normaliseFor = useCallback(
+    (delta) => {
+      const el = viewportRef.current;
+      const { copy } = measure();
+      if (!el || copy <= 0) return;
+
+      let shift = 0;
+      const target = el.scrollLeft + delta;
+      while (target + shift > copy * 1.5) shift -= copy;
+      while (target + shift < copy * 0.5) shift += copy;
+      if (shift === 0) return;
+
+      jumpTo((node) => {
+        node.scrollLeft += shift;
+      });
+    },
+    [measure, jumpTo],
+  );
 
   const scrollByCard = useCallback(
     (direction) => {
       const el = viewportRef.current;
       const { step } = measure();
       if (!el || step <= 0) return;
-      el.scrollBy({
-        left: direction * step,
-        behavior: prefersReducedMotion() ? 'auto' : 'smooth',
-      });
+
+      const delta = direction * step;
+      normaliseFor(delta);
+
+      const instant = prefersReducedMotion();
+      if (!instant) {
+        smoothing.current = true;
+        window.clearTimeout(smoothingTimer.current);
+        // Long enough to outlast the browser's smooth scroll, short enough that
+        // a drag straight after an arrow click still gets its loop back.
+        smoothingTimer.current = window.setTimeout(() => {
+          smoothing.current = false;
+        }, 700);
+      }
+
+      el.scrollBy({ left: delta, behavior: instant ? 'auto' : 'smooth' });
     },
-    [measure],
+    [measure, normaliseFor],
   );
 
   useStartPositionEffect(() => {
