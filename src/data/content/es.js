@@ -294,12 +294,6 @@ const content = {
     theme: { toLight: 'Cambiar al tema claro', toDark: 'Cambiar al tema oscuro' },
     language: {
       switcherAria: 'Elegir idioma',
-      modalTitle: 'Elige tu idioma',
-      modalBody:
-        'Este sitio está escrito en inglés. Hay versiones en portugués y español, y puedes cambiar en cualquier momento desde las banderas del menú.',
-      keepEnglish: 'Seguir en inglés',
-      close: 'Cerrar',
-      current: 'Idioma actual',
     },
   },
 };

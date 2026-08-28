@@ -10,9 +10,9 @@ export default function LanguageModal() {
   const { suggested, setLocale, dismissSuggestion } = useLocale();
   const dialogRef = useRef(null);
 
-  // The copy speaks the language being offered, not the one on screen: a
-  // Brazilian arriving here should be addressed in Portuguese.
-  const copy = suggested ? getContent(suggested).ui.language : null;
+  // No visible copy: three flags say which languages exist and what each one is.
+  // The labels below are for screen readers only, which have no flag to look at.
+  const dialogLabel = suggested ? getContent(suggested).ui.language.switcherAria : null;
 
   useEffect(() => {
     if (!suggested) return undefined;
@@ -32,7 +32,7 @@ export default function LanguageModal() {
     };
   }, [suggested, dismissSuggestion]);
 
-  if (!suggested || !copy) return null;
+  if (!suggested) return null;
 
   return (
     <div className={styles.backdrop} onClick={dismissSuggestion}>
@@ -40,33 +40,23 @@ export default function LanguageModal() {
         className={styles.dialog}
         role="dialog"
         aria-modal="true"
-        aria-labelledby="language-modal-title"
+        aria-label={dialogLabel}
         tabIndex={-1}
         ref={dialogRef}
         onClick={(event) => event.stopPropagation()}
       >
-        <h2 className={styles.title} id="language-modal-title">
-          {copy.modalTitle}
-        </h2>
-        <p className={styles.body}>{copy.modalBody}</p>
-
-        <div className={styles.options}>
-          {locales.map((option) => (
-            <button
-              key={option.code}
-              type="button"
-              className={`${styles.option} ${option.code === suggested ? styles.optionSuggested : ''}`}
-              onClick={() => setLocale(option.code)}
-            >
-              <Flag code={option.flag} size={34} className={styles.flag} />
-              <span className={styles.optionLabel}>{option.label}</span>
-            </button>
-          ))}
-        </div>
-
-        <button type="button" className={styles.dismiss} onClick={dismissSuggestion}>
-          {copy.keepEnglish}
-        </button>
+        {locales.map((option) => (
+          <button
+            key={option.code}
+            type="button"
+            className={`${styles.option} ${option.code === suggested ? styles.optionSuggested : ''}`}
+            onClick={() => setLocale(option.code)}
+            aria-label={option.label}
+            title={option.label}
+          >
+            <Flag code={option.flag} size={72} className={styles.flag} />
+          </button>
+        ))}
       </div>
     </div>
   );

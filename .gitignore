@@ -21,6 +21,13 @@
 .docs/*
 docs/*
 docs/*/*
+# ...except the CV mirrors and the PRD, which are deliberately versioned.
+# The English mirror was already tracked; its siblings are generated from the
+# same source and keeping one of three in git is how the old one drifted.
+!docs/richard-wollyce-cv.md
+!docs/richard-wollyce-cv-pt-br.md
+!docs/richard-wollyce-cv-es.md
+!docs/richard-wollyce-portfolio-prd.md
 /build
 
 # misc

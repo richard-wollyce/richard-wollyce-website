@@ -292,12 +292,6 @@ const content = {
     theme: { toLight: 'Switch to light theme', toDark: 'Switch to dark theme' },
     language: {
       switcherAria: 'Choose language',
-      modalTitle: 'Choose your language',
-      modalBody:
-        'This site is written in English. Portuguese and Spanish versions are available, and you can switch at any time from the flags in the menu.',
-      keepEnglish: 'Keep English',
-      close: 'Close',
-      current: 'Current language',
     },
   },
 };

@@ -13,9 +13,16 @@ from cv_content import (
     AUTHOR,
     CONTACT_LINE_SUFFIX,
     CONTENT,
+    EMAIL,
+    GITHUB,
+    LINKEDIN,
     LINKS_LINE,
     NAME,
+    NAME_TITLE,
+    PHONE,
     ROLE_LINE,
+    ROLE_LINE_TITLE,
+    WEBSITE,
 )
 from reportlab.platypus import (
     HRFlowable,
@@ -30,6 +37,7 @@ from reportlab.platypus import (
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "public"
+DOCS_DIR = ROOT / "docs"
 
 ACCENT = colors.HexColor("#176B5B")
 TEXT = colors.HexColor("#18201E")
@@ -240,6 +248,94 @@ def page_painter(doc_title: str, page_word: str):
     return draw_page
 
 
+GENERATED_NOTE = {
+    "en": "Generated from scripts/cv_content.py by scripts/generate-cv.py. Do not edit by hand.",
+    "pt-BR": "Gerado a partir de scripts/cv_content.py por scripts/generate-cv.py. Nao edite a mao.",
+    "es": "Generado a partir de scripts/cv_content.py por scripts/generate-cv.py. No editar a mano.",
+}
+
+
+def _md_inline(value: str) -> str:
+    """reportlab's <b> is the only markup the copy carries; Markdown wants **."""
+    return value.replace("<b>", "**").replace("</b>", "**")
+
+
+def render_markdown(locale: str) -> str:
+    data = CONTENT[locale]
+    labels = data["sections"]
+    out: list[str] = []
+
+    out.append(f"<!-- {GENERATED_NOTE[locale]} -->")
+    out.append("")
+    out.append(f"# {NAME_TITLE}")
+    out.append("")
+    out.append(f"**{ROLE_LINE_TITLE}**")
+    out.append("")
+    # Two trailing spaces are Markdown's hard line break.
+    for line in (data["location"], EMAIL, WEBSITE, GITHUB, LINKEDIN):
+        out.append(f"{line}  ")
+    out.append(PHONE)
+    out.append("")
+
+    out.append(f'## {labels["summary"]}')
+    out.append("")
+    out.append(data["summary"])
+    out.append("")
+
+    out.append(f'## {labels["skills"]}')
+    out.append("")
+    for label, value in data["skills"]:
+        out.append(f"**{label}:** {value}  ")
+    out[-1] = out[-1].rstrip()
+    out.append("")
+
+    out.append(f'## {labels["experience"]}')
+    out.append("")
+    for job in data["experience"]:
+        out.append(f'### {job["title"]} | {job["company"]}')
+        out.append("")
+        out.append(f'**{job["location"]} | {job["period"]}**')
+        out.append("")
+        for bullet in job["bullets"]:
+            out.append(f"- {bullet}")
+        out.append("")
+
+    out.append(f'## {labels["projects"]}')
+    out.append("")
+    for item in data["projects"]:
+        out.append(f'### {item["title"]} | {item["subtitle"]}')
+        if item["url"]:
+            out.append(item["url"])
+        out.append("")
+        for line in item["items"]:
+            out.append(f"- {line}")
+        out.append("")
+
+    out.append(f'## {labels["education"]}')
+    out.append("")
+    out.append(_md_inline(data["education"]))
+    out.append("")
+
+    out.append(f'## {labels["certifications"]}')
+    out.append("")
+    for line in data["certifications"]:
+        out.append(f"- {line}")
+    out.append("")
+
+    out.append(f'## {labels["languages"]}')
+    out.append("")
+    for entry in data["languages"].split(" | "):
+        out.append(f"- {entry.replace(' - ', ': ', 1)}")
+    out.append("")
+
+    return chr(10).join(out)
+
+
+def build_markdown(locale: str, output: Path) -> None:
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(render_markdown(locale), encoding="utf-8")
+
+
 PAGE_WORD = {"en": "Page", "pt-BR": "Página", "es": "Página"}
 
 
@@ -308,7 +404,7 @@ def build_cv(locale: str, output: Path) -> None:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Generate Richard Wollyce's CV PDFs.")
+    parser = argparse.ArgumentParser(description="Generate Richard Wollyce's CV in every locale.")
     parser.add_argument(
         "--locale",
         choices=[*CONTENT.keys(), "all"],
@@ -316,10 +412,22 @@ def parse_args() -> argparse.Namespace:
         help="Which locale to render (default: all).",
     )
     parser.add_argument(
+        "--format",
+        choices=["pdf", "md", "all"],
+        default="all",
+        help="Which format to render (default: all).",
+    )
+    parser.add_argument(
         "--output-dir",
         type=Path,
         default=OUTPUT_DIR,
         help=f"Directory for the PDFs (default: {OUTPUT_DIR})",
+    )
+    parser.add_argument(
+        "--docs-dir",
+        type=Path,
+        default=DOCS_DIR,
+        help=f"Directory for the Markdown mirrors (default: {DOCS_DIR})",
     )
     return parser.parse_args()
 
@@ -328,6 +436,12 @@ if __name__ == "__main__":
     args = parse_args()
     targets = list(CONTENT.keys()) if args.locale == "all" else [args.locale]
     for code in targets:
-        destination = (args.output_dir / CONTENT[code]["output"]).resolve()
-        build_cv(code, destination)
-        print(f"{code:>6}  {destination}")
+        stem = Path(CONTENT[code]["output"]).stem
+        if args.format in ("pdf", "all"):
+            destination = (args.output_dir / CONTENT[code]["output"]).resolve()
+            build_cv(code, destination)
+            print(f"{code:>6}  {destination}")
+        if args.format in ("md", "all"):
+            destination = (args.docs_dir / f"{stem}.md").resolve()
+            build_markdown(code, destination)
+            print(f"{code:>6}  {destination}")

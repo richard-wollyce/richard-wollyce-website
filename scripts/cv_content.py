@@ -10,20 +10,32 @@ measured values from the ulpia repository's benchmarks/ directory, not estimates
 
 from __future__ import annotations
 
-CONTACT_LINE_SUFFIX = (
-    "+55 (16) 9 9159-7978 | "
-    '<link href="mailto:mail@richardwollyce.com" color="#52605C">mail@richardwollyce.com</link>'
-)
-
-LINKS_LINE = (
-    '<link href="https://richardwollyce.com" color="#52605C">richardwollyce.com</link> | '
-    '<link href="https://linkedin.com/in/richardwollyce-/" color="#52605C">linkedin.com/in/richardwollyce-/</link> | '
-    '<link href="https://github.com/richard-wollyce" color="#52605C">github.com/richard-wollyce</link>'
-)
+# The plain facts. Both renderers compose their own decoration from these, so the
+# PDF's <link> markup never leaks into the Markdown mirror.
+PHONE = "+55 (16) 9 9159-7978"
+EMAIL = "mail@richardwollyce.com"
+WEBSITE = "richardwollyce.com"
+LINKEDIN = "linkedin.com/in/richardwollyce-/"
+GITHUB = "github.com/richard-wollyce"
 
 NAME = "RICHARD WOLLYCE SANTOS DE SOUZA"
+NAME_TITLE = "Richard Wollyce Santos de Souza"
 AUTHOR = "Richard Wollyce Santos de Souza"
 ROLE_LINE = "TECH LEAD | FULL-STACK SOFTWARE ENGINEER | AI SYSTEMS"
+ROLE_LINE_TITLE = "Tech Lead | Full-Stack Software Engineer | AI Systems"
+
+_MUTED = "#52605C"
+
+
+def _pdf_link(url: str, label: str) -> str:
+    return f'<link href="{url}" color="{_MUTED}">{label}</link>'
+
+
+CONTACT_LINE_SUFFIX = f"{PHONE} | " + _pdf_link(f"mailto:{EMAIL}", EMAIL)
+
+LINKS_LINE = " | ".join(
+    _pdf_link(f"https://{target}", target) for target in (WEBSITE, LINKEDIN, GITHUB)
+)
 
 
 CONTENT: dict[str, dict] = {
