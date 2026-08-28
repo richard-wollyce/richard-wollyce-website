@@ -9,7 +9,7 @@ const content = {
     headline: 'Hola, soy Richard Wollyce',
     title: 'Tech Lead & Full-Stack Software Engineer',
     subheadline:
-      'Construyo la parte de abajo, la que el resto del software da por hecha. Ulpia, mi capa de memoria open source para agentes de IA, está escrita en Rust, funciona sin conexión y responde en menos de un milisegundo. La otra mitad de mi trabajo es comercio, entre infoproductos, pagos y la medición que después dice cuáles vendieron de verdad.',
+      'Construyo la infraestructura sobre la que se apoya el resto del software. Ulpia es mi proyecto open source más reciente: un AI Memory System local-first, escrito en Rust, que recupera información sin ningún modelo en el camino. Eso es lo que le permite responder sin conexión, en menos de un milisegundo, y mantener la consistencia entre respuestas, porque la misma pregunta siempre encuentra los mismos archivos. También soy Tech Lead y Software Engineer en Casa Seth, donde respondo por los infoproductos, los pagos y los sistemas de gestión, métricas y conversión.',
     ctaPrimary: { label: 'Hablemos', href: '#contact' },
     ctaSecondary: { label: 'Ver proyectos', href: '#work' },
     trustStrip: [
@@ -58,7 +58,7 @@ const content = {
       name: 'Ulpia',
       category: 'Infraestructura de AI Memory Local-First',
       summary:
-        'Capa de memoria open source para flotas de agentes de IA, escrita en Rust y publicada bajo Apache 2.0. La recuperación es código corriente y no pasa por ningún modelo de embedding, y de ahí sale todo lo demás. Funciona sin conexión, contesta lo mismo la segunda vez, y cuando ningún archivo cubre la pregunta lo dice en lugar de entregar el menos equivocado.',
+        'Capa de memoria open source para flotas de agentes de IA, escrita en Rust y publicada bajo Apache 2.0. La recuperación es código corriente y no pasa por ningún modelo de embedding, y de ahí sale todo lo demás. Funciona sin conexión, mantiene la consistencia entre respuestas, porque la misma pregunta siempre encuentra los mismos archivos, y cuando ningún archivo cubre la pregunta lo dice en lugar de entregar el menos equivocado.',
       highlights: [
         'El motor de recuperación corre dos scorers a la vez, un índice de palabras clave armado con las claves que declara cada archivo y la búsqueda full-text de SQLite, y los fusiona con Reciprocal Rank Fusion. Después medí cuál de los dos gana en cada tarea, porque darlos por intercambiables habría sido más cómodo que cierto.',
         'Decir "no lo sé" es aquí una respuesta con el mismo estatus que cualquier otra. Contra un conjunto de preguntas escrito a ciegas y revisado después de forma adversarial, la capa determinista sola se niega a contestar con confianza 28 de las 30 preguntas que caen fuera de alcance.',
@@ -177,7 +177,7 @@ const content = {
       icon: 'terminal',
       description:
         'Infraestructura de recuperación y memoria en Rust, medida contra benchmarks que escribí para que pudieran dejarme mal.',
-      technologies: ['Rust', 'Information Retrieval', 'SQLite FTS5', 'Reciprocal Rank Fusion', 'MCP', 'Local-First', 'Benchmarking', 'Deterministic Systems', 'Cargo', 'Tauri'],
+      technologies: ['Rust', 'Information Retrieval', 'SQLite FTS5', 'Reciprocal Rank Fusion', 'MCP', 'Local-First', 'Benchmarking', 'Tauri'],
     },
     {
       id: 'platform-leadership',
@@ -185,7 +185,7 @@ const content = {
       icon: 'diagram',
       description:
         'Llevo la arquitectura y la entrega de productos web y móviles, y sigo respondiendo por ellos cuando ya están en producción.',
-      technologies: ['System Design', 'Software Architecture', 'Monorepos', 'Domain Modeling', 'Technical Leadership', 'Architecture Decision Records', 'TypeScript', 'JavaScript', 'UML', 'Technical Documentation'],
+      technologies: ['System Design', 'Software Architecture', 'Monorepos', 'Domain Modeling', 'Technical Leadership', 'ADRs', 'TypeScript', 'UML'],
     },
     {
       id: 'commerce-conversion',
@@ -193,7 +193,7 @@ const content = {
       icon: 'shield',
       description:
         'Construyo el camino del dinero y la medición que lo acompaña, con eventos que se pueden reintentar sin miedo y cifras que cuadran.',
-      technologies: ['Pix', 'Hosted Checkout', 'Webhooks', 'Idempotency', 'Entitlements', 'Billing Reconciliation', 'Server-Side Tracking', 'Attribution', 'Conversion Analytics', 'PostHog', 'A/B Testing'],
+      technologies: ['Pix', 'Hosted Checkout', 'Webhooks', 'Idempotency', 'Entitlements', 'Reconciliation', 'Server-Side Tracking', 'Attribution', 'PostHog'],
     },
     {
       id: 'web-mobile',
@@ -201,7 +201,7 @@ const content = {
       icon: 'layout',
       description:
         'Aplicaciones web responsivas, PWAs y apps móviles nativas, con interfaces de streaming y juego 3D pensado para el táctil.',
-      technologies: ['React', 'TanStack Start', 'Next.js', 'Expo', 'React Native', 'Three.js', 'Vite', 'Tailwind CSS', 'Responsive UI', 'PWA'],
+      technologies: ['React', 'TanStack Start', 'Next.js', 'Expo', 'React Native', 'Three.js', 'Vite', 'Tailwind CSS', 'PWA'],
     },
     {
       id: 'backend-data',
@@ -209,7 +209,7 @@ const content = {
       icon: 'server',
       description:
         'Diseño APIs, autenticación, modelos de datos y flujos de contenido protegido que web y móvil comparten.',
-      technologies: ['Node.js', 'PostgreSQL', 'Supabase', 'Drizzle ORM', 'Better Auth', 'REST APIs', 'Edge Functions', 'RLS', 'RBAC', 'Protected Media'],
+      technologies: ['Node.js', 'PostgreSQL', 'Supabase', 'Drizzle ORM', 'Better Auth', 'Edge Functions', 'RLS', 'RBAC', 'Protected Media'],
     },
     {
       id: 'infrastructure-quality',
@@ -217,7 +217,7 @@ const content = {
       icon: 'code',
       description:
         'Me toca el despliegue, las pruebas, el monitoreo, los incidentes y la recuperación, tanto en servicios gestionados como en infraestructura propia.',
-      technologies: ['Docker', 'GitHub Actions', 'CI/CD', 'Linux', 'Nginx', 'Vercel', 'Vitest', 'Playwright', 'Maestro', 'TDD', 'Biome', 'Lefthook'],
+      technologies: ['Docker', 'GitHub Actions', 'CI/CD', 'Linux', 'Nginx', 'Vercel', 'Vitest', 'Playwright', 'Maestro', 'TDD'],
     },
   ],
 

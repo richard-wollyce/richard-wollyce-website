@@ -7,7 +7,7 @@ const content = {
     headline: "Hi, I'm Richard Wollyce",
     title: 'Tech Lead & Full-Stack Software Engineer',
     subheadline:
-      'I build infrastructure and then stay on call for it. Ulpia is the open-source one: a memory layer for AI agents, written in Rust, with no model anywhere in the retrieval path, which is why it answers offline in under a millisecond. The other half of my week is commerce work, where I build the payment flow and the measurement sitting under it, which is how anyone knows which infoproduct actually sold.',
+      'I build the infrastructure other software leans on. Ulpia is my most recent open source project: a local-first AI Memory System, written in Rust, that retrieves with no model anywhere in the path. That is what lets it answer offline in under a millisecond and stay consistent between answers, because the same question always finds the same files. I am also Tech Lead and Software Engineer at Casa Seth, where I own the infoproducts, the payments, and the management, metrics and conversion systems behind them.',
     ctaPrimary: { label: "Let's Talk", href: '#contact' },
     ctaSecondary: { label: 'View Projects', href: '#work' },
     trustStrip: [
@@ -175,7 +175,7 @@ const content = {
       icon: 'terminal',
       description:
         'Retrieval and memory infrastructure in Rust, measured by a benchmark harness that ships in the same repository.',
-      technologies: ['Rust', 'Information Retrieval', 'SQLite FTS5', 'Reciprocal Rank Fusion', 'MCP', 'Local-First', 'Benchmarking', 'Deterministic Systems', 'Cargo', 'Tauri'],
+      technologies: ['Rust', 'Information Retrieval', 'SQLite FTS5', 'Reciprocal Rank Fusion', 'MCP', 'Local-First', 'Benchmarking', 'Tauri'],
     },
     {
       id: 'platform-leadership',
@@ -183,7 +183,7 @@ const content = {
       icon: 'diagram',
       description:
         'I lead architecture and delivery across web and mobile products, and I am still the one on call after they go live.',
-      technologies: ['System Design', 'Software Architecture', 'Monorepos', 'Domain Modeling', 'Technical Leadership', 'Architecture Decision Records', 'TypeScript', 'JavaScript', 'UML', 'Technical Documentation'],
+      technologies: ['System Design', 'Software Architecture', 'Monorepos', 'Domain Modeling', 'Technical Leadership', 'ADRs', 'TypeScript', 'UML'],
     },
     {
       id: 'commerce-conversion',
@@ -191,7 +191,7 @@ const content = {
       icon: 'shield',
       description:
         'The money path, and the measurement underneath it. Events that are safe to retry, numbers that add up at the end of the month.',
-      technologies: ['Pix', 'Hosted Checkout', 'Webhooks', 'Idempotency', 'Entitlements', 'Billing Reconciliation', 'Server-Side Tracking', 'Attribution', 'Conversion Analytics', 'PostHog', 'A/B Testing'],
+      technologies: ['Pix', 'Hosted Checkout', 'Webhooks', 'Idempotency', 'Entitlements', 'Reconciliation', 'Server-Side Tracking', 'Attribution', 'PostHog'],
     },
     {
       id: 'web-mobile',
@@ -199,7 +199,7 @@ const content = {
       icon: 'layout',
       description:
         'Responsive web, PWA and native mobile apps, up to and including streaming interfaces and touch-first 3D gameplay.',
-      technologies: ['React', 'TanStack Start', 'Next.js', 'Expo', 'React Native', 'Three.js', 'Vite', 'Tailwind CSS', 'Responsive UI', 'PWA'],
+      technologies: ['React', 'TanStack Start', 'Next.js', 'Expo', 'React Native', 'Three.js', 'Vite', 'Tailwind CSS', 'PWA'],
     },
     {
       id: 'backend-data',
@@ -207,7 +207,7 @@ const content = {
       icon: 'server',
       description:
         'I design the APIs, the authentication, the data models, and the protected-content flows that web and mobile both read from.',
-      technologies: ['Node.js', 'PostgreSQL', 'Supabase', 'Drizzle ORM', 'Better Auth', 'REST APIs', 'Edge Functions', 'RLS', 'RBAC', 'Protected Media'],
+      technologies: ['Node.js', 'PostgreSQL', 'Supabase', 'Drizzle ORM', 'Better Auth', 'Edge Functions', 'RLS', 'RBAC', 'Protected Media'],
     },
     {
       id: 'infrastructure-quality',
@@ -215,7 +215,7 @@ const content = {
       icon: 'code',
       description:
         'Deployment, testing, monitoring, incidents and recovery, on managed services and on Linux boxes I administer myself.',
-      technologies: ['Docker', 'GitHub Actions', 'CI/CD', 'Linux', 'Nginx', 'Vercel', 'Vitest', 'Playwright', 'Maestro', 'TDD', 'Biome', 'Lefthook'],
+      technologies: ['Docker', 'GitHub Actions', 'CI/CD', 'Linux', 'Nginx', 'Vercel', 'Vitest', 'Playwright', 'Maestro', 'TDD'],
     },
   ],
 
