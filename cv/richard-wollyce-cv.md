@@ -80,6 +80,7 @@ Tech Lead and Full-Stack Software Engineer working across AI infrastructure and 
 
 **Franca, Brazil | April 2015 - April 2016**
 
+- Hired out of the school's own classroom, during the web development and design course I was enrolled on there.
 - Taught web design and creative software, and kept the Windows lab running: installation, configuration, and updates across every workstation.
 - Supported students and staff during daily operations, from software issues to the lab network.
 

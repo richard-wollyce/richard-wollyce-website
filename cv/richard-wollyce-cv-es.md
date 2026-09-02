@@ -80,6 +80,7 @@ Tech Lead y Full-Stack Software Engineer entre infraestructura de IA y sistemas 
 
 **Franca, Brasil | Abril de 2015 - Abril de 2016**
 
+- La escuela me contrató desde su propia aula, durante el curso de desarrollo web y diseño que yo cursaba allí.
 - Di clases de diseño web y de software creativo y mantuve el laboratorio Windows en marcha: instalación, configuración y actualización en todas las estaciones.
 - Soporte a estudiantes y personal durante la operación diaria, desde problemas de software hasta la red del laboratorio.
 

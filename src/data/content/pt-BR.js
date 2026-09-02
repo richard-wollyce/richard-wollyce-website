@@ -193,6 +193,7 @@ const content = {
       location: 'Franca, Brasil',
       period: 'Abril de 2015 - Abril de 2016',
       bullets: [
+        'A escola me contratou de dentro da própria sala de aula, durante o curso de desenvolvimento web e design que eu fazia lá.',
         'Dei aulas de web design e de software criativo e mantive o laboratório Windows funcionando: instalação, configuração e atualização em todas as estações.',
         'Suporte a alunos e funcionários durante a operação diária, de problema de software à rede do laboratório.',
       ],

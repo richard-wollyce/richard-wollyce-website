@@ -137,7 +137,7 @@ def build_styles() -> dict[str, ParagraphStyle]:
             parent=base["Normal"],
             fontName="Helvetica",
             fontSize=8.4,
-            leading=10.4,
+            leading=10.15,
             textColor=TEXT,
             leftIndent=9,
             firstLineIndent=-7,

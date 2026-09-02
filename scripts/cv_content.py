@@ -145,6 +145,7 @@ CONTENT: dict[str, dict] = {
                 "period": "April 2015 - April 2016",
                 "location": "Franca, Brazil",
                 "bullets": [
+                    "Hired out of the school's own classroom, during the web development and design course I was enrolled on there.",
                     "Taught web design and creative software, and kept the Windows lab running: installation, configuration, and updates across every workstation.",
                     "Supported students and staff during daily operations, from software issues to the lab network.",
                 ],
@@ -299,6 +300,7 @@ CONTENT: dict[str, dict] = {
                 "period": "Abril de 2015 - Abril de 2016",
                 "location": "Franca, Brasil",
                 "bullets": [
+                    "A escola me contratou de dentro da própria sala de aula, durante o curso de desenvolvimento web e design que eu fazia lá.",
                     "Dei aulas de web design e de software criativo e mantive o laboratório Windows funcionando: instalação, configuração e atualização em todas as estações.",
                     "Suporte a alunos e funcionários durante a operação diária, de problema de software à rede do laboratório.",
                 ],
@@ -453,6 +455,7 @@ CONTENT: dict[str, dict] = {
                 "period": "Abril de 2015 - Abril de 2016",
                 "location": "Franca, Brasil",
                 "bullets": [
+                    "La escuela me contrató desde su propia aula, durante el curso de desarrollo web y diseño que yo cursaba allí.",
                     "Di clases de diseño web y de software creativo y mantuve el laboratorio Windows en marcha: instalación, configuración y actualización en todas las estaciones.",
                     "Soporte a estudiantes y personal durante la operación diaria, desde problemas de software hasta la red del laboratorio.",
                 ],
