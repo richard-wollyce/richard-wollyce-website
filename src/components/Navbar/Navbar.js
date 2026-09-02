@@ -1,13 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { localeMeta } from '@/data/content';
 import { useLocale } from '@/i18n/LocaleProvider';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -44,9 +46,9 @@ export default function Navbar() {
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <nav className={styles.nav} aria-label={t.nav.mainNavigation}>
-        <a href="#" className={styles.logo} aria-label={t.nav.home}>
+        <Link href={localeMeta(locale).path} className={styles.logo} aria-label={t.nav.home}>
           <span className={styles.logoMark}>RW</span>
-        </a>
+        </Link>
 
         <ul className={styles.links}>
           {navLinks.map((link) => (

@@ -1,8 +1,12 @@
 'use client';
 
-import { Children, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { Children, useCallback, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { useLocale } from '@/i18n/LocaleProvider';
 import styles from './CardRail.module.css';
+
+function subscribeToNothing() {
+  return () => {};
+}
 
 /*
  * A horizontal rail that loops forever, driven by native scrolling.
@@ -105,8 +109,10 @@ export default function CardRail({
   const cards = Children.toArray(children);
   const cardCount = cards.length;
 
-  const [hydrated, setHydrated] = useState(false);
-  useEffect(() => setHydrated(true), []);
+  // false while the server HTML is being hydrated, true on every render
+  // after that. useSyncExternalStore is how React exposes that boundary
+  // without a setState inside an effect.
+  const hydrated = useSyncExternalStore(subscribeToNothing, () => true, () => false);
 
   const leadCopyRef = firstCopyRef;
   const trailCopyRef = useRef(null);

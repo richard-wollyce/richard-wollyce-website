@@ -49,8 +49,8 @@ RULE = colors.HexColor("#D7DFDC")
 PAGE_WIDTH, _ = A4
 LEFT_MARGIN = 16 * mm
 RIGHT_MARGIN = 16 * mm
-TOP_MARGIN = 13 * mm
-BOTTOM_MARGIN = 13 * mm
+TOP_MARGIN = 11.5 * mm
+BOTTOM_MARGIN = 11.5 * mm
 CONTENT_WIDTH = PAGE_WIDTH - LEFT_MARGIN - RIGHT_MARGIN
 
 
@@ -91,16 +91,16 @@ def build_styles() -> dict[str, ParagraphStyle]:
             fontSize=10.5,
             leading=13,
             textColor=ACCENT,
-            spaceBefore=7,
-            spaceAfter=4,
+            spaceBefore=5,
+            spaceAfter=2.5,
             keepWithNext=True,
         ),
         "body": ParagraphStyle(
             "Body",
             parent=base["Normal"],
             fontName="Helvetica",
-            fontSize=8.7,
-            leading=11.2,
+            fontSize=8.6,
+            leading=10.9,
             textColor=TEXT,
             spaceAfter=3,
         ),
@@ -136,12 +136,12 @@ def build_styles() -> dict[str, ParagraphStyle]:
             "Bullet",
             parent=base["Normal"],
             fontName="Helvetica",
-            fontSize=8.45,
-            leading=10.7,
+            fontSize=8.4,
+            leading=10.4,
             textColor=TEXT,
             leftIndent=9,
             firstLineIndent=-7,
-            spaceAfter=2.3,
+            spaceAfter=1.7,
         ),
         "project": ParagraphStyle(
             "Project",
@@ -278,6 +278,9 @@ def render_markdown(locale: str) -> str:
     for line in (data["location"], EMAIL, WEBSITE, GITHUB, LINKEDIN):
         out.append(f"{line}  ")
     out.append(PHONE)
+    if data.get("availability"):
+        out.append("")
+        out.append(data["availability"])
     out.append("")
 
     out.append(f'## {labels["summary"]}')
@@ -368,6 +371,8 @@ def build_cv(locale: str, output: Path) -> None:
         Paragraph(f'{escape(data["location"])} | {CONTACT_LINE_SUFFIX}', styles["contact"])
     )
     story.append(Paragraph(LINKS_LINE, styles["contact"]))
+    if data.get("availability"):
+        story.append(Paragraph(escape(data["availability"]), styles["contact"]))
     story.append(Spacer(1, 3))
 
     section(story, styles, labels["summary"])

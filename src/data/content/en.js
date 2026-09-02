@@ -7,11 +7,11 @@ const content = {
     headline: "Hi, I'm Richard Wollyce",
     title: 'Tech Lead & Full-Stack Software Engineer',
     subheadline:
-      'I build the infrastructure other software leans on. Ulpia is my most recent open source project: a local-first AI Memory System, written in Rust, that retrieves with no model anywhere in the path. That is what lets it answer offline in under a millisecond and stay consistent between answers, because the same question always finds the same files. I am also Tech Lead and Software Engineer at Casa Seth, where I own the infoproducts, the payments, and the management, metrics and conversion systems behind them.',
+      'I build the infrastructure other software leans on. Ulpia is my most recent open source project: a local-first memory and retrieval layer for AI agents, written in Rust, that serves RAG with no model anywhere in the path. That is what lets it answer offline in under a millisecond and stay consistent between answers, because the same question always finds the same files, and its evaluation harness ships in the same repository. I am also Tech Lead and Software Engineer at Casa Seth, where I own the infoproducts, the payments, and the management, metrics and conversion systems behind them.',
     ctaPrimary: { label: "Let's Talk", href: '#contact' },
     ctaSecondary: { label: 'View Projects', href: '#work' },
     trustStrip: [
-      { icon: 'bolt', text: 'Creator of Ulpia, an open-source AI memory layer written in Rust' },
+      { icon: 'bolt', text: 'Creator of Ulpia, an open-source retrieval layer for AI agents written in Rust' },
       { icon: 'chart', text: 'Tech lead for the commerce and payments stack at Casa Seth' },
       { icon: 'check', text: 'Still on call for everything I ship' },
     ],
@@ -37,16 +37,22 @@ const content = {
       date: 'Issued May 2026',
     },
     {
+      id: 'cisco-networking-basics',
+      title: 'Networking Basics',
+      issuer: 'Cisco Networking Academy',
+      date: 'Issued July 2025',
+    },
+    {
       id: 'cisco-intro-cybersecurity',
       title: 'Introduction to Cybersecurity',
       issuer: 'Cisco Networking Academy',
       date: 'Issued July 2023',
     },
     {
-      id: 'cisco-networking-basics',
-      title: 'Networking Basics',
-      issuer: 'Cisco Networking Academy',
-      date: 'Issued July 2025',
+      id: 'remington-web',
+      title: 'Professional Qualification in Web Development and Design',
+      issuer: 'Escola Remington',
+      date: 'Issued April 2015',
     },
   ],
 
@@ -56,16 +62,16 @@ const content = {
       name: 'Ulpia',
       category: 'Local-First AI Memory Infrastructure',
       summary:
-        'An open-source memory layer for fleets of AI agents, written in Rust and released under Apache 2.0. There is no embedding model anywhere in the retrieval path. It is a keyword index, a full-text index, and the code that fuses them. No network, and the same ranking on the same question every time. It can also tell you that nobody covers a question, instead of handing back the least wrong file.',
+        'An open-source memory layer for fleets of AI agents, written in Rust and released under Apache 2.0. There is no embedding model anywhere in the retrieval path. It is retrieval-augmented generation without the embedding model: a keyword index, a full-text index, and the code that fuses them. No network, and the same ranking on the same question every time. It can also tell you that nobody covers a question, instead of handing back the least wrong file.',
       highlights: [
         'Retrieval runs two scorers rather than one. A keyword index built from the keys each file declares, and SQLite full-text search over the prose, fused with Reciprocal Rank Fusion. Then I measured which scorer wins which kind of question, because they are not interchangeable.',
         'Refusal is a first-class verdict here. On a question set authored blind and then checked adversarially, the deterministic layer alone declines to confidently answer 28 of the 30 out-of-scope questions.',
-        'Warm route latency measures 0.68 ms p50 and 1.16 ms p95, in process. On a full 500-question run of LongMemEval-S it scores 97 percent on abstention, which that benchmark\'s own paper names as the ability memory systems fail hardest.',
+        'Evaluation is part of the product. Warm route latency measures 0.68 ms p50 and 1.16 ms p95, in process. On a full 500-question run of LongMemEval-S it scores 97 percent on abstention, which that benchmark\'s own paper names as the ability memory systems fail hardest.',
         'Ships as an MCP server with four read-only tools, so Claude and anything else that speaks MCP reads the same base I do. There is deliberately no write tool a model can reach.',
         'Git is the privacy model, and there is no configuration file for it. A file git does not track is a file the system will not serve, and it refuses to open a base at all when git cannot be consulted.',
-        'Roughly 17,000 lines of Rust across three crates, a single runtime dependency, over 200 tests, 33 architecture decision records. Every benchmark result carries the command, commit, machine and date that produced it.',
+        'Roughly 17,000 lines of Rust across three crates, a single runtime dependency, over 200 tests, 36 architecture decision records. Every benchmark result carries the command, commit, machine and date that produced it.',
       ],
-      stack: ['Rust', 'SQLite FTS5', 'Information Retrieval', 'MCP', 'Tauri', 'Cargo', 'GitHub Actions', 'Apache 2.0'],
+      stack: ['Rust', 'RAG', 'AI Agents', 'LLM Evaluation', 'Information Retrieval', 'SQLite FTS5', 'MCP', 'Tauri', 'Cargo', 'GitHub Actions', 'Apache 2.0'],
       link: 'https://ulpia.io',
       repo: 'https://github.com/richard-wollyce/ulpia',
     },
@@ -74,7 +80,7 @@ const content = {
       name: 'Casa Seth',
       category: 'Infoproducts, Commerce & Conversion Systems',
       summary:
-        'The house I lead engineering for. It ships digital products and infoproducts, and my half is everything underneath the sale, from Pix checkout and attribution through server-side conversion tracking to the financial reconciliation at the end of the month. BiblinhaPlay is the oldest product still running in it, a cross-platform learning and entertainment subscription with roughly 500 users.',
+        'The house I lead engineering for. It ships digital products and infoproducts, and my half is everything underneath the sale, from Mercado Pago and Pix checkout (Pix is Brazil\'s instant account-to-account rail) and attribution through server-side conversion tracking to the financial reconciliation at the end of the month. BiblinhaPlay is the oldest product still running in it, a cross-platform learning and entertainment subscription with roughly 500 users.',
       highlights: [
         'I built the revenue instrumentation the house runs on. First-party browser and server conversion tracking, event deduplication, UTM attribution, revenue reconciliation, and the dashboards operators read before deciding what to run again.',
         'A generative-image pipeline with idempotent jobs, bounded concurrency, caching, persistence and telemetry. All of that exists so a failed job can retry without duplicating work or charging a customer twice.',
@@ -114,11 +120,11 @@ const content = {
       location: 'Apache 2.0, ulpia.io',
       period: 'August 2026 - Present',
       bullets: [
-        'I design and build a local-first memory layer for fleets of AI agents in Rust. Nothing in the retrieval path is a model, so it runs offline, and when a result is wrong you can read why.',
+        'I design and build a local-first memory and retrieval layer for fleets of AI agents in Rust: RAG without an embedding model. Nothing in the retrieval path is a model, so it runs offline, and when a result is wrong you can read why.',
         'The engine runs two scorers over a keyword index and SQLite full-text search, fused with Reciprocal Rank Fusion, behind a confidence gate that lets the system decline a question no file covers.',
-        'The benchmark harness went in alongside the product. It covers abstention against a blind adversarial set, latency, and the full 500 questions of LongMemEval-S, and every result it prints is stamped with command, commit, machine and date.',
+        'The evaluation harness went in alongside the product. It covers abstention against a blind adversarial set, latency, and the full 500 questions of LongMemEval-S, and every result it prints is stamped with command, commit, machine and date.',
         'Everything reaches Claude Desktop and other MCP clients through four read-only tools. Write access never touches the surface a model can see.',
-        'I maintain roughly 17,000 lines of Rust across three crates, one runtime dependency, over 200 tests and CI on GitHub Actions. There are 33 architecture decision records, and each one says what the trade was and why I took that side of it.',
+        'I maintain roughly 17,000 lines of Rust across three crates, one runtime dependency, over 200 tests and CI on GitHub Actions. There are 36 architecture decision records, and each one says what the trade was and why I took that side of it.',
       ],
     },
     {
@@ -129,7 +135,7 @@ const content = {
       period: 'April 2026 - Present',
       bullets: [
         'I lead architecture and delivery for the house. Infoproducts, the digital commerce funnels, and the measurement systems that report what each one earned.',
-        'The conversion path is mine, all of it. Pix checkout, server-controlled pricing, UTM attribution, deduplication of browser and server events, revenue reconciliation, and the operational dashboards on top.',
+        'The conversion path is mine, all of it. Mercado Pago and Pix checkout, server-controlled pricing, UTM attribution, deduplication of browser and server events, revenue reconciliation, and the operational dashboards on top.',
         'Designed a generative-image pipeline around idempotent jobs, bounded concurrency, caching, telemetry, and retries that cannot duplicate paid work.',
         'I lead BiblinhaPlay, the subscription learning and entertainment product with roughly 500 users, running on a production web/PWA and an Expo/React Native client that carry video, music, printables, games and gamification.',
         'I structured the TypeScript monorepo behind all of it, on TanStack Start, React, Expo/React Native, PostgreSQL and Drizzle, with reusable UI and transactional-email packages shared across it.',
@@ -154,16 +160,39 @@ const content = {
     },
     {
       id: 'contractor',
-      company: 'Independent / Contract',
+      company: 'Freelance',
       role: 'Independent Software Engineer',
       location: 'Franca, Brazil',
-      period: null,
+      period: '2018 - Present',
       bullets: [
         'Full-stack web apps for clients, on TypeScript, React, Next.js, Node.js, Supabase, PostgreSQL, Vite, Tailwind CSS and Vercel.',
         'A live event registration system that staff across several companies use, with CPF and WhatsApp validation, a responsive UI and participant tracking.',
         'For a tattoo and barber shop, a chatbot and admin dashboard that turn chats into structured budget requests and follow-up tasks. I still maintain it.',
         'Landing pages and internal tools with payment integrations and webhooks wired in, to automate checkout and the day-to-day work behind it.',
         'Frontend, backend, database design, deployment, maintenance and live support are all me. I work in TDD with Vitest, so regressions get caught and a refactor stays safe.',
+        'From 2018 to 2025 the same practice also covered IT support and systems work for people and small businesses, remote and on site: hardware, Windows, Linux and Android, software installation and configuration, and troubleshooting.',
+      ],
+    },
+    {
+      id: 'sao-joaquim',
+      company: 'São Joaquim Hospital e Maternidade',
+      role: 'IT Support & Operations Assistant',
+      location: 'Franca, Brazil',
+      period: 'August 2017 - April 2018',
+      bullets: [
+        'Technical and operational support across the departments of a hospital, including the MV2000 patient-record system, service orders and day-to-day incident handling.',
+        'First point of contact for the Ombudsman department, and the link between reception, nursing, medical and technical teams when a workflow stalled.',
+      ],
+    },
+    {
+      id: 'remington',
+      company: 'Escola Remington',
+      role: 'Technical Instructor & IT Support Technician',
+      location: 'Franca, Brazil',
+      period: 'April 2015 - April 2016',
+      bullets: [
+        'Taught web design and creative software, and kept the Windows lab running: installation, configuration and updates across every workstation.',
+        'Support for students and staff during daily operations, from software issues to the lab network.',
       ],
     },
   ],
@@ -174,8 +203,8 @@ const content = {
       title: 'Systems & AI Engineering',
       icon: 'terminal',
       description:
-        'Retrieval and memory infrastructure in Rust, measured by a benchmark harness that ships in the same repository.',
-      technologies: ['Rust', 'Information Retrieval', 'SQLite FTS5', 'Reciprocal Rank Fusion', 'MCP', 'Local-First', 'Benchmarking', 'Tauri'],
+        'Retrieval and memory infrastructure for AI agents in Rust, measured by an evaluation harness that ships in the same repository.',
+      technologies: ['Rust', 'RAG', 'AI Agents', 'LLM Evaluation', 'Information Retrieval', 'SQLite FTS5', 'Reciprocal Rank Fusion', 'MCP', 'Local-First', 'Benchmarking', 'Tauri'],
     },
     {
       id: 'platform-leadership',
@@ -191,7 +220,7 @@ const content = {
       icon: 'shield',
       description:
         'The money path, and the measurement underneath it. Events that are safe to retry, numbers that add up at the end of the month.',
-      technologies: ['Pix', 'Hosted Checkout', 'Webhooks', 'Idempotency', 'Entitlements', 'Reconciliation', 'Server-Side Tracking', 'Attribution', 'PostHog'],
+      technologies: ['Mercado Pago', 'Pix', 'Hosted Checkout', 'Webhooks', 'Idempotency', 'Entitlements', 'Reconciliation', 'Server-Side Tracking', 'Attribution', 'PostHog'],
     },
     {
       id: 'web-mobile',
@@ -222,22 +251,22 @@ const content = {
   about: {
     paragraphs: [
       "I'm a Tech Lead and Full-Stack Software Engineer. I take product requirements and turn them into software that works, and then I keep answering for it after it ships.",
-      'The project I care most about is Ulpia, an open-source memory layer for AI agents, written in Rust. There is no model in the retrieval path at all. That is what lets it run offline, stay consistent between answers, and tell you when no file in the library covers your question. It is Apache 2.0, and the benchmarks live in the same repository, including the categories where it scores badly.',
+      'The project I care most about is Ulpia, an open-source memory and retrieval layer for AI agents, written in Rust. It is RAG with no model in the retrieval path at all. That is what lets it run offline, stay consistent between answers, and tell you when no file in the library covers your question. It is Apache 2.0, and the evaluation lives in the same repository, including the categories where it scores badly.',
       'At Casa Seth I lead the commerce side. Infoproducts and payment flows, plus the attribution and conversion systems that report what each launch actually earned. BiblinhaPlay is the one I built first and still operate, a subscription learning platform with roughly 500 users across web and mobile.',
-      'I stay close to the code. Sensitive integrations stay server-side, boundaries get drawn on purpose, critical workflows get tested, and I plan for the day something has to be restored.',
+      'I stay close to the code. Sensitive integrations stay server-side, boundaries get drawn on purpose, critical workflows get tested, and I plan for the day something has to be restored. I work from Franca, Brazil, remotely across Latin America, and I am open to relocating to Santiago, Chile.',
     ],
   },
 
   education: {
     degree: 'B.Sc. Software Engineering',
     institution: 'Universidade de Franca',
-    period: '2025 - 2029',
+    period: '2025 - 2029, in progress',
   },
 
   languages: [
     { name: 'Portuguese (Brazil)', level: 'Native' },
     { name: 'English', level: 'Advanced (C1)' },
-    { name: 'Spanish', level: 'Intermediate' },
+    { name: 'Spanish', level: 'Fluent' },
   ],
 
   ui: {
@@ -261,7 +290,7 @@ const content = {
     },
     work: {
       title: 'Projects',
-      subtitle: 'An AI memory layer, a commerce operation, and a cybersecurity learning hub.',
+      subtitle: 'A retrieval layer for AI agents, a commerce operation, and a cybersecurity learning hub.',
       accessProject: 'Access Project',
       visit: (name) => `Visit ${name}`,
       visitAria: (name) => `Visit ${name} live site`,
@@ -281,7 +310,7 @@ const content = {
     },
     contact: {
       title: "Let's Connect",
-      subtitle: 'If you have a systems problem, a security problem, or an engineering role to fill, write to me.',
+      subtitle: 'If you have a systems problem, an AI retrieval problem, or an engineering role to fill, remote in Latin America or in Chile, write to me.',
       email: 'Email',
       linkedin: 'LinkedIn',
       github: 'GitHub',

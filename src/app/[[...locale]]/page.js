@@ -1,6 +1,6 @@
 'use client';
 
-import { LocaleProvider, useLocale } from '@/i18n/LocaleProvider';
+import { useLocale } from '@/i18n/LocaleProvider';
 import ParticleBackground from '@/components/ParticleBackground/ParticleBackground';
 import Navbar from '@/components/Navbar/Navbar';
 import Hero from '@/components/Hero/Hero';
@@ -23,7 +23,9 @@ function SkipLink() {
   );
 }
 
-function PageBody() {
+// The locale comes from the route: the layout above reads the [[...locale]]
+// param and mounts LocaleProvider with it, so this page only consumes it.
+export default function Home() {
   return (
     <>
       <SkipLink />
@@ -43,13 +45,5 @@ function PageBody() {
       </div>
       <LanguageModal />
     </>
-  );
-}
-
-export default function Home() {
-  return (
-    <LocaleProvider>
-      <PageBody />
-    </LocaleProvider>
   );
 }

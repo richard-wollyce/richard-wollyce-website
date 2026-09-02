@@ -4,12 +4,15 @@ import es from './es';
 
 export const DEFAULT_LOCALE = 'en';
 
-// htmlLang feeds document.documentElement.lang; match is the navigator.language
-// prefix that should trigger the suggestion modal for this locale.
+// path is the route that serves this locale ("/" for the default, "/es" for
+// Spanish); every link, redirect and static param is derived from it, so a
+// path lives in exactly one place. htmlLang feeds <html lang> on the server
+// and document.documentElement.lang on the client; match is the
+// navigator.language prefix that should trigger the suggestion modal.
 export const locales = [
-  { code: 'en', label: 'English', short: 'EN', htmlLang: 'en', flag: 'us', match: 'en' },
-  { code: 'pt-BR', label: 'Português', short: 'PT', htmlLang: 'pt-BR', flag: 'br', match: 'pt' },
-  { code: 'es', label: 'Español', short: 'ES', htmlLang: 'es', flag: 'es', match: 'es' },
+  { code: 'en', label: 'English', short: 'EN', htmlLang: 'en', flag: 'us', match: 'en', path: '/' },
+  { code: 'pt-BR', label: 'Português', short: 'PT', htmlLang: 'pt-BR', flag: 'br', match: 'pt', path: '/pt-br' },
+  { code: 'es', label: 'Español', short: 'ES', htmlLang: 'es', flag: 'es', match: 'es', path: '/es' },
 ];
 
 export const contentByLocale = {
@@ -28,6 +31,21 @@ export function getContent(code) {
 
 export function localeMeta(code) {
   return locales.find((l) => l.code === code) ?? locales[0];
+}
+
+// The route segments under app/[[...locale]] for a locale: [] for "/" and
+// ["es"] for "/es". This is what generateStaticParams hands to Next.
+export function localeSegments(code) {
+  const { path } = localeMeta(code);
+  return path === '/' ? [] : path.slice(1).split('/');
+}
+
+// The inverse: the optional catch-all param ([] or undefined for "/",
+// ["es"] for "/es") back to a locale code, or null when no locale owns it.
+export function localeFromSegments(segments) {
+  const path = `/${(segments ?? []).join('/')}`;
+  const hit = locales.find((l) => l.path === path);
+  return hit ? hit.code : null;
 }
 
 // Maps a raw navigator.language ("pt-br", "es-AR", "en-GB") onto a locale we
