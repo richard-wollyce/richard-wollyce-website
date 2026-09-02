@@ -145,7 +145,7 @@ CONTENT: dict[str, dict] = {
                 "period": "April 2015 - April 2016",
                 "location": "Franca, Brazil",
                 "bullets": [
-                    "Hired out of the school's own classroom, during the web development and design course I was enrolled on there.",
+                    "Hired by the school out of its own classroom, during the web development and design course I was enrolled on there.",
                     "Taught web design and creative software, and kept the Windows lab running: installation, configuration, and updates across every workstation.",
                     "Supported students and staff during daily operations, from software issues to the lab network.",
                 ],
