@@ -19,6 +19,12 @@ const content = {
 
   certifications: [
     {
+      id: 'efset-english',
+      title: 'EF SET English Certificate: C1 Advanced, 68/100',
+      issuer: 'EF Education First',
+      date: 'Issued September 2026',
+    },
+    {
       id: 'santander-rust-ai',
       title: 'Santander Bootcamp: Rust and AI-Integrated Application Development',
       issuer: 'Santander Bootcamp',
@@ -266,7 +272,7 @@ const content = {
 
   languages: [
     { name: 'Portuguese (Brazil)', level: 'Native' },
-    { name: 'English', level: 'Advanced (C1)' },
+    { name: 'English', level: 'C1 Advanced (EF SET 68/100)' },
     { name: 'Spanish', level: 'Fluent' },
   ],
 

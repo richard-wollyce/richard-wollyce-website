@@ -185,6 +185,7 @@ CONTENT: dict[str, dict] = {
         ],
         "education": "<b>B.Sc. in Software Engineering</b> | Universidade de Franca | 2025 - 2029, in progress",
         "certifications": [
+            "EF SET English Certificate: C1 Advanced, 68/100, EF Education First | September 2026",
             "Santander Bootcamp: Rust and AI-Integrated Application Development | June 2026",
             "Computational Forensics and Digital Evidence Investigation, Universidade Cruzeiro do Sul | June 2026",
             "LEAD1x: Exercising Leadership: Foundational Principles, HarvardX / edX | May 2026",
@@ -192,7 +193,7 @@ CONTENT: dict[str, dict] = {
             "Introduction to Cybersecurity, Cisco Networking Academy | July 2023",
             "Professional Qualification in Web Development and Design (104 hours), Escola Remington | April 2015",
         ],
-        "languages": "Portuguese - Native | English - Advanced (C1) | Spanish - Fluent",
+        "languages": "Portuguese - Native | English - C1 Advanced (EF SET 68/100) | Spanish - Fluent",
     },
 
     # --------------------------------------------------------------- Portuguese
@@ -340,6 +341,7 @@ CONTENT: dict[str, dict] = {
         ],
         "education": "<b>Bacharelado em Engenharia de Software</b> | Universidade de Franca | 2025 - 2029, em andamento",
         "certifications": [
+            "EF SET English Certificate: C1 Advanced, 68/100, EF Education First | Setembro de 2026",
             "Santander Bootcamp: Rust and AI-Integrated Application Development | Junho de 2026",
             "Perícia Computacional e Investigação de Evidências Digitais, Universidade Cruzeiro do Sul | Junho de 2026",
             "LEAD1x: Exercising Leadership: Foundational Principles, HarvardX / edX | Maio de 2026",
@@ -347,7 +349,7 @@ CONTENT: dict[str, dict] = {
             "Introduction to Cybersecurity, Cisco Networking Academy | Julho de 2023",
             "Qualificação Profissional em Desenvolvimento Web e Design (104 horas), Escola Remington | Abril de 2015",
         ],
-        "languages": "Português - Nativo | Inglês - Avançado (C1) | Espanhol - Fluente",
+        "languages": "Português - Nativo | Inglês - C1 Advanced (EF SET 68/100) | Espanhol - Fluente",
     },
 
     # ------------------------------------------------------------------ Spanish
@@ -494,6 +496,7 @@ CONTENT: dict[str, dict] = {
         ],
         "education": "<b>Ingeniería de Software (B.Sc.)</b> | Universidade de Franca | 2025 - 2029, en curso, egreso estimado 2029",
         "certifications": [
+            "EF SET English Certificate: C1 Advanced, 68/100, EF Education First | Septiembre de 2026",
             "Santander Bootcamp: Rust and AI-Integrated Application Development | Junio de 2026",
             "Informática Forense e Investigación de Evidencia Digital, Universidade Cruzeiro do Sul | Junio de 2026",
             "LEAD1x: Exercising Leadership: Foundational Principles, HarvardX / edX | Mayo de 2026",
@@ -501,6 +504,6 @@ CONTENT: dict[str, dict] = {
             "Introduction to Cybersecurity, Cisco Networking Academy | Julio de 2023",
             "Cualificación Profesional en Desarrollo Web y Diseño (104 horas), Escola Remington | Abril de 2015",
         ],
-        "languages": "Portugués - Nativo | Inglés - Avanzado (C1) | Español - Fluido",
+        "languages": "Portugués - Nativo | Inglés - C1 Advanced (EF SET 68/100) | Español - Fluido",
     },
 }

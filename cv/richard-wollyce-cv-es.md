@@ -111,6 +111,7 @@ https://biblinhaplay.com
 
 ## Certificaciones
 
+- EF SET English Certificate: C1 Advanced, 68/100, EF Education First | Septiembre de 2026
 - Santander Bootcamp: Rust and AI-Integrated Application Development | Junio de 2026
 - Informática Forense e Investigación de Evidencia Digital, Universidade Cruzeiro do Sul | Junio de 2026
 - LEAD1x: Exercising Leadership: Foundational Principles, HarvardX / edX | Mayo de 2026
@@ -121,5 +122,5 @@ https://biblinhaplay.com
 ## Idiomas
 
 - Portugués: Nativo
-- Inglés: Avanzado (C1)
+- Inglés: C1 Advanced (EF SET 68/100)
 - Español: Fluido
