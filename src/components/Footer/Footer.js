@@ -10,7 +10,10 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={`container ${styles.container}`}>
         <p className={styles.copy}>
-          &copy; {currentYear} {siteConfig.name}. {t.footer.rights}
+          {/* shortName, not name: the footer is a signature, and a signature is the
+            * name somebody is called by. The full legal name stays where it is a legal
+            * field, which is the document metadata in data/meta.js. */}
+          &copy; {currentYear} {siteConfig.shortName}. {t.footer.rights}
         </p>
 
         <div className={styles.links}>

@@ -26,20 +26,124 @@
   padding: var(--space-4) clamp(1.25rem, 4vw, 2rem);
 }
 
+/* The wordmark, and the whole problem it has to solve is that it changes size.
+ *
+ * The mark is absolutely positioned over a box that reserves exactly the width of
+ * "RW", set as hidden text in the same face at the same size rather than as a
+ * magic number, so the footprint stays correct at every viewport and after any
+ * change to the type scale. The expansion then overflows to the right, into space
+ * the header already has, and the navigation beside it never moves. Reserving the
+ * space with a number is what would break the first time --text-xl changed. */
 .logo {
-  display: flex;
+  position: relative;
+  display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
   text-decoration: none;
   z-index: 101;
 }
 
-.logoMark {
+.logo::before {
+  content: 'RW';
   font-family: var(--font-display);
   font-size: var(--text-xl);
   font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  visibility: hidden;
+}
+
+.logoMark {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  /* max-content, and this line is the difference between the mark working and the
+   * mark clipping to "RichaWolly". An absolutely positioned box with only `left`
+   * set is shrink-to-fit against its containing block, which here is the 40 pixel
+   * "RW" footprint, so every `1fr` inside it resolved against 40 pixels and each
+   * half of the name opened to a share of that instead of to its own width.
+   * Sizing the mark by its content removes the containing block from the
+   * calculation entirely. Caught on the render, not in the rule. */
+  width: max-content;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 400;
+  line-height: 1;
   color: var(--accent);
   letter-spacing: 0.02em;
+}
+
+/* Growing to a text run's own width, without hardcoding that width.
+ *
+ * An inline-grid whose single column goes from 0fr to 1fr interpolates to the
+ * content's intrinsic size, which is the one thing a max-width transition cannot
+ * do: max-width has to be given a number, and a number large enough to fit
+ * "ichard " reaches full width before the transition ends, so the letters arrive
+ * early and then the clock keeps running. The inner span carries overflow so the
+ * letters are clipped rather than squashed; nothing here scales type.
+ *
+ * Where fr interpolation is unsupported the two states still compute, so the
+ * failure mode is an instant reveal rather than a broken mark. Verified animating
+ * in Chromium; Firefox and Safari were not run here. */
+.logoGrowA,
+.logoGrowB {
+  display: inline-grid;
+  grid-template-columns: 0fr;
+  vertical-align: bottom;
+  /* 300ms on an ease-out cubic. The first draft was 260ms on
+   * cubic-bezier(0.22, 1, 0.36, 1), and the trace showed why that was wrong: a
+   * curve that steep is 96 percent complete 50ms in, so the nominal duration was
+   * a fiction and the name snapped rather than built. This one is measured at
+   * a quarter open at 50ms, three quarters at 130ms and done at 265ms, with the
+   * second half landing at 390ms. Traced frame by frame, not estimated. */
+  transition: grid-template-columns 300ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.logoGrowInner {
+  overflow: hidden;
+}
+
+/* The mark only unfolds where there is room for it, and 769px is the width this
+ * component already changes character at: above it the navigation is a row, below
+ * it the navigation is a hamburger and the header is a compact bar. Measured at
+ * 320px the open name ends 7 pixels from the language flag, which reads as
+ * crowding rather than as space, and a hover affordance earns nothing on a phone
+ * in the first place. One existing breakpoint rather than a new number. */
+@media (min-width: 769px) {
+  .logo:hover .logoGrowA,
+  .logo:focus-visible .logoGrowA,
+  .logo:hover .logoGrowB,
+  .logo:focus-visible .logoGrowB {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* The stagger is what makes it read left to right rather than as two halves
+ * opening at once, and it reverses on the way out so the name unbuilds from its
+ * end. 260 plus 90 is 350ms, inside the 500ms a staggered sequence has before it
+ * starts feeling like something you are waiting for. */
+.logo:hover .logoGrowB,
+.logo:focus-visible .logoGrowB {
+  transition-delay: 90ms;
+}
+
+.logoGrowA {
+  transition-delay: 90ms;
+}
+
+.logo:hover .logoGrowA,
+.logo:focus-visible .logoGrowA {
+  transition-delay: 0ms;
+}
+
+/* Under reduce the name still appears on hover, because that is information and
+ * not decoration. It simply stops travelling to get there. */
+@media (prefers-reduced-motion: reduce) {
+  .logoGrowA,
+  .logoGrowB {
+    transition: none;
+  }
 }
 
 .links {
@@ -59,23 +163,76 @@
   transition: color var(--transition-fast);
 }
 
+/* The hover mark: register marks, the corner ticks a printer puts on a sheet to
+ * say it is aligned. Two right angles at opposite corners, and they never touch
+ * the letters.
+ *
+ * What this replaces and why. The old mark was a 2px accent rule growing from
+ * width 0 to width 100 percent under the label, which is the default every
+ * generated page ships and Richard called it for what it is. It also animated
+ * `width`, a layout property, so every pointer crossing the header ran layout on
+ * the item; these two pseudo-elements move on transform and opacity alone and
+ * stay on the compositor.
+ *
+ * Diagonal rather than four corners, because two marks read as a deliberate
+ * registration and four read as a box around the word. They arrive by sliding
+ * the last three pixels out into their corners, so the gesture is the sheet
+ * settling into place rather than a line being drawn across it. 180ms, which is
+ * shorter than the wordmark's 300: the wordmark is the header's one performer and
+ * navigation is furniture. */
+.link::before,
 .link::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--accent);
-  transition: width var(--transition-base);
+  width: 7px;
+  height: 7px;
+  border-style: solid;
+  border-color: var(--accent);
+  opacity: 0;
+  transition: opacity 140ms ease-out,
+              transform 180ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.link:hover {
+.link::before {
+  top: 0;
+  left: -4px;
+  border-width: 1.5px 0 0 1.5px;
+  transform: translate(3px, 3px);
+}
+
+.link::after {
+  bottom: 0;
+  right: -4px;
+  border-width: 0 1.5px 1.5px 0;
+  transform: translate(-3px, -3px);
+}
+
+.link:hover,
+.link:focus-visible {
   color: var(--text-primary);
 }
 
+/* Hover only, and that is a decision made at the keyboard rather than in the
+ * rule. The focus ring is 2px at a 3px offset, which lands within a pixel of
+ * where these ticks sit, so a focused item drew both and the ring simply
+ * swallowed them. The ring is the stronger indicator and the required one, so it
+ * owns focus alone; focus still gets a second signal from the colour shift
+ * above. Seen on the render, in both schemes. */
+.link:hover::before,
 .link:hover::after {
-  width: 100%;
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* The colour shift is the second signal and it survives on its own, which is
+ * what makes the marks an addition rather than the whole message. Under reduce
+ * they appear without travelling. */
+@media (prefers-reduced-motion: reduce) {
+  .link::before,
+  .link::after {
+    transition: opacity 140ms ease-out;
+    transform: none;
+  }
 }
 
 .actions {

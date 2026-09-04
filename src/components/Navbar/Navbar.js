@@ -43,11 +43,39 @@ export default function Navbar() {
     setMenuOpen(false);
   };
 
+  // The wordmark is a link to the locale's home path, which on a one-page site is
+  // the route the visitor is already on, so the navigation itself is a no-op and
+  // clicking it appeared to do nothing. The scroll is the actual behaviour people
+  // expect from a logo. No behavior option is passed on purpose: the default
+  // resolves to the document's own scroll-behavior, which globals.css sets to
+  // smooth and already forces back to auto under prefers-reduced-motion, so the
+  // motion floor is one rule rather than two.
+  const handleLogoClick = () => {
+    setMenuOpen(false);
+    window.scrollTo({ top: 0 });
+  };
+
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <nav className={styles.nav} aria-label={t.nav.mainNavigation}>
-        <Link href={localeMeta(locale).path} className={styles.logo} aria-label={t.nav.home}>
-          <span className={styles.logoMark}>RW</span>
+        {/* The monogram is the name with its middles removed, so the hover is the
+          * name filling itself back in: the R holds the left edge, "ichard" grows out
+          * of nothing and pushes the W rightward, and "ollyce" follows it. The letters
+          * are real text in the document rather than a swapped string, which is why
+          * the face, the size, the colour and the tracking cannot drift from the
+          * resting state. aria-hidden because the link already carries its own name. */}
+        <Link
+          href={localeMeta(locale).path}
+          className={styles.logo}
+          aria-label={t.nav.home}
+          onClick={handleLogoClick}
+        >
+          <span className={styles.logoMark} aria-hidden="true">
+            R
+            <span className={styles.logoGrowA}><span className={styles.logoGrowInner}>ichard&nbsp;</span></span>
+            W
+            <span className={styles.logoGrowB}><span className={styles.logoGrowInner}>ollyce</span></span>
+          </span>
         </Link>
 
         <ul className={styles.links}>
