@@ -34,7 +34,7 @@ export default function Hero() {
           <div className={styles.portraitGlow} />
           <div className={styles.portrait}>
             <Image
-              src="/images/rw_pfp.jpg"
+              src="/images/rw_pfp.webp"
               alt={`${siteConfig.shortName} - ${siteConfig.title}`}
               width={420}
               height={420}
