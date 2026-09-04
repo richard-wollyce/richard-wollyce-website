@@ -176,7 +176,7 @@
  *
  * Diagonal rather than four corners, because two marks read as a deliberate
  * registration and four read as a box around the word. They arrive by sliding
- * the last three pixels out into their corners, so the gesture is the sheet
+ * the last three pixels out into their corners along that diagonal, so the gesture is the sheet
  * settling into place rather than a line being drawn across it. 180ms, which is
  * shorter than the wordmark's 300: the wordmark is the header's one performer and
  * navigation is furniture. */
@@ -193,18 +193,24 @@
               transform 180ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
+/* The diagonal runs bottom-left to top-right, Richard's call after seeing both.
+ * It is the rising diagonal, and it is the one the eye already reads as forward:
+ * the other pair descends from the top left, which is the direction of a line
+ * being struck through. Same two marks, mirrored on the horizontal axis, and the
+ * arrival slides each one outward along that diagonal rather than along the old
+ * one, so the gesture still opens away from the word. */
 .link::before {
-  top: 0;
+  bottom: 0;
   left: -4px;
-  border-width: 1.5px 0 0 1.5px;
-  transform: translate(3px, 3px);
+  border-width: 0 0 1.5px 1.5px;
+  transform: translate(3px, -3px);
 }
 
 .link::after {
-  bottom: 0;
+  top: 0;
   right: -4px;
-  border-width: 0 1.5px 1.5px 0;
-  transform: translate(-3px, -3px);
+  border-width: 1.5px 1.5px 0 0;
+  transform: translate(-3px, 3px);
 }
 
 .link:hover,
