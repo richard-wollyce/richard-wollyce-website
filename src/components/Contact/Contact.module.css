@@ -53,7 +53,7 @@
   width: 56px;
   height: 56px;
   border-radius: var(--radius-full);
-  background-color: var(--accent-subtle);
+  background-color: var(--wash);
   color: var(--accent);
   transition: background-color var(--transition-fast), color var(--transition-fast);
 }

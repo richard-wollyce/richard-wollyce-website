@@ -14,7 +14,7 @@
 }
 
 .toggle:hover {
-  background-color: var(--accent-subtle);
+  background-color: var(--wash);
   color: var(--accent);
 }
 

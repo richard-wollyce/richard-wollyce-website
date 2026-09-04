@@ -1,4 +1,5 @@
 import { Inter, Instrument_Serif } from 'next/font/google';
+import Script from 'next/script';
 import { notFound } from 'next/navigation';
 import { LocaleProvider } from '@/i18n/LocaleProvider';
 import { localeFromSegments, localeMeta, localeSegments, locales } from '@/data/content';
@@ -64,6 +65,13 @@ export default async function RootLayout({ children, params }) {
       </head>
       <body>
         <LocaleProvider initialLocale={code}>{children}</LocaleProvider>
+        {/* The ambient field's WebGL layer. It enhances the CSS field in
+          * globals.css and never replaces it: the script inserts nothing and
+          * sets no class unless it holds a live context and a linked program,
+          * so a machine without WebGL keeps the drifting gradients and loses
+          * nothing else. afterInteractive because the field is decoration and
+          * must not compete with the page it sits behind. */}
+        <Script src="/field.js" strategy="afterInteractive" />
       </body>
     </html>
   );

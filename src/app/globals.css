@@ -40,25 +40,102 @@ ul, ol {
 
 /* === DESIGN TOKENS === */
 :root {
-  /* Colors - Light Mode */
-  --bg-primary: #F8F5F1;
-  --bg-secondary: #F0EBE3;
+  /* Colours, light. The palette is taken from the portrait rather than chosen
+   * beside it, because the photograph is the largest block of colour on the
+   * page and it cannot be edited. Measured off public/images/rw_pfp.webp:
+   *
+   *   the sky behind him   #c4cdd7   hue 210, sat  9%, val 84%   (the largest field)
+   *   the jacket's orange  #de4f37   hue   9, sat 75%, val 87%
+   *   the jacket's blue    #054998   hue 212, sat 97%, val 60%
+   *   his skin             #8d6453   hue  18, sat 41%
+   *
+   * So the page runs on two hues and both of them are in the photograph:
+   * 210 for everything the page is MADE of, 9 for everything that MARKS.
+   * The ground below sits 1.6 degrees off his sky and the accent 0.1 degrees
+   * off his jacket, which is what stops the portrait reading as pasted on.
+   *
+   * What was here before was warm cream (hue 34) under cool grey text (hue 240)
+   * with a terracotta accent (hue 23, sat 58%). Three separate faults: the page
+   * and the photograph were opposite temperatures, so the circular edge of the
+   * portrait read as a seam; the accent was the photograph's own orange at
+   * two thirds the chroma, so the button looked like a faded print of the
+   * jacket; and the page's own neutrals disagreed with each other, warm grounds
+   * under cool ink.
+   *
+   * There is deliberately no second accent. The jacket's blue is 2.2 degrees
+   * from this ground, so it is already on the page as the ground: a
+   * --support-accent token existed here, was used by nothing but the old
+   * particle background, and a palette with two accents and no rule for which
+   * one carries hierarchy has no hierarchy. One accent marks; the cool is the
+   * material.
+   *
+   * Every value carries its measured contrast. A colour enters with its ratio
+   * or it does not enter. */
+  --bg-primary: #EEF2F6;
+  --bg-secondary: #E3EAF1;
   --bg-card: #FFFFFF;
-  --bg-card-hover: #FAFAFA;
-  --text-primary: #2C2C2E;
-  --text-secondary: #5A5A5E;
-  --text-tertiary: #8A8A8E;
-  --accent: #B8764D;
-  --accent-hover: #9E6340;
-  --accent-subtle: rgba(184, 118, 77, 0.08);
-  --accent-light: rgba(184, 118, 77, 0.15);
-  --support-accent: #6B8CAE;
-  --border: #E5E0D8;
-  --border-light: #EDE9E3;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.08);
-  --navbar-bg: rgba(248, 245, 241, 0.85);
+  --bg-card-hover: #F7FAFC;
+  --text-primary: #151B21; /* 15.42:1 on page, 17.35:1 on card */
+  --text-secondary: #4C5A66; /* 6.30:1 and 7.09:1 */
+  --text-tertiary: #78868F; /* 3.33:1 and 3.75:1, non-essential text only */
+  --accent: #C2412B; /* the jacket's hue and chroma, 11 points darker so it
+   * clears 4.5:1 as text on both the page (4.57:1) and a white card (5.14:1),
+   * and carries white on a fill at 5.14:1. The photograph's own #de4f37 holds
+   * white at only 3.98:1, and this accent is used as label text in eight
+   * places, so the fill and the label cannot be two different oranges. */
+  --accent-hover: #A83925; /* 5.70:1 */
+  /* --wash is one step of the page's own material, and it replaces a token
+   * called --accent-subtle that held rgba(194,65,43,0.08). Fourteen places used
+   * it: eight hover states and four resting icon discs, and on the warm cream
+   * this file used to carry, an eight percent accent wash disappeared into the
+   * ground. On a cool ground it is the only warm thing in view, so the same
+   * value came back as pale pink discs, which is simultaneous contrast doing
+   * exactly what it does: two near-neutrals of opposite temperature each push
+   * the other's apparent hue further away.
+   *
+   * All fourteen wanted the same thing, which is why this is one token and not
+   * a judgement per component: a hover already turns its label and its border
+   * to --accent, so the fill only has to say "your pointer is here", and an
+   * icon disc is a plate for a glyph that is already the accent. The accent
+   * itself now appears at full strength or not at all. */
+  --wash: rgba(21, 27, 33, 0.05);
+  /* The accent at low alpha, kept for the three places that do want it present:
+   * text selection, the halo behind the portrait, and the ring on a chosen
+   * language. */
+  --accent-light: rgba(194, 65, 43, 0.15);
+  /* The visible boundary of an interactive control, and the only reason it is
+   * not --border is the floor: WCAG 1.4.11 asks 3:1 of anything that identifies
+   * a component, and --border measures 1.21:1 on this ground. The outlined
+   * secondary button had been failing that since before this pass, at 1.15:1 on
+   * the old cream. 3.33:1 here. Hairlines keep --border, which is decorative
+   * tier and has no such floor. */
+  --control-border: #78868F;
+  /* The focus ring gets its own token rather than borrowing the ink, because it
+   * is the one colour that has to work against every surface at once, the
+   * accent fill included. Ink measures 15.42:1 on the page, 17.35:1 on a card
+   * and 3.37:1 directly against the accent, so it clears the floor even in
+   * contact and the ring does not depend on its own offset to be legal. */
+  --focus-ring: #151B21;
+  --border: #D5DEE6;
+  --border-light: #E4EAF0;
+  --shadow-sm: 0 1px 3px rgba(21, 27, 33, 0.05);
+  --shadow-md: 0 4px 12px rgba(21, 27, 33, 0.07);
+  --shadow-lg: 0 8px 30px rgba(21, 27, 33, 0.09);
+  --navbar-bg: rgba(238, 242, 246, 0.85);
+
+  /* The ambient field. Four fixed layers behind the document, described where
+   * they are built at the foot of this file. Paper livery: the cool light is
+   * his sky, the warm one is the accent, and the accent stays faint because it
+   * is light and not a mark. */
+  --field-1: #C4CDD7;
+  --field-2: #DBE4EC;
+  --field-3: #C2412B;
+  --field-4: #D5DEE6;
+  --field-alpha: 0.42;
+  --field-accent-alpha: 0.10;
+  --field-vignette: rgba(21, 27, 33, 0.05);
+  --grain-opacity: 0.30;
+  --grain-blend: normal;
 
   /* Spacing */
   --space-1: 0.25rem;
@@ -106,35 +183,86 @@ ul, ol {
   --radius-full: 9999px;
 }
 
-/* Dark Mode */
+/* Dark Mode. The same two hues, and the ground is a cool near-black at hue 213
+ * rather than the neutral #1A1A1E it was, so the scheme is this palette at
+ * another lightness instead of a second palette. His hair measures hue 210 in
+ * the photograph, so the darkest thing on the page and the darkest thing in
+ * the portrait are the same colour.
+ *
+ * The accent goes up rather than down: #E8624A is the jacket's hue lifted to
+ * clear 4.5:1 on the page (5.53:1) and on a card (4.80:1). A button fill takes
+ * the page's own black as its label at 5.53:1, never white, which measured
+ * 2.53:1 against the old dark accent and was the worst failure in the file. */
 [data-theme='dark'] {
-  --bg-primary: #1A1A1E;
-  --bg-secondary: #242428;
-  --bg-card: #2A2A2F;
-  --bg-card-hover: #303036;
-  --text-primary: #EAEAEA;
-  --text-secondary: #A0A0A5;
-  --text-tertiary: #707075;
-  --accent: #D4956A;
-  --accent-hover: #E0A87E;
-  --accent-subtle: rgba(212, 149, 106, 0.08);
-  --accent-light: rgba(212, 149, 106, 0.15);
-  --support-accent: #7FA0C2;
-  --border: #3A3A40;
-  --border-light: #32323A;
+  --bg-primary: #0F141A;
+  --bg-secondary: #151C23;
+  --bg-card: #1A222B;
+  --bg-card-hover: #212A34;
+  --text-primary: #E4EAF0; /* 15.26:1 on page, 13.25:1 on card */
+  --text-secondary: #9CAAB6; /* 7.79:1 and 6.76:1 */
+  --text-tertiary: #6E7C88; /* 4.32:1 and 3.75:1 */
+  --accent: #E8624A; /* 5.53:1 and 4.80:1 */
+  --accent-hover: #F07A64; /* 6.76:1 */
+  --wash: rgba(228, 234, 240, 0.06);
+  --accent-light: rgba(232, 98, 74, 0.18);
+  /* 3.48:1 on the page and 3.02:1 on a card. The card is what sets this value,
+   * not the page: in dark mode the outlined controls that need a boundary
+   * (Access Project, Repository, a language option) all sit inside cards, and
+   * #566472 cleared the page at 3.05:1 while measuring 2.65:1 where it actually
+   * appears. A token has to pass on the tighter of the grounds it lands on. */
+  --control-border: #5E6D7B;
+  /* Lighter than the body text, and that is the whole reason it is not
+   * --text-primary: at #E4EAF0 the ring measured 2.76:1 against the accent
+   * fill, so the only thing keeping it visible on the primary call to action
+   * was the three pixel offset holding it off the shape. #F2F5F9 clears the
+   * fill at 3.06:1 and the ground at 16.92:1, so the ring is legible in contact
+   * with anything on this page and the offset is back to being spacing. */
+  --focus-ring: #F2F5F9;
+  --border: #2C3742;
+  --border-light: #232C35;
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.4);
-  --navbar-bg: rgba(26, 26, 30, 0.85);
+  --navbar-bg: rgba(15, 20, 26, 0.85);
+
+  /* The field at night. Same four layers, deeper steel, and the accent light
+   * is allowed more of itself because there is less light to compete with. */
+  --field-1: #2F4152;
+  --field-2: #1E2A35;
+  --field-3: #8A3323;
+  --field-4: #151D25;
+  --field-alpha: 0.34;
+  --field-accent-alpha: 0.24;
+  --field-vignette: rgba(0, 0, 0, 0.40);
+  /* soft-light, not normal, and the mechanism is borrowed from ulpia.io where
+   * it was measured: grey noise composited normally over a near-black does not
+   * texture the ground, it repaints it, lifting the black by around 27 points
+   * and pulling its hue toward neutral. This ground is a COOL black, so normal
+   * blending would flatten exactly the blue that makes it agree with the
+   * photograph. soft-light modulates the base instead of covering it. */
+  --grain-opacity: 1;
+  --grain-blend: soft-light;
 }
 
 /* === GLOBAL STYLES === */
-body {
+
+/* The page colour lives on <html>, not on <body>, and that is a requirement of
+ * the ambient field rather than a preference. Negative z-index children of
+ * <html> paint above html's own background but below the background of any
+ * in-flow block inside it, so an opaque body background would hide the two
+ * drifting light layers completely. Moving the fill up one element is the whole
+ * fix; body stays transparent and inherits nothing it needs to. */
+html {
   background-color: var(--bg-primary);
+  transition: background-color var(--transition-base);
+}
+
+body {
+  background-color: transparent;
   color: var(--text-primary);
   font-family: var(--font-body);
   font-size: var(--text-base);
-  transition: background-color var(--transition-base), color var(--transition-base);
+  transition: color var(--transition-base);
 }
 
 ::selection {
@@ -190,9 +318,15 @@ body {
   }
 }
 
-/* Focus visible styles */
+/* Focus visible styles. The ring is --focus-ring and not the accent, which is a
+ * change made after looking at it: the primary call to action is filled with the
+ * accent, so an accent ring around it was the same colour on both sides of a
+ * three pixel gap. --focus-ring is the ink in light and a near white in dark,
+ * both chosen to clear 3:1 against the page, against a card and against the
+ * accent fill they may sit on, so the indicator is legible wherever it lands
+ * rather than only where the offset saves it. */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--focus-ring);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }
@@ -200,4 +334,211 @@ body {
 /* Smooth theme transition for all themed elements */
 * {
   transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
+/* ============================================================================
+ * The ambient field.
+ *
+ * The mechanism is ulpia.io's, copied whole rather than reinterpreted, with
+ * only the colours changed. Four fixed layers behind the whole document, built
+ * entirely from pseudo-elements so no markup is added and nothing here can
+ * collide with a component:
+ *
+ *   html::before   two soft lights, drifting on a 41 second clock
+ *   html::after    two more, on a 59 second clock
+ *   body::before   the vignette, which keeps the corners off the reading column
+ *   body::after    the grain
+ *
+ * Nothing here paints per frame. The only animated property is transform, so
+ * the work stays on the compositor and a full-viewport layer costs no layout
+ * and no paint while it moves. The two clocks are mutually prime, so the
+ * composite repeats every 41 x 59 = 2419 seconds, about forty minutes, which is
+ * longer than anyone reads one page. ease-in-out with alternate means each
+ * turnaround decelerates into a stop, so there is no seam where a loop
+ * restarts, and the seam is what gives a looping background away.
+ *
+ * This replaces a particles.js canvas of dots joined by lines. Three reasons it
+ * is not a like-for-like swap: the dots explained nothing about anything on the
+ * page, they carried a hover handler ('grab') so a decorative background
+ * responded to the pointer as though it were a control, and they cost a
+ * dependency to draw what CSS draws for nothing.
+ * ==========================================================================*/
+
+html::before,
+html::after,
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+html::before,
+html::after {
+  will-change: transform;
+}
+
+html::before {
+  opacity: var(--field-alpha);
+  background:
+    radial-gradient(38vmax 38vmax at 8% 4%, var(--field-1) 0%, transparent 62%),
+    radial-gradient(32vmax 32vmax at 96% 26%, var(--field-2) 0%, transparent 60%);
+  animation: field-a 41s ease-in-out infinite alternate;
+}
+
+html::after {
+  opacity: var(--field-accent-alpha);
+  background:
+    radial-gradient(30vmax 30vmax at 22% 92%, var(--field-3) 0%, transparent 64%),
+    radial-gradient(26vmax 26vmax at 68% 64%, var(--field-4) 0%, transparent 58%);
+  animation: field-b 59s ease-in-out infinite alternate;
+}
+
+@keyframes field-a {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(6vmax, 4vmax, 0) scale(1.14); }
+}
+
+@keyframes field-b {
+  from { transform: translate3d(0, 0, 0) scale(1.08); }
+  to   { transform: translate3d(-7vmax, -5vmax, 0) scale(0.94); }
+}
+
+body::before {
+  background: radial-gradient(
+    ellipse 120% 100% at 50% 40%,
+    transparent 42%,
+    var(--field-vignette) 100%
+  );
+}
+
+/* One inlined feTurbulence, tiled at 220px. It does not animate: grain that
+ * shimmers over body text is television static, and this sits under pages
+ * somebody is meant to read. */
+body::after {
+  opacity: var(--grain-opacity);
+  mix-blend-mode: var(--grain-blend);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+
+/* The floor. Under reduce the field holds one composed frame: the colour stays,
+ * the motion goes. The reset above already flattens every animation to 0.01ms,
+ * which would park both layers on their `from` frame; naming the transform here
+ * puts them somewhere composed instead. Print drops the whole thing. */
+@media (prefers-reduced-motion: reduce) {
+  html::before {
+    animation: none;
+    transform: translate3d(3vmax, 2vmax, 0) scale(1.07);
+  }
+  html::after {
+    animation: none;
+    transform: translate3d(-4vmax, -3vmax, 0) scale(1.01);
+  }
+}
+
+@media print {
+  html::before,
+  html::after,
+  body::before,
+  body::after {
+    display: none;
+  }
+}
+
+/* The WebGL field. public/field.js adds .has-field to <html> only once it holds
+ * a live context and a linked program, so the CSS field above is not a fallback
+ * bolted on afterwards: it is what every visitor gets, and it steps aside only
+ * where the shader actually runs. The vignette and the grain stay in both
+ * cases, because the grain is the texture the field is named for.
+ *
+ * uColor1 and uColor2 are a horizontal ramp; uColor3 is mixed in by the noise
+ * at strength 7, which drives mix() far past its endpoints, and that
+ * extrapolation is what makes the third colour bloom rather than tint. So
+ * uColor3 is the one that carries the field's character and it stays close to
+ * the ground. The shader multiplies by 0.8 internally, which is what
+ * --shader-brightness: 1.25 cancels in light. */
+:root {
+  /* These four numbers were not chosen by eye. The shader mixes uColor3 in at
+   * strength 7 over a noise term of at most 0.75, so the mix factor runs from
+   * -5.25 to +5.25 and mix() extrapolates far past both endpoints. The output
+   * per channel is therefore ramp + m * (c3 - ramp), which means the SPREAD
+   * between the ramp and uColor3, multiplied by five, is the swing the ground
+   * takes across the viewport.
+   *
+   * The first values here were 17 points apart and the measured page ran from
+   * #fdfefe to #9ebeda: 14 points of lightness and 27 of saturation, so the
+   * ground stopped being one colour and read as a gradient sweep instead of as
+   * air. At 8 points apart the same arithmetic gives 95.1% to 99.0% lightness
+   * and 0.6% to 13.5% saturation. The page keeps its lightness and only its
+   * chroma breathes, which is what a ground under a column of text can afford.
+   *
+   * The three values also differ from each other by the SAME amount in all
+   * three channels, which is the second half of the fix and less obvious than
+   * the first. When uColor3 was 6 points bluer than the ramp rather than 6
+   * points darker, the extrapolation ran along the blue axis: the positive half
+   * of the noise pushed the ground to hue 218 at 13% saturation and the
+   * negative half pushed it straight past neutral to hue 67, so the page was
+   * cool in some places and faintly yellow in others out of one field. An equal
+   * offset moves lightness and leaves blue-minus-red fixed at +8 across the
+   * entire range, so the ground is one colour everywhere and the field is light
+   * moving over it. Measured: hue 210.0 at every point of the mix range.
+   *
+   * --shader-brightness 1.25 exists to cancel the shader's internal *0.8, so
+   * the centre of the field is the ground token exactly. --shader-alpha 0.80
+   * leaves a fifth of the real ground showing through at all times, which is
+   * the floor under everything above. */
+  --shader-1: #EEF2F6;
+  --shader-2: #ECF0F4;
+  --shader-3: #E8ECF0;
+  --shader-brightness: 1.25;
+  --shader-alpha: 0.80;
+  --shader-speed: 0.15;
+}
+
+[data-theme='dark'] {
+  /* Dark is where the extrapolation bites hardest, because the base is already
+   * near zero and the negative half of the mix range clamps to black. The first
+   * values measured #010203 across most of the viewport: the page had lost the
+   * cool near-black that makes it agree with his hair, and the cards floated on
+   * pure black. Two changes fix it and both are arithmetic, not taste. The
+   * spread drops to 5 points, and --shader-alpha drops to 0.50 so half of the
+   * ground is always present and the darkest the page can go is 5.1% lightness
+   * rather than 1.0%. Measured envelope: 5.1% to 21.9% lightness, hue 208 to
+   * 227 throughout, no clamp to black anywhere in the range.
+   *
+   * --shader-1 sits a little above the ground token on purpose: the shader's
+   * *0.8 would otherwise land the centre of the field below the ground it is
+   * supposed to be. */
+  --shader-1: #131A22;
+  --shader-2: #111821;
+  --shader-3: #16202B;
+  --shader-brightness: 1.25;
+  --shader-alpha: 0.50;
+  --shader-speed: 0.15;
+}
+
+.field-canvas {
+  position: fixed;
+  inset: 0;
+  /* Below the vignette and the grain, which are body's own pseudo-elements at
+   * -1. The canvas is appended to body, so at equal z-index it would paint over
+   * them and the grain would be invisible under the shader. */
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+/* Where the shader runs, the CSS blobs would double the light. */
+:root.has-field::before,
+:root.has-field::after {
+  display: none;
+}
+
+@media print {
+  .field-canvas { display: none; }
 }

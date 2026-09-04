@@ -1,7 +1,6 @@
 'use client';
 
 import { useLocale } from '@/i18n/LocaleProvider';
-import ParticleBackground from '@/components/ParticleBackground/ParticleBackground';
 import Navbar from '@/components/Navbar/Navbar';
 import Hero from '@/components/Hero/Hero';
 import Certifications from '@/components/Certifications/Certifications';
@@ -29,7 +28,6 @@ export default function Home() {
   return (
     <>
       <SkipLink />
-      <ParticleBackground />
       <div className={styles.contentLayer}>
         <Navbar />
         <main id="main-content" className={styles.main}>

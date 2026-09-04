@@ -79,7 +79,7 @@
   color: var(--text-primary);
   font-weight: 600;
   font-size: var(--text-sm);
-  border: 1.5px solid var(--border);
+  border: 1.5px solid var(--control-border);
   border-radius: var(--radius-full);
   text-decoration: none;
   transition: border-color var(--transition-fast), color var(--transition-fast), background-color var(--transition-fast);
@@ -89,7 +89,7 @@
 .ctaSecondary:hover {
   border-color: var(--accent);
   color: var(--accent);
-  background-color: var(--accent-subtle);
+  background-color: var(--wash);
 }
 
 /* Portrait */
@@ -155,7 +155,7 @@
   width: 36px;
   height: 36px;
   border-radius: var(--radius-full);
-  background-color: var(--accent-subtle);
+  background-color: var(--wash);
   color: var(--accent);
   flex-shrink: 0;
 }

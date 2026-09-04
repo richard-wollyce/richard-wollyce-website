@@ -72,7 +72,7 @@
   font-weight: 600;
   color: var(--text-secondary);
   padding: var(--space-2) var(--space-4);
-  border: 1px solid var(--border);
+  border: 1px solid var(--control-border);
   border-radius: var(--radius-full);
   transition: all var(--transition-fast);
   min-height: 36px;
@@ -81,7 +81,7 @@
 .linkButton:hover {
   border-color: var(--accent);
   color: var(--accent);
-  background-color: var(--accent-subtle);
+  background-color: var(--wash);
 }
 
 .summary {

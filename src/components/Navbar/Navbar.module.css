@@ -103,7 +103,7 @@
 }
 
 .hamburger:hover {
-  background-color: var(--accent-subtle);
+  background-color: var(--wash);
 }
 
 .hamburgerLine {

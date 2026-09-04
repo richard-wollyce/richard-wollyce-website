@@ -6,7 +6,10 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background-color: rgba(20, 18, 16, 0.55);
+  /* The scrim is the page's own ink, not a warm black: rgba(20,18,16) was the
+   * last warm value left in the file and it read yellow against the cool
+   * ground behind it. */
+  background-color: rgba(21, 27, 33, 0.55);
   backdrop-filter: blur(4px);
   animation: fade 0.22s ease-out;
 }
@@ -32,7 +35,7 @@
   align-items: center;
   justify-content: center;
   padding: 14px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--control-border);
   border-radius: 12px;
   background-color: var(--bg-primary);
   cursor: pointer;
@@ -42,7 +45,7 @@
 
 .option:hover {
   border-color: var(--accent);
-  background-color: var(--accent-subtle);
+  background-color: var(--wash);
   transform: translateY(-3px);
 }
 
