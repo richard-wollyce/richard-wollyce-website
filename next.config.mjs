@@ -28,19 +28,12 @@ const securityHeaders = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	output: 'export',
 	images: {
-		qualities: [75, 90],
+		unoptimized: true,
 	},
 	turbopack: {
 		root: __dirname,
-	},
-	async headers() {
-		return [
-			{
-				source: '/:path*',
-				headers: securityHeaders,
-			},
-		];
 	},
 };
 

@@ -1,6 +1,8 @@
 import { locales } from '@/data/content';
 import { absoluteUrl, languageAlternates } from '@/data/meta';
 
+export const dynamic = 'force-static';
+
 // Served at /sitemap.xml. One <url> per locale, each carrying the full
 // hreflang set so a crawler that lands on any of them learns the other two.
 export default function sitemap() {
