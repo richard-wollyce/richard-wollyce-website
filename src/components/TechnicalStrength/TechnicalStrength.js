@@ -1,4 +1,3 @@
-import CardRail from '@/components/CardRail/CardRail';
 import { useLocale } from '@/i18n/LocaleProvider';
 import styles from './TechnicalStrength.module.css';
 
@@ -14,17 +13,7 @@ export default function TechnicalStrength() {
           <p className={styles.sectionSubtitle}>{t.strength.subtitle}</p>
         </header>
 
-        {/*
-          Six cards at 360px plus six 24px gaps is 2304px of copy, past the
-          2272px a 1136px container needs before an inert copy can come on
-          screen. 360px is also about where these cards want to be: the
-          description holds two lines and the ten technology pills wrap into
-          four rows rather than a ragged two.
-        */}
-        <CardRail
-          sectionName={t.strength.title}
-          itemWidth="clamp(240px, 66vw, 358px)"
-        >
+        <div className={styles.grid}>
           {technicalStrength.map((strength) => (
             <article key={strength.id} className={styles.card}>
               <div className={styles.cardHeader}>
@@ -88,7 +77,7 @@ export default function TechnicalStrength() {
               </div>
             </article>
           ))}
-        </CardRail>
+        </div>
       </div>
     </section>
   );
