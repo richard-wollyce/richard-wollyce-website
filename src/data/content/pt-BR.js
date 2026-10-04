@@ -9,7 +9,7 @@ const content = {
     headline: 'Prazer, sou Richard Wollyce',
     title: 'Tech Lead & Full-Stack Software Engineer',
     subheadline:
-      'Construo a infraestrutura sobre a qual outras tecnologias se apoiam. O Ulpia é o meu projeto open source mais recente: uma camada de memória e retrieval para agentes de IA, escrita em Rust, que serve RAG sem nenhum modelo no caminho. É isso que permite responder offline, em menos de um milissegundo, mantendo consistência entre as respostas, porque a mesma pergunta sempre encontra os mesmos arquivos, e o harness de avaliação está publicado no mesmo repositório. Também sou Tech Lead e Software Engineer na Casa Seth, onde respondo por infoprodutos, pagamentos e pelos sistemas de gestão, métrica e conversão.',
+      'Construo infraestrutura de software, produtos digitais e sistemas de conversão de ponta a ponta. Criador do Ulpia, camada local-first de retrieval para IA em Rust, e Tech Lead na Casa Seth, onde lidero arquitetura, pagamentos e engenharia de receita.',
     ctaPrimary: { label: 'Vamos conversar', href: '#contact' },
     ctaSecondary: { label: 'Ver projetos', href: '#work' },
     trustStrip: [
@@ -36,7 +36,7 @@ const content = {
       id: 'computational-forensics',
       title: 'Perícia Computacional e Investigação de Evidências Digitais',
       issuer: 'Universidade Cruzeiro do Sul',
-      date: 'Emitido em 2 de junho de 2026',
+      date: 'Emitido em junho de 2026',
     },
     {
       id: 'harvardx-leadership',
@@ -70,14 +70,14 @@ const content = {
       name: 'Ulpia',
       category: 'Infraestrutura de AI Memory Local-First',
       summary:
-        'Camada de memória open source para frotas de agentes de IA, escrita em Rust e publicada sob Apache 2.0. É RAG sem o modelo de embedding: a recuperação aqui é software comum, um índice de palavras-chave, um índice full-text e o código que funde os dois. Por isso ela roda offline, mantém consistência entre as respostas, já que a mesma pergunta sempre encontra os mesmos arquivos, e sabe dizer que nenhum arquivo cobre a pergunta em vez de entregar o menos errado da pilha.',
+        'Camada de memória open source para agentes de IA, escrita em Rust e publicada sob Apache 2.0. RAG determinístico sem modelos de embedding: combina índice de palavras-chave e busca full-text via Reciprocal Rank Fusion para garantir respostas offline, consistentes e com abstenção confiável.',
       highlights: [
-        'O motor de busca tem dois scorers. Um índice de palavras-chave montado a partir das chaves que cada arquivo declara e a busca full-text do SQLite, fundidos por Reciprocal Rank Fusion. Depois fui medir qual dos dois ganha em que tipo de pergunta, porque supor que eram intercambiáveis teria sido mais rápido e errado.',
-        'Não saber virou uma resposta legítima do sistema, e não uma falha dele. Num conjunto de perguntas escrito às cegas e revisado de forma adversarial, 28 das 30 perguntas fora de escopo passam sem resposta confiante só com a camada determinística.',
-        'A avaliação faz parte do produto. Medi a rota quente em processo, 0,68 ms p50 e 1,16 ms p95 de latência. Nas 500 perguntas do LongMemEval-S, 97 por cento em abstenção, que é exatamente onde o artigo do próprio benchmark diz que esses sistemas mais falham.',
-        'A biblioteca sai como servidor MCP com quatro ferramentas somente leitura, então o Claude e qualquer outra coisa que fale MCP leem a mesma base. Ferramenta de escrita ao alcance de um modelo não existe aqui, e isso é decisão, não pendência.',
-        'O modelo de privacidade se apoia no git, e não num arquivo de configuração. Arquivo que o git não rastreia é arquivo que o sistema não serve, e se o git não puder ser consultado ele se recusa a abrir a base.',
-        'São cerca de 17.000 linhas de Rust em três crates e uma única dependência de runtime. Mais de 200 testes, 36 registros de decisão de arquitetura e um harness de benchmark que carimba todo resultado com o comando, o commit, a máquina e a data que o produziram.',
+        'Dois scorers combinados por Reciprocal Rank Fusion: índice de palavras-chave declaradas e busca full-text com SQLite FTS5.',
+        'Portão determinístico de confiança para abstenção: 28 de 30 consultas fora de escopo rejeitadas com segurança em testes adversariais.',
+        'Latência em rota quente de 0,68 ms (p50) e 1,16 ms (p95) em processo, com 97% de taxa de abstenção no LongMemEval-S.',
+        'Servidor MCP integrado com 4 ferramentas somente leitura para Claude Desktop e outros clientes.',
+        'Modelo de privacidade baseado em Git: arquivos não rastreados pelo repositório são estritamente ignorados.',
+        'Cerca de 17.000 linhas de Rust em 3 crates, dependência única de runtime, mais de 200 testes e 36 ADRs documentados.',
       ],
       stack: ['Rust', 'RAG', 'AI Agents', 'LLM Evaluation', 'Information Retrieval', 'SQLite FTS5', 'MCP', 'Tauri', 'Cargo', 'GitHub Actions', 'Apache 2.0'],
       link: 'https://ulpia.io',
@@ -88,15 +88,14 @@ const content = {
       name: 'Casa Seth',
       category: 'Infoprodutos, Comércio & Sistemas de Conversão',
       summary:
-        'A casa onde lidero a engenharia. Produto digital e infoproduto de um lado, e do outro a camada de medição que fica embaixo deles: checkout no Mercado Pago e no Pix, atribuição, rastreamento de conversão server-side e conciliação financeira. O produto mais antigo lá dentro é o BiblinhaPlay, assinatura de aprendizado e entretenimento que roda em web e mobile para cerca de 500 usuários.',
+        'Ecossistema de comércio digital e infoprodutos onde lidero engenharia e arquitetura. Abrange desde a experiência do usuário até a infraestrutura de medição, checkouts, conciliação e o BiblinhaPlay (assinatura web/mobile com ~500 usuários).',
       highlights: [
-        'A instrumentação de receita em que a casa inteira se apoia é minha. Rastreamento de conversão first-party no navegador e no servidor, deduplicação de eventos, atribuição por UTM, conciliação de receita e os dashboards em que os operadores olham para decidir o que vale a pena repetir.',
-        'No pipeline de geração de imagens, os jobs são idempotentes, com concorrência limitada, cache, persistência e telemetria. Job que falha volta para a fila sem duplicar trabalho nem cobrar o cliente duas vezes.',
-        'Os funis de produto sobem de forma independente, mas dividem os mesmos pacotes de domínio e de UI, e é ali que ficam pagamento, recuperação de sessão, atribuição e as integrações de backend.',
-        'Entrego e opero o BiblinhaPlay para cerca de 500 usuários, com um web/PWA em produção e um cliente Expo/React Native. Streaming de vídeo, música, materiais para impressão, jogos interativos e gamificação, tudo atrás de acesso por entitlement.',
-        'Cuido da cobrança do BiblinhaPlay inteira, do checkout de assinatura hospedado até o rollback, passando por webhooks verificados e idempotentes, entitlements por plano, entrega de mídia protegida presa à sessão e um pipeline imutável de publicação de conteúdo com ativação atômica.',
-        'O BiblinhaCraft é uma experiência voxel em Three.js que escrevi do zero, com terreno determinístico, streaming progressivo de regiões, saves versionados e controle pensado para toque.',
-        'O mesmo checkout digital também alimenta produção física, com validação de endereço, preparo de arquivo para impressão, uma fila operacional e os fluxos de status do pedido.',
+        'Infraestrutura de receita completa: rastreamento de conversão server-side e client-side, deduplicação de eventos, atribuição por UTM e conciliação contábil.',
+        'Pipeline idempotente de geração de imagens com concorrência controlada, cache, telemetria e recuperação de falhas.',
+        'Monorepo modular em TypeScript compartilhando regras de negócio, UI e fluxos transacionais entre funis independentes.',
+        'BiblinhaPlay em produção para ~500 assinantes com Web/PWA e aplicativo Expo/React Native, gerenciamento de entitlements e mídia protegida.',
+        'BiblinhaCraft: experiência voxel interativa em Three.js desenvolvida do zero, com terreno procedural e suporte a toque.',
+        'Integração de checkout digital com logística física: validação de endereços, geração de arquivos de impressão e fluxos de pedido.',
       ],
       stack: ['TypeScript', 'React', 'TanStack Start', 'Expo', 'React Native', 'Three.js', 'PostgreSQL', 'Supabase', 'Drizzle ORM', 'Mercado Pago', 'Turborepo', 'Vercel'],
       link: 'https://biblinhaplay.com',
@@ -128,11 +127,11 @@ const content = {
       location: 'Apache 2.0, ulpia.io',
       period: 'Agosto de 2026 - Atual',
       bullets: [
-        'Projeto e escrevo em Rust uma camada de memória e retrieval local-first para frotas de agentes de IA: RAG sem modelo de embedding. Não tem modelo de embedding nenhum no caminho da recuperação, e é por isso que o resultado é offline, reprodutível e explicável quando está errado.',
-        'São dois scorers em cima de um índice de palavras-chave e da busca full-text do SQLite, fundidos por Reciprocal Rank Fusion, mais um portão de confiança que dá ao sistema o direito de recusar uma pergunta que nenhum arquivo cobre.',
-        'O harness de avaliação nasceu junto com o produto, e não depois dele. Mede abstenção contra um conjunto adversarial escrito às cegas, latência e as 500 perguntas completas do LongMemEval-S, e carimba cada resultado com comando, commit, máquina e data.',
-        'A biblioteca sai por MCP com quatro ferramentas somente leitura, para o Claude Desktop e para qualquer outro cliente MCP. Escrita fica fora da superfície que um modelo alcança.',
-        'Hoje são cerca de 17.000 linhas de Rust em três crates e uma dependência de runtime, com mais de 200 testes, CI no GitHub Actions e 36 registros de decisão de arquitetura, que existem para guardar o motivo de cada troca e não só o resultado dela.',
+        'Desenvolvimento de motor de busca local-first em Rust com SQLite FTS5 e Reciprocal Rank Fusion para agentes de IA.',
+        'Implementação de portão determinístico de confiança para rejeição segura de consultas fora de escopo.',
+        'Harness de avaliação automatizado medindo abstenção adversarial, latência e o benchmark LongMemEval-S.',
+        'Implementação de servidor Model Context Protocol (MCP) com 4 ferramentas somente leitura para Claude e agentes externos.',
+        'Arquitetura modular de 17.000 linhas de Rust em 3 crates, suite com mais de 200 testes e 36 ADRs documentados.',
       ],
     },
     {
@@ -142,13 +141,12 @@ const content = {
       location: 'Brasil',
       period: 'Abril de 2026 - Atual',
       bullets: [
-        'Lidero arquitetura e entrega em toda a casa, dos infoprodutos aos funis de comércio digital e aos sistemas de medição que dizem quanto cada um deles rendeu.',
-        'Respondo pela engenharia de conversão inteira, do checkout no Mercado Pago e no Pix e do preço decidido no servidor até a atribuição por UTM, a deduplicação de eventos entre navegador e servidor, a conciliação de receita e os dashboards operacionais.',
-        'Desenhei o pipeline de geração de imagens com job idempotente, concorrência limitada, cache, telemetria e uma retentativa que não consegue duplicar trabalho já pago.',
-        'Respondo pelo BiblinhaPlay, assinatura de aprendizado e entretenimento com cerca de 500 usuários, num web/PWA em produção e num cliente Expo/React Native que cobrem vídeo, música, materiais para impressão, jogos e gamificação.',
-        'Tudo isso vive num monorepo TypeScript que eu montei, com TanStack Start, React, Expo/React Native, PostgreSQL, Drizzle e pacotes reaproveitáveis de UI e de e-mail transacional.',
-        'Do lado da assinatura, desenhei checkout hospedado, autorização por entitlement, webhooks idempotentes, entrega de mídia protegida e um pipeline de conteúdo versionado com ativação atômica e rollback.',
-        'Escrevi o BiblinhaCraft em Three.js, com terreno procedural, streaming progressivo de regiões, progressão que persiste e controle pensado para toque.',
+        'Liderança técnica de engenharia e arquitetura em produtos digitais, funis de conversão e sistemas de receita.',
+        'Desenvolvimento de checkout com Pix e Mercado Pago, atribuição por UTM, rastreamento server-side e dashboards de métricas.',
+        'Arquitetura do pipeline idempotente de processamento de imagens com controle de concorrência e telemetria.',
+        'Entrega e sustentação do BiblinhaPlay (Web/PWA e Expo/React Native) com streaming, gamificação e controle de entitlements.',
+        'Arquitetura de monorepo TypeScript com TanStack Start, React, React Native, PostgreSQL e Drizzle ORM.',
+        'Desenvolvimento do BiblinhaCraft com Three.js, terreno procedural e streaming progressivo.',
       ],
     },
     {
@@ -173,12 +171,12 @@ const content = {
       location: 'Franca, Brasil',
       period: '2018 - Atual',
       bullets: [
-        'Atendo clientes com aplicação web full-stack em TypeScript, React, Next.js, Node.js, Supabase, PostgreSQL, Vite, Tailwind CSS e Vercel.',
-        'Um sistema de inscrição para eventos ao vivo, hoje usado por equipes de várias empresas, com validação de CPF e WhatsApp, interface responsiva e acompanhamento de participante.',
-        'Para um estúdio de tatuagem e barbearia, construí e ainda mantenho um chatbot com painel administrativo. A conversa entra solta e sai como pedido de orçamento estruturado e tarefa de follow-up.',
-        'Também faço landing page e ferramenta interna com integração de pagamento e webhook, para tirar da mão o checkout e o trabalho repetido do dia a dia.',
-        'Nesses projetos eu sou o frontend, o backend, a modelagem de banco, o deploy, a manutenção e o suporte ao vivo. TDD com Vitest é o que me deixa refatorar sem quebrar o que já estava funcionando.',
-        'De 2018 a 2025 a mesma atividade também cobriu suporte de TI e sistemas para pessoas e pequenas empresas, remoto e presencial: hardware, Windows, Linux e Android, instalação e configuração de software e resolução de problemas.',
+        'Desenvolvimento de aplicações web full-stack com TypeScript, React, Next.js, Node.js, PostgreSQL e Tailwind CSS.',
+        'Sistema corporativo de credenciamento e gestão de participantes para eventos presenciais.',
+        'Chatbot com painel operacional para captação estruturada de leads e orçamentos comerciais.',
+        'Landing pages de alta conversão com checkouts integrados, webhooks idempotentes e automação operacional.',
+        'Práticas de TDD com Vitest, modelagem de dados relacional e deploy automatizado em VPS Linux e Vercel.',
+        'Atendimento e suporte técnico em infraestrutura, redes e sistemas corporativos.',
       ],
     },
     {
@@ -199,9 +197,9 @@ const content = {
       location: 'Franca, Brasil',
       period: 'Abril de 2015 - Abril de 2016',
       bullets: [
-        'A escola me contratou de dentro da própria sala de aula, durante o curso de desenvolvimento web e design que eu fazia lá.',
-        'Dei aulas de web design e de software criativo e mantive o laboratório Windows funcionando: instalação, configuração e atualização em todas as estações.',
-        'Suporte a alunos e funcionários durante a operação diária, de problema de software à rede do laboratório.',
+        'Instrutor técnico em desenvolvimento web, design e ferramentas digitais.',
+        'Administração, manutenção e suporte técnico aos laboratórios Windows e à infraestrutura de rede.',
+        'Atendimento diário a alunos e funcionários para resolução de problemas técnicos.',
       ],
     },
   ],
@@ -212,7 +210,7 @@ const content = {
       title: 'Engenharia de Sistemas & IA',
       icon: 'terminal',
       description:
-        'Infraestrutura de retrieval e memória para agentes de IA, escrita em Rust e medida por um harness de avaliação que eu escrevi para poder falhar.',
+        'Infraestrutura de retrieval e memória para agentes de IA em Rust, com benchmarking rigoroso e arquitetura local-first.',
       technologies: ['Rust', 'RAG', 'AI Agents', 'LLM Evaluation', 'Information Retrieval', 'SQLite FTS5', 'Reciprocal Rank Fusion', 'MCP', 'Local-First', 'Benchmarking', 'Tauri'],
     },
     {
@@ -228,7 +226,7 @@ const content = {
       title: 'Comércio & Engenharia de Conversão',
       icon: 'shield',
       description:
-        'Faço o caminho do dinheiro e a medição embaixo dele, com eventos seguros de reprocessar e números que fecham.',
+        'Arquitetura de checkout, reconciliação financeira e rastreamento server-side com idempotência e alta confiabilidade.',
       technologies: ['Mercado Pago', 'Pix', 'Hosted Checkout', 'Webhooks', 'Idempotency', 'Entitlements', 'Reconciliation', 'Server-Side Tracking', 'Attribution', 'PostHog'],
     },
     {
@@ -259,10 +257,9 @@ const content = {
 
   about: {
     paragraphs: [
-      'Sou Tech Lead e Full-Stack Software Engineer. Pego requisito de produto e devolvo software que funciona. Depois que ele entra no ar, continua sendo meu.',
-      'O projeto que ocupa a maior parte do meu tempo é o Ulpia, camada de memória e retrieval open source para agentes de IA escrita em Rust. É RAG em que modelo nenhum entra no caminho da recuperação, e é isso que permite rodar offline, manter consistência entre as respostas e admitir quando nenhum arquivo da biblioteca cobre a pergunta. É Apache 2.0, e a avaliação capaz de desmentir tudo isso está no mesmo repositório.',
-      'Na Casa Seth eu cuido do lado do comércio, que é infoproduto, fluxo de pagamento e os sistemas de atribuição e conversão que dizem quanto cada lançamento rendeu de verdade. O BiblinhaPlay, assinatura com cerca de 500 usuários entre web e mobile, foi o primeiro produto que construí lá e continua comigo.',
-      'Continuo perto do código. Gosto de fronteira bem definida, integração sensível não sai do servidor, o plano de recuperação existe antes de alguém precisar dele, e todo fluxo crítico eu testo manualmente. Trabalho de Franca, no interior de São Paulo, remoto para a América Latina, e estou aberto a me mudar para Santiago, no Chile.',
+      'Sou Tech Lead e Full-Stack Software Engineer com foco em arquitetura de sistemas, engenharia de IA e comércio digital. Pego requisitos complexos de produto e devolvo software confiável em produção, mantendo a responsabilidade por todo o seu ciclo de vida.',
+      'Minha atuação combina desenvolvimento de sistemas de baixo nível (como o Ulpia, camada de memória para agentes em Rust) com plataformas escaláveis de comércio eletrônico na Casa Seth, cobrindo pagamentos, rastreamento de receita e aplicativos web e mobile.',
+      'Prezo por código enxuto, fronteiras de domínio bem definidas, operações idempotentes e testes automatizados que garantem estabilidade. Trabalho de Franca (SP), remotamente para toda a América Latina, e estou aberto a recolocação para Santiago, Chile.',
     ],
   },
 

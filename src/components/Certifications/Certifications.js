@@ -1,4 +1,3 @@
-import CardRail from '@/components/CardRail/CardRail';
 import { useLocale } from '@/i18n/LocaleProvider';
 import styles from './Certifications.module.css';
 
@@ -13,18 +12,7 @@ export default function Certifications() {
           <h2 className={styles.sectionTitle}>{t.certifications.title}</h2>
         </header>
 
-        {/*
-          440px is not a taste call. The rail loops by rendering the list three
-          times and jumping a whole copy at 0.5 and 1.5 copies, so an inert copy
-          becomes visible whenever the viewport is wider than half a copy. The
-          widest this container gets is 1136px, so one copy has to reach 2272px:
-          5 cards at 440px plus five 24px gaps is 2320px, and no dead copy is
-          ever on screen.
-        */}
-        <CardRail
-          sectionName={t.certifications.title}
-          itemWidth="clamp(240px, 66vw, 358px)"
-        >
+        <div className={styles.grid}>
           {certifications.map((certification) => (
             <article key={certification.id} className={styles.card}>
               <div className={styles.cardTop}>
@@ -48,7 +36,7 @@ export default function Certifications() {
               )}
             </article>
           ))}
-        </CardRail>
+        </div>
       </div>
     </section>
   );
